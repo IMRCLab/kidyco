@@ -1,5 +1,5 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+This is a summary of important kinodynamic systems of varying complexity to simplify research and benchmarking in the area of motion planning and controls, for single- and multi-robot systems.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+Particular emphasis is on including results such as differential flatness, interesting instances (with respect to bounds), and relationship to real robots.
