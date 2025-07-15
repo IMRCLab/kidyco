@@ -1,3 +1,72 @@
+::: {.content-visible unless-format="pdf"}
+{{< include ../macros.tex >}}
+:::
+
 # Unicycle
+
+![Unicycle Robot](../media/choset_book_fig12.2.png)
+
+## Dynamics
+
+- Parameters
+    - state space $\sX$
+    - action space $\sU$
+- State: $\vx = \begin{pmatrix}x, y, \theta\end{pmatrix}^\top \in \sX$ [m, m, rad] (position and orientation of the robot in the world frame)
+- Action: $\vu = \begin{pmatrix} v, \omega \end{pmatrix}^\top \in \sU$ [m/s, rad/s] (speed and angular speed, respectively)
+- Dynamics: 
+    $$
+    \begin{aligned}
+        \dot x &= v \cos \theta \\
+        \dot y &= v \sin \theta \\
+        \dot \theta &= \omega
+    \end{aligned}
+    $$
+
+## Differential Flatness
+
+Pick *flat outputs* $\vz(t) = (x(t), y(t))^\top$, i.e., the position of the unicycle. Then we can compute all necessary variables if $\vz(t)$ is at least C2-continuous.
+$$
+\begin{aligned}
+        \vx(t) &= g_x(\vz, \dot{\vz}) = \left(x, y, \arctan \left(\frac{\dot y}{\dot x}\right)\right)\\
+        \vu(t) &= g_u(\dot{\vz}, \ddot{\vz}) = \left({\color{red} \pm}\sqrt{\dot y^2 + \dot x^2}, \frac{\dot x \ddot y - \dot y \ddot x}{\dot x^2 + \dot y^2} \right)
+      \end{aligned}
+$$
+
+::: {.callout-note collapse="true"}
+## Derivation
+
+Divide y and x-part of the dynamics, yields $\theta$:
+$$
+\begin{aligned}
+        \frac{\dot y}{\dot x} &= \frac{v \sin \theta}{v \cos \theta}\\
+        \frac{\dot y}{\dot x} &= \tan \theta\\
+        \theta &= \arctan \left(\frac{\dot y}{\dot x}\right)
+\end{aligned}
+$$
+
+Using the x-part, rearranging for $v$ and substituting the expression for $\theta$, yields $v$:
+$$
+\begin{aligned}
+    v &= \frac{\dot x}{\cos \theta}\\
+    &= \frac{\dot x}{\cos \left(\arctan \left(\frac{\dot y}{\dot x}\right)\right)}\\
+    &= \dot x \sqrt{\frac{\dot y^2}{\dot x^2} + 1} = \dot x \sqrt{\frac{\dot y^2}{\dot x^2} + \frac{\dot x^2}{\dot x^2}}\\
+    &= {\color{red} \pm}\sqrt{\dot y^2 + \dot x^2}
+\end{aligned}
+$$
+
+Taking the time-derivative of the expression for $\theta$ yields $\omega$
+$$
+\begin{aligned}
+    \omega &= \dot \theta = \frac{d}{dt} \arctan \left(\frac{\dot y}{\dot x}\right)\\
+          &= \frac{\dot x \ddot y - \dot y \ddot x}{\dot x^2 + \dot y^2}
+\end{aligned}
+$$
+:::
+
+## Controllers
+
+## Useful Parameters
+
+(from db-A* paper)
 
 

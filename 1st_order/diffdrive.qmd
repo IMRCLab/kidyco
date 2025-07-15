@@ -1,3 +1,81 @@
+::: {.content-visible unless-format="pdf"}
+{{< include ../macros.tex >}}
+:::
+
 # Differential Drive
+
+![Differential Drive Robot](../media/lavalle_13.2b.png)
+
+## Dynamics
+
+- Parameters
+    - $r$: radius of the wheels [m]
+    - $L$: distance between the wheels [m]
+- State: $\vx = \begin{pmatrix}x, y, \theta\end{pmatrix}^\top$ [m, m, rad] (position and orientation of the robot in the world frame)
+- Action: $\vu = \begin{pmatrix} u_l, u_r \end{pmatrix}^\top$ [rad/s, rad/s] (angular velocity of the left and right wheels, respectively)
+- Dynamics: 
+    $$
+    \begin{aligned}
+        \dot x &= \frac{r}{2} (u_l + u_r) \cos \theta \\
+        \dot y &= \frac{r}{2} (u_l + u_r) \sin \theta \\
+        \dot \theta &= \frac{r}{L} (u_r - u_l)
+    \end{aligned}
+    $$
+
+### Relationship to Unicycle
+
+There is a linear relationship between the differential drive and the unicycle. One can substitute actions to $v = \frac{r}{2} (u_l + u_r)$ and $\omega = \frac{r}{L} (u_r - u_l)$ to get
+$$ 
+\begin{aligned}
+        \dot x &= v \cos \theta \\
+        \dot y &= v \sin \theta \\
+        \dot \theta &= \omega
+    \end{aligned}
+$$
+
+Then, the "original" actions can be computed as
+$$\begin{aligned}
+    u_r &= \frac{2v + L\omega}{2r}\\
+    u_l &= \frac{2v-L\omega}{2r}
+\end{aligned}
+$$
+
+::: {.callout-note collapse="true"}
+## Derivation
+
+$$
+2v = r (u_l + u_r)
+$$ {#eq-diffdrive-v}
+
+$$
+L\omega = r (u_r - u_l)
+$$ {#eq-diffdrive-w}
+
+Adding @eq-diffdrive-v and @eq-diffdrive-w:
+
+$$
+\begin{aligned}
+2v + L\omega = r (u_l + u_r + u_r - u_l) = 2 r u_r\\
+u_r = \frac{2v + L\omega}{2 r}
+\end{aligned}
+$$ {#eq-diffdrive-ur}
+
+Substituting @eq-diffdrive-ur in @eq-diffdrive-v:
+$$
+\begin{aligned}
+2v = r (u_l + u_r) = r (u_l + \frac{2v + L\omega}{2 r}) = r u_l + v + \frac{L\omega}{2}\\
+u_l = \frac{2v - v - \frac{L\omega}{2}}{r} = \frac{2v - L \omega}{2 r}
+\end{aligned}
+$$ {#eq-diffdrive-ul}
+:::
+
+
+## Differential Flatness
+
+## Controllers
+
+## Useful Parameters
+
+### Pololu
 
 
