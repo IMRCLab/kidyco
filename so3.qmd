@@ -1,3 +1,298 @@
+::: {.content-visible unless-format="pdf"}
+{{< include macros.tex >}}
+:::
+
 # SO(3) - Rotations in 3D
 
+## Introduction
 
+For rotations without singularities, rotation matrices and quaternions are common. The special orthogonal group SO(3) is often defined using a constrained set of $3\times 3$ rotation matrices:
+$$
+SO(3)=\{ R \in \mathbb R^{3 \times 3} | R^\top R = R R^\top = I \land \det R = 1 \}
+$$ {#eq-def-so3}
+
+Quaternions have the advantage of a lower memory requirement (4 floats vs. 9 in a rotation matrix), often lower computational effort, and that their constraints are easier to fulfill when integrating (one norm constraint rather than the two constraints above). This document summarizes the mathematical operations for quaternions and provides useful references for derivations.
+
+Notable implementations for quaternions are:
+
+Language| Link
+-----|-----:
+Python|[Rowan](https://rowan.readthedocs.io)
+C++|[Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page), [Sophus](https://github.com/strasdat/Sophus)
+C|[cmath3d](https://github.com/jpreiss/cmath3d)
+
+Notable other references are: @2007-saerkkae-notesOnQuaternions, @2024-toussaint-quaternions, @2024-jia-quaternions.
+
+
+## Definition
+
+A quaternion for SO(3) is a 4D vector with the constraint to have norm 1:
+
+$$
+    \vq=\begin{pmatrix}
+        q_w\\
+        q_x\\
+        q_y\\
+        q_z
+    \end{pmatrix}=
+    \begin{pmatrix}
+        q_w\\
+        \vec{\vq}
+    \end{pmatrix}\in \mathbb R^4 \,\, s.t. \| \vq \|_2 = 1
+$$ {#eq-def-quaternion}
+
+One can *augment* or *promote* a vector $\vv \in \mathbb R^3$ to be a quaternion:
+$$
+    \bar{\vv} = \begin{pmatrix}
+        0\\
+        \vv
+    \end{pmatrix}
+$$ {#eq-quat-promote}
+
+One can *extract* the vector or imaginary part of a quaternion:
+$$
+    \vec{\vq} = \extract(\vq)
+$$ {#eq-quat-extract}
+
+Note that the order of the components is not uniquely defined. Some software packages put $q_w$ first, some last in the vector.
+
+## Conversion
+
+### To Rotation Matrix
+<!-- https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+and https://users.aalto.fi/~ssarkka/pub/quat.pdf -->
+
+$$
+R(\vq) = \begin{pmatrix}
+q_w^2 + q_x^2 - q_y^2 - q_z^2 &  2(q_x q_y - q_w q_z) &  2(q_w q_y + q_x q_z) \\
+2(q_x q_y + q_w q_z) & q_w^2 - q_x^2 + q_y^2 - q_z^2 &  2(q_y q_z - q_w q_x) \\
+2(q_x q_z - q_w q_y) & 2( q_w q_x + q_y q_z) & q_w^2 - q_x^2 - q_y^2 + q_z^2 
+\end{pmatrix}
+$$
+
+### From Rotation Matrix
+
+<!-- \todo{\url{https://github.com/jpreiss/cmath3d/blob/39f4fcdc8ec41a8120a3c43c29f3ce47e8d852c1/math3d.h#L605-L615}} -->
+
+
+## Low-Level Operations
+
+### Negation
+
+(same as any vector):
+
+$$
+-\vq = \begin{pmatrix}
+        -q_w\\
+        -q_x\\
+        -q_y\\
+        -q_z
+    \end{pmatrix}
+$$
+
+Note that $\vq$ and $-\vq$ represent the same rotation.
+
+### Addition, Substraction, Multiplication/Devision with Scalar
+
+same as any vector, e.g.,:
+
+$$
+\vq + \vp = \begin{pmatrix}
+        q_w + p_w\\
+        q_x + p_x\\
+        q_y + p_y\\
+        q_z + p_z
+    \end{pmatrix}
+$$
+
+### Conjugate
+$$
+\vq^* = \begin{pmatrix}
+        q_w\\
+        -q_x\\
+        -q_y\\
+        -q_z
+    \end{pmatrix}
+$$
+Note that this is the inverse for normalized quaternions.
+
+### Norm 
+
+(regular $L_2$ norm on the vector)
+
+$$
+\| \vq \| = \sqrt{q_w^2 + q_x^2 + q_y^2 + q_z^2}
+$$
+Note that this should be always 1 for normalized quaternions.
+
+<!-- % \item[Inverse]
+% \begin{equation}
+% \vq^{-1} = \frac{\vq^*}{\| \vq \|^2}
+% \end{equation}
+% Note that for normalized quaternions, one uses $\vq^*$ as the inverse operations. -->
+
+### Exponential
+
+$$
+\exp{(\vq)} = \exp{(q_w)} \begin{pmatrix}
+\cos{(\| \vec{\vq} \|)}\\
+\frac{\vec{\vq}}{\| \vec{\vq} \|} \sin{(\| \vec{\vq} \|)}
+\end{pmatrix}
+$$
+
+### Logarithm
+
+$$
+\ln{(\vq)} = \begin{pmatrix}
+\ln{(\| \vq \|)}\\
+\frac{\vec{\vq}}{\| \vec{\vq} \|} \arccos{\left( \frac{q_w}{\| \vq \| }\right)}
+\end{pmatrix}
+$$
+
+### Power with Real Number
+
+$$
+\vq^p = \exp{(\ln(\vq) p)}
+$$
+
+### Power with Quaternion
+
+$$
+\vq^\vp = \exp{(\ln(\vq) \otimes \vp)}
+$$
+
+## Useful Operations
+
+### Multiplication
+
+Similar to rotation matrices, this can be used to concatenate rotations.
+
+$$
+\vq \otimes \vp = \begin{pmatrix}
+q_w p_w - q_x p_x - q_y p_y - q_z p_z\\
+q_x p_w + q_w p_x - q_z p_y + q_y p_z\\
+q_y p_w + q_z p_x + q_w p_y - q_x p_z\\
+q_z p_w - q_y p_x + q_x p_y + q_w p_z
+\end{pmatrix}
+$$
+
+Note that generally $\vq \otimes \vp \neq \vp \otimes \vq$.
+
+Be careful when looking at papers - sometimes it's defined inverse!
+
+### Vector Rotation
+With a rotation matrix $\mathbf R(\vq)$, we can rotate a vector $\mathbf v$ as $\mathbf v_{rotated} = \mathbf R(\vq) \mathbf v$. Similarily, for quaternions we have:
+
+$$
+\vv_{rotated} = \vq \odot \vv = \extract(\vq \otimes \overline{\vv} \otimes \vq^*)
+$$
+
+(I.e., augment $\mathbf v$ to a quaternion, use two quaternion multiplications, and one conjugate, and then extract the vector part of the result.)
+
+**TODO**: THERE IS A FASTER VERSION, see https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+
+<!-- % Note: Use the conjugate $\vq^*$ for the inverse rotation. -->
+
+## Derivatives and Integration
+
+Assuming $\boldsymbol{\omega}\in \mathbb R^3$ is the angular velocity in \emph{body frame} (e.g., gyroscope):
+$$
+\dot{\vq} = \frac{1}{2} \vq \otimes \overline{\boldsymbol{\omega}}
+$$
+
+Assuming $\boldsymbol{\omega}$ in *world frame*:
+$$
+\dot{\vq} = \frac{1}{2} \overline{\boldsymbol{\omega}} \otimes \vq
+$$
+
+This can also be used to numerically estimate $\boldsymbol{\omega}$. One can approximate $\dot{\vq} \approx (\vq(t+\Delta t) - \vq(t)) / \Delta t$ and then proceed (remembering to use $\vq^*$ as inverse of $\vq$). A nicer solution can be derived to reach the following (*body frame*)[^1]:
+$$
+\boldsymbol{\omega} \approx 
+2 \extract \left( \frac{\vq^*(t) \otimes \vq(t+\Delta t)}{\Delta t} \right)
+$$
+
+Or similarly in *world frame*:
+$$
+\boldsymbol{\omega} \approx 
+2 \extract \left( \frac{ \vq(t+\Delta t) \otimes \vq^*(t)}{\Delta t} \right)
+$$
+
+For integration, one can use Euler or RK4 to integrate $\vq$, followed by normalizing the quaternion. Alternatively, the exponential map can be used as a more accurate, explicit integrator (*body frame*):
+
+$$
+\vq_{t+\Delta t} = \vq_t \otimes \begin{pmatrix}
+\cos{(\| \boldsymbol{\omega} \| \Delta t/2)}\\
+\frac{\boldsymbol{\omega}}{\| \boldsymbol{\omega} \|} \sin{(\|\boldsymbol{\omega}\| \Delta t/2)}
+\end{pmatrix}
+$$
+
+A derivation is in @2017-narayan-integrateQuaternions. Note that some libraries do not specify which frame they operate in, e.g., the Python library rowan assumes *world frame* for its methods.
+
+[^1]: See [this math.stackexchange post](https://math.stackexchange.com/questions/2282938/converting-from-quaternion-to-angular-velocity-then-back-to-quaternion).
+
+
+## Interpolation
+
+If we want to linearly interpolate from a rotation $\vq(0)$ to another rotation $\vq(1)$, we can use the **slerp** operation:
+$$
+\vq(t) = \left( \vq(1) \otimes \vq(0)^* \right)^t \otimes \vq(0) \,\,\, \forall t \in [0, 1]
+$$
+
+
+## Metrics
+
+A metric measures the difference between two rotations as a scalar value.
+A comparison of different metrics is in @2009-huynh-Metrics3DRotations.
+Below are common metrics.
+
+<!-- 2 in paper, sym_distance in rowan -->
+The following is metric 2 in @2009-huynh-Metrics3DRotations and **sym_distance** in rowan:
+$$
+d(\vq, \vp) = \min \left( \| \vq - \vp \|, \| \vq + \vp \| \right) \in [0, \sqrt 2]
+$$
+
+<!-- %3 in paper, sym_intrinsic_distance in rowan -->
+The following is metric 3 in @2009-huynh-Metrics3DRotations, is [used by OMPL](https://github.com/ompl/ompl/blob/18a5f5bea1940a8b56369a58d3c20dac0d884d8b/src/ompl/base/spaces/src/SO3StateSpace.cpp#L258-L261), and called **sym_intrinsic_distance** in rowan:
+$$
+d(\vq, \vp) = \arccos{| \vq \cdot \vp |} \in [0, \pi/2]
+$$
+
+<!-- %4 in paper, not in rowan -->
+The following is metric 4 in @2009-huynh-Metrics3DRotations:
+$$
+d(\vq, \vp) = 1 - | \vq \cdot \vp | \in [0, 1]
+$$
+
+## Random Generation
+
+<!-- % also at https://lavalle.pl/planning/node198.html -->
+Sampling rotations uniformly is not trivial. Here is one approach @random-rotations:
+$$
+\begin{aligned}
+    r_1, r_2, r_3 &\sim \mathcal U(0, 1)\\
+    \vq&=\begin{pmatrix}
+        \sqrt{1-r_1} \sin 2\pi r_2\\
+        \sqrt{1-r_1} \cos 2\pi r_2\\
+        \sqrt{r_1} \sin 2\pi r_3\\
+        \sqrt{r_1} \cos 2\pi r_3
+    \end{pmatrix}
+\end{aligned}
+$$
+
+Note, this is also used [inside OMPL](https://github.com/ompl/ompl/blob/18a5f5bea1940a8b56369a58d3c20dac0d884d8b/src/ompl/util/src/RandomNumbers.cpp#L263-L277).
+
+<!--
+
+
+\section{SO(2)}
+
+\subsection{Angle}
+
+\subsection{Rotation Matrix}
+
+\subsection{Duoernion}
+% this is what marc uses, not sure if there is a technical term
+% essentially x,y coordinates with circle constraint
+
+\nocite{*}
+\printbibliography -->
