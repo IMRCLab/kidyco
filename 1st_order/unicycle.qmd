@@ -63,10 +63,63 @@ $$
 $$
 :::
 
+## Invariance
+
+The dynamics are translation-invariant.
+
 ## Controllers
+
+### Geometric Controller (@UGVTrajectoryController)
+
+- Given reference state $\vx_r = \begin{pmatrix}x_r, y_r, \theta_r\end{pmatrix}^\top \in \sX$ and reference action $\vu_r = \begin{pmatrix} v_r, \omega_r \end{pmatrix}^\top \in \sU$
+- $K_x, K_y, K_\theta\in\mathbb R^+$ are tuning gains 
+- Control law:
+    $$\begin{aligned}
+    x_e &= (x_r-x)\cos \theta + (y_r-y)\sin \theta\\
+    y_e &= -(x_r-x)\sin \theta + (y_r-y)\cos \theta\\
+    \theta_e &= \theta_d - \theta \\
+    v &= v_r \cos \theta_e + K_x x_e\\
+    \omega &= \omega_r + v_r (K_y y_e + K_\theta \sin \theta_e)
+    \end{aligned}
+    $$
+
+### Action Mixing
+
+Geometric controllers might output actions that are outside the nominal action space $\sU$ (saturation limits). To remedy this, a QP can be used that prefers $\omega$ over $v$ using a tuning parameter $\lambda$:
+
+$$
+\begin{aligned}
+\min_{v^*, \omega^*} & \, (\omega^* - \omega) ^2 + \lambda (v^* - v)^2 \\
+\text{s.t.} & \, 
+\begin{pmatrix} v^*, \omega^* \end{pmatrix}^\top \in \sU
+\end{aligned}
+$$
 
 ## Useful Parameters
 
-(from db-A* paper)
+### unicycle1_v0 (@2024-ortiz-haro-IDbAIterativeSearch)
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v0.yaml -->
 
+A basic version
+$$
+\sU = [-0.5, 0.5] m/s \times [-0.5, 0.5] rad/s
+$$
+
+### unicycle1_v1 (@2024-ortiz-haro-IDbAIterativeSearch)
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v1.yaml -->
+
+A plane-like version with minimum speed
+
+$$
+\sU = [0.25, 0.5] m/s \times [-0.5, 0.5] rad/s
+$$
+
+### unicycle1_v2 (@2024-ortiz-haro-IDbAIterativeSearch)
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v2.yaml -->
+
+A plane-like version with a rudder damage
+
+$$
+\sU = [0.25, 0.5] m/s \times [-0.25, 0.5] rad/s
+$$
 
