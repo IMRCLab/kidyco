@@ -10,6 +10,72 @@
     ]
   },
   {
+    "objectID": "1st_order/single_integrator.html",
+    "href": "1st_order/single_integrator.html",
+    "title": "2  Single Integrator (2D)",
+    "section": "",
+    "text": "2.1 Dynamics",
+    "crumbs": [
+      "First Order Systems",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Single Integrator (2D)</span>"
+    ]
+  },
+  {
+    "objectID": "1st_order/single_integrator.html#dynamics",
+    "href": "1st_order/single_integrator.html#dynamics",
+    "title": "2  Single Integrator (2D)",
+    "section": "",
+    "text": "Parameters\n\nstate space \\(\\mathcal{X}\\)\naction space \\(\\mathcal{U}\\)\n\nState: \\(\\mathbf{x}= \\begin{pmatrix}x, y\\end{pmatrix}^\\top \\in \\mathcal{X}\\) [m, m] (position of the robot in the world frame)\nAction: \\(\\mathbf{u}= \\begin{pmatrix} v_x, v_y \\end{pmatrix}^\\top \\in \\mathcal{U}\\) [m/s, m/s] (speed of the robot in the world frame)\nDynamics: \\[\n  \\begin{aligned}\n      \\dot x &= v_x\\\\\n      \\dot y &= v_y \\\\\n  \\end{aligned}\n  \\]",
+    "crumbs": [
+      "First Order Systems",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Single Integrator (2D)</span>"
+    ]
+  },
+  {
+    "objectID": "1st_order/single_integrator.html#differential-flatness",
+    "href": "1st_order/single_integrator.html#differential-flatness",
+    "title": "2  Single Integrator (2D)",
+    "section": "2.2 Differential Flatness",
+    "text": "2.2 Differential Flatness\nPick flat outputs \\(\\mathbf{z}(t) = (x(t), y(t))^\\top\\), i.e., the position of the robot. Then we can compute all necessary variables if \\(\\mathbf{z}(t)\\) is at least C1-continuous. \\[\n\\begin{aligned}\n    \\mathbf{x}(t) &= g_x(\\mathbf{z}) = \\left(x, y\\right)\\\\\n    \\mathbf{u}(t) &= g_u(\\dot{\\mathbf{z}}) = \\left(\\dot x, \\dot y \\right)\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "First Order Systems",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Single Integrator (2D)</span>"
+    ]
+  },
+  {
+    "objectID": "1st_order/single_integrator.html#invariance",
+    "href": "1st_order/single_integrator.html#invariance",
+    "title": "2  Single Integrator (2D)",
+    "section": "2.3 Invariance",
+    "text": "2.3 Invariance\nThe dynamics are translation-invariant.",
+    "crumbs": [
+      "First Order Systems",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Single Integrator (2D)</span>"
+    ]
+  },
+  {
+    "objectID": "1st_order/single_integrator.html#controllers",
+    "href": "1st_order/single_integrator.html#controllers",
+    "title": "2  Single Integrator (2D)",
+    "section": "2.4 Controllers",
+    "text": "2.4 Controllers\nThe system is linear, so an LQR controller is most suitable.",
+    "crumbs": [
+      "First Order Systems",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Single Integrator (2D)</span>"
+    ]
+  },
+  {
+    "objectID": "1st_order/single_integrator.html#useful-parameters",
+    "href": "1st_order/single_integrator.html#useful-parameters",
+    "title": "2  Single Integrator (2D)",
+    "section": "2.5 Useful Parameters",
+    "text": "2.5 Useful Parameters\n\n2.5.1 integrator1_2d_v0 (Ortiz-Haro et al. (2024))\n\nA basic version \\[\n\\mathcal{U}= [-0.5, 0.5] m/s \\times [-0.5, 0.5] ms/s\n\\]\n\n\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. “iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.” IEEE Transactions on Robotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.",
+    "crumbs": [
+      "First Order Systems",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Single Integrator (2D)</span>"
+    ]
+  },
+  {
     "objectID": "1st_order/unicycle.html",
     "href": "1st_order/unicycle.html",
     "title": "3  Unicycle",
@@ -69,7 +135,7 @@
     "href": "1st_order/unicycle.html#useful-parameters",
     "title": "3  Unicycle",
     "section": "3.5 Useful Parameters",
-    "text": "3.5 Useful Parameters\n\n3.5.1 unicycle1_v0 (Ortiz-Haro et al. (2024))\n\nA basic version \\[\n\\mathcal{U}= [-0.5, 0.5] m/s \\times [-0.5, 0.5] rad/s\n\\]\n\n\n3.5.2 unicycle1_v1 (Ortiz-Haro et al. (2024))\n\nA plane-like version with minimum speed\n\\[\n\\mathcal{U}= [0.25, 0.5] m/s \\times [-0.5, 0.5] rad/s\n\\]\n\n\n3.5.3 unicycle1_v2 (Ortiz-Haro et al. (2024))\n\nA plane-like version with a rudder damage\n\\[\n\\mathcal{U}= [0.25, 0.5] m/s \\times [-0.25, 0.5] rad/s\n\\]\n\n\n\n\nKanayama, Y., Y. Kimura, F. Miyazaki, and T. Noguchi. 1990. “A Stable Tracking Control Method for an Autonomous Mobile Robot.” In IEEE International Conference on Robotics and Automation (ICRA), 384–89. https://doi.org/10.1109/ROBOT.1990.126006.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. “iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.” IEEE Transactions on Robotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.",
+    "text": "3.5 Useful Parameters\n\n3.5.1 unicycle1_v0 (Ortiz-Haro et al. (2024))\n\nA basic version \\[\n\\mathcal{U}= [-0.5, 0.5] m/s \\times [-0.5, 0.5] rad/s\n\\]\n\n\n3.5.2 unicycle1_v1 (Ortiz-Haro et al. (2024))\n\nA plane-like version with minimum speed\n\\[\n\\mathcal{U}= [0.25, 0.5] m/s \\times [-0.5, 0.5] rad/s\n\\]\n\n\n3.5.3 unicycle1_v2 (Ortiz-Haro et al. (2024))\n\nA plane-like version with a rudder damage\n\\[\n\\mathcal{U}= [0.25, 0.5] m/s \\times [-0.25, 0.5] rad/s\n\\]\n\n\n\n\nChoset, Howie, Kevin M. Lynch, Seth Hutchinson, George A. Kantor, Wolfram Burgard, Lydia E. Kavraki, and Sebastian Thrun. 2005. Principles of Robot Motion: Theory, Algorithms, and Implementations. Edited by Ronald C. Arkin. Intelligent Robotics and Autonomous Agents Series. Cambridge, MA, USA: A Bradford Book.\n\n\nKanayama, Y., Y. Kimura, F. Miyazaki, and T. Noguchi. 1990. “A Stable Tracking Control Method for an Autonomous Mobile Robot.” In IEEE International Conference on Robotics and Automation (ICRA), 384–89. https://doi.org/10.1109/ROBOT.1990.126006.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. “iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.” IEEE Transactions on Robotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.",
     "crumbs": [
       "First Order Systems",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Unicycle</span>"
@@ -142,13 +208,69 @@
     ]
   },
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "12  Summary",
+    "objectID": "1st_order/car.html",
+    "href": "1st_order/car.html",
+    "title": "5  Car",
     "section": "",
-    "text": "To be filled.",
+    "text": "5.1 Dynamics",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Summary</span>"
+      "First Order Systems",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Car</span>"
+    ]
+  },
+  {
+    "objectID": "1st_order/car.html#dynamics",
+    "href": "1st_order/car.html#dynamics",
+    "title": "5  Car",
+    "section": "",
+    "text": "Parameters\n\n\\(L\\): distance between the wheels [m]\nstate space \\(\\mathcal{X}\\)\naction space \\(\\mathcal{U}\\)\n\nState: \\(\\mathbf{x}= \\begin{pmatrix}x, y, \\theta\\end{pmatrix}^\\top \\in \\mathcal{X}\\) [m, m, rad] (position and orientation of the robot in the world frame)\nAction: \\(\\mathbf{u}= \\begin{pmatrix} v, \\phi \\end{pmatrix}^\\top \\in \\mathcal{U}\\) [m/s, rad] (speed and front wheel angle, respectively)\nDynamics: \\[\n  \\begin{aligned}\n      \\dot x &= v \\cos \\theta\\\\\n      \\dot y &= v \\sin \\theta\\\\\n      \\dot \\theta &= \\frac{v}{L} \\tan \\phi\n  \\end{aligned}\n  \\]",
+    "crumbs": [
+      "First Order Systems",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Car</span>"
+    ]
+  },
+  {
+    "objectID": "1st_order/car.html#differential-flatness",
+    "href": "1st_order/car.html#differential-flatness",
+    "title": "5  Car",
+    "section": "5.2 Differential Flatness",
+    "text": "5.2 Differential Flatness\nPick flat outputs \\(\\mathbf{z}(t) = (x(t), y(t))^\\top\\), i.e., the position of the unicycle. Then we can compute all necessary variables if \\(\\mathbf{z}(t)\\) is at least C2-continuous. \\[\n\\begin{aligned}\n    \\mathbf{x}(t) &= g_x(\\mathbf{z}, \\dot{\\mathbf{z}}) = \\left(x, y, \\arctan \\left(\\frac{\\dot y}{\\dot x}\\right)\\right)\\\\\n    \\mathbf{u}(t) &= g_u(\\dot{\\mathbf{z}}, \\ddot{\\mathbf{z}}) = \\left({\\color{red} \\pm}\\sqrt{\\dot y^2 + \\dot x^2}, \\arctan \\frac{L(\\dot x \\ddot y - \\dot y \\ddot x)}{(\\dot x^2 + \\dot y^2)^{3/2}} \\right)\n\\end{aligned}\n\\]\n\n\n\n\n\n\nNoteDerivation\n\n\n\n\n\nDivide y and x-part of the dynamics, yields \\(\\theta\\): \\[\n\\begin{aligned}\n        \\frac{\\dot y}{\\dot x} &= \\frac{v \\sin \\theta}{v \\cos \\theta}\\\\\n        \\frac{\\dot y}{\\dot x} &= \\tan \\theta\\\\\n        \\theta &= \\arctan \\left(\\frac{\\dot y}{\\dot x}\\right)\n\\end{aligned}\n\\]\nUsing the x-part, rearranging for \\(v\\) and substituting the expression for \\(\\theta\\), yields \\(v\\): \\[\n\\begin{aligned}\n    v &= \\frac{\\dot x}{\\cos \\theta}\\\\\n    &= \\frac{\\dot x}{\\cos \\left(\\arctan \\left(\\frac{\\dot y}{\\dot x}\\right)\\right)}\\\\\n    &= \\dot x \\sqrt{\\frac{\\dot y^2}{\\dot x^2} + 1} = \\dot x \\sqrt{\\frac{\\dot y^2}{\\dot x^2} + \\frac{\\dot x^2}{\\dot x^2}}\\\\\n    &= {\\color{red} \\pm}\\sqrt{\\dot y^2 + \\dot x^2}\n\\end{aligned}\n\\]\nTaking the time-derivative of the expression for \\(\\theta\\) yields \\(\\dot \\theta\\) \\[\n\\begin{aligned}\n    \\dot \\theta &= \\frac{d}{dt} \\arctan \\left(\\frac{\\dot y}{\\dot x}\\right)\\\\\n          &= \\frac{\\dot x \\ddot y - \\dot y \\ddot x}{\\dot x^2 + \\dot y^2}\n\\end{aligned}\n\\]\n\\[\n\\begin{aligned}\n    \\phi &= \\arctan \\frac{L \\dot \\theta}{v}\\\\\n        &= \\arctan \\frac{L(\\dot x \\ddot y - \\dot y \\ddot x)}{(\\dot x^2 + \\dot y^2)^{3/2}}\n\\end{aligned}\n\\]",
+    "crumbs": [
+      "First Order Systems",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Car</span>"
+    ]
+  },
+  {
+    "objectID": "1st_order/car.html#invariance",
+    "href": "1st_order/car.html#invariance",
+    "title": "5  Car",
+    "section": "5.3 Invariance",
+    "text": "5.3 Invariance\nThe dynamics are translation-invariant.",
+    "crumbs": [
+      "First Order Systems",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Car</span>"
+    ]
+  },
+  {
+    "objectID": "1st_order/car.html#controllers",
+    "href": "1st_order/car.html#controllers",
+    "title": "5  Car",
+    "section": "5.4 Controllers",
+    "text": "5.4 Controllers",
+    "crumbs": [
+      "First Order Systems",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Car</span>"
+    ]
+  },
+  {
+    "objectID": "1st_order/car.html#useful-parameters",
+    "href": "1st_order/car.html#useful-parameters",
+    "title": "5  Car",
+    "section": "5.5 Useful Parameters",
+    "text": "5.5 Useful Parameters\n\n5.5.1 car1_v0\n\nA basic version proposed at (Ortiz-Haro et al. (2024)) \\[\n\\begin{aligned}\nL &= 0.25 m\\\\\n\\mathcal{U}&= [-0.1, 0.5] m/s \\times [-\\pi/3, \\pi/3] rad\n\\end{aligned}\n\\]\n\n\n\n\nLaValle, Steven M. 2006. Planning Algorithms. Cambridge University Press.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. “iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.” IEEE Transactions on Robotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.",
+    "crumbs": [
+      "First Order Systems",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Car</span>"
     ]
   },
   {
@@ -156,7 +278,7 @@
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Huynh, Du Q. 2009. “Metrics for 3D Rotations: Comparison and\nAnalysis.” Journal of Mathematical Imaging and Vision 35\n(2): 155–64. https://doi.org/10.1007/s10851-009-0161-2.\n\n\nJia, Prof. Yan-Bin. 2024. “Quaternions (Com s 477/577\nNotes).” 2024. https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf.\n\n\nKanayama, Y., Y. Kimura, F. Miyazaki, and T. Noguchi. 1990. “A\nStable Tracking Control Method for an Autonomous Mobile Robot.”\nIn IEEE International Conference on Robotics and Automation\n(ICRA), 384–89. https://doi.org/10.1109/ROBOT.1990.126006.\n\n\nLaValle, Steven M. 2006. Planning Algorithms. Cambridge\nUniversity Press.\n\n\nNarayan, Dr. Ashwin. 2017. “How to Integrate Quaternions.”\n2017. https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc\nToussaint. 2024. “iDb-a*: Iterative Search and Optimization for\nOptimal Kinodynamic Motion Planning.” IEEE Transactions on\nRobotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.\n\n\nSärkkä, Prof. Simo. 2007. “Notes on Quaternions.” 2007. https://users.aalto.fi/~ssarkka/pub/quat.pdf.\n\n\nShoemake, Ken. 1992. “Uniform Random Rotations.” In\nGraphics Gems III, 124–32. USA: Academic Press Professional,\nInc.\n\n\nToussaint, Prof. Marc. 2024. “Lecture Note: Quaternions,\nExponential Map, and Quaternion Jacobians.” 2024. https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html.",
+    "text": "Choset, Howie, Kevin M. Lynch, Seth Hutchinson, George A. Kantor,\nWolfram Burgard, Lydia E. Kavraki, and Sebastian Thrun. 2005.\nPrinciples of Robot Motion: Theory, Algorithms, and\nImplementations. Edited by Ronald C. Arkin. Intelligent Robotics\nand Autonomous Agents Series. Cambridge, MA, USA: A Bradford Book.\n\n\nHuynh, Du Q. 2009. “Metrics for 3D Rotations: Comparison and\nAnalysis.” Journal of Mathematical Imaging and Vision 35\n(2): 155–64. https://doi.org/10.1007/s10851-009-0161-2.\n\n\nJia, Prof. Yan-Bin. 2024. “Quaternions (Com s 477/577\nNotes).” 2024. https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf.\n\n\nKanayama, Y., Y. Kimura, F. Miyazaki, and T. Noguchi. 1990. “A\nStable Tracking Control Method for an Autonomous Mobile Robot.”\nIn IEEE International Conference on Robotics and Automation\n(ICRA), 384–89. https://doi.org/10.1109/ROBOT.1990.126006.\n\n\nLaValle, Steven M. 2006. Planning Algorithms. Cambridge\nUniversity Press.\n\n\nNarayan, Dr. Ashwin. 2017. “How to Integrate Quaternions.”\n2017. https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc\nToussaint. 2024. “iDb-a*: Iterative Search and Optimization for\nOptimal Kinodynamic Motion Planning.” IEEE Transactions on\nRobotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.\n\n\nSärkkä, Prof. Simo. 2007. “Notes on Quaternions.” 2007. https://users.aalto.fi/~ssarkka/pub/quat.pdf.\n\n\nShoemake, Ken. 1992. “Uniform Random Rotations.” In\nGraphics Gems III, 124–32. USA: Academic Press Professional,\nInc.\n\n\nToussaint, Prof. Marc. 2024. “Lecture Note: Quaternions,\nExponential Map, and Quaternion Jacobians.” 2024. https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html.",
     "crumbs": [
       "References"
     ]

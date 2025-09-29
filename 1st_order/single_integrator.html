@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Single Integrator – Kinodynamic Compendium</title>
+<title>2&nbsp; Single Integrator (2D) – Kinodynamic Compendium</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -71,6 +91,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -83,7 +132,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1st_order/single_integrator.html">First Order Systems</a></li><li class="breadcrumb-item"><a href="../1st_order/single_integrator.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Single Integrator</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1st_order/single_integrator.html">First Order Systems</a></li><li class="breadcrumb-item"><a href="../1st_order/single_integrator.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Single Integrator (2D)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -128,7 +177,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../1st_order/single_integrator.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Single Integrator</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Single Integrator (2D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -200,12 +249,6 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -244,15 +287,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#dynamics" id="toc-dynamics" class="nav-link active" data-scroll-target="#dynamics"><span class="header-section-number">2.1</span> Dynamics</a></li>
+  <li><a href="#differential-flatness" id="toc-differential-flatness" class="nav-link" data-scroll-target="#differential-flatness"><span class="header-section-number">2.2</span> Differential Flatness</a></li>
+  <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">2.3</span> Invariance</a></li>
+  <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">2.4</span> Controllers</a></li>
+  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">2.5</span> Useful Parameters</a>
+  <ul class="collapse">
+  <li><a href="#integrator1_2d_v0-2024-ortiz-haro-idbaiterativesearch" id="toc-integrator1_2d_v0-2024-ortiz-haro-idbaiterativesearch" class="nav-link" data-scroll-target="#integrator1_2d_v0-2024-ortiz-haro-idbaiterativesearch"><span class="header-section-number">2.5.1</span> integrator1_2d_v0 (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (2024)</span>)</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1st_order/single_integrator.html">First Order Systems</a></li><li class="breadcrumb-item"><a href="../1st_order/single_integrator.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Single Integrator</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1st_order/single_integrator.html">First Order Systems</a></li><li class="breadcrumb-item"><a href="../1st_order/single_integrator.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Single Integrator (2D)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Single Integrator</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Single Integrator (2D)</span></h1>
 </div>
 
 
@@ -269,8 +325,58 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="dynamics" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="dynamics"><span class="header-section-number">2.1</span> Dynamics</h2>
+<ul>
+<li>Parameters
+<ul>
+<li>state space <span class="math inline">\(\mathcal{X}\)</span></li>
+<li>action space <span class="math inline">\(\mathcal{U}\)</span></li>
+</ul></li>
+<li>State: <span class="math inline">\(\mathbf{x}= \begin{pmatrix}x, y\end{pmatrix}^\top \in \mathcal{X}\)</span> [m, m] (position of the robot in the world frame)</li>
+<li>Action: <span class="math inline">\(\mathbf{u}= \begin{pmatrix} v_x, v_y \end{pmatrix}^\top \in \mathcal{U}\)</span> [m/s, m/s] (speed of the robot in the world frame)</li>
+<li>Dynamics: <span class="math display">\[
+  \begin{aligned}
+      \dot x &amp;= v_x\\
+      \dot y &amp;= v_y \\
+  \end{aligned}
+  \]</span></li>
+</ul>
+</section>
+<section id="differential-flatness" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="differential-flatness"><span class="header-section-number">2.2</span> Differential Flatness</h2>
+<p>Pick <em>flat outputs</em> <span class="math inline">\(\mathbf{z}(t) = (x(t), y(t))^\top\)</span>, i.e., the position of the robot. Then we can compute all necessary variables if <span class="math inline">\(\mathbf{z}(t)\)</span> is at least C1-continuous. <span class="math display">\[
+\begin{aligned}
+    \mathbf{x}(t) &amp;= g_x(\mathbf{z}) = \left(x, y\right)\\
+    \mathbf{u}(t) &amp;= g_u(\dot{\mathbf{z}}) = \left(\dot x, \dot y \right)
+\end{aligned}
+\]</span></p>
+</section>
+<section id="invariance" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="invariance"><span class="header-section-number">2.3</span> Invariance</h2>
+<p>The dynamics are translation-invariant.</p>
+</section>
+<section id="controllers" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">2.4</span> Controllers</h2>
+<p>The system is linear, so an LQR controller is most suitable.</p>
+</section>
+<section id="useful-parameters" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">2.5</span> Useful Parameters</h2>
+<section id="integrator1_2d_v0-2024-ortiz-haro-idbaiterativesearch" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="integrator1_2d_v0-2024-ortiz-haro-idbaiterativesearch"><span class="header-section-number">2.5.1</span> integrator1_2d_v0 (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>)</h3>
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/integrator1_2d_v0.yaml -->
+<p>A basic version <span class="math display">\[
+\mathcal{U}= [-0.5, 0.5] m/s \times [-0.5, 0.5] ms/s
+\]</span></p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-2024-ortiz-haro-IDbAIterativeSearch" class="csl-entry" role="listitem">
+Ortiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. <span>“iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.”</span> <em>IEEE Transactions on Robotics</em>, 1–19. <a href="https://doi.org/10.1109/TRO.2024.3502505">https://doi.org/10.1109/TRO.2024.3502505</a>.
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
