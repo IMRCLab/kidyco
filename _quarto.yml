@@ -21,7 +21,6 @@ book:
         - 2nd_order/multirotor_2d.qmd
         - 2nd_order/lunar_lander.qmd
         - 2nd_order/multirotor.qmd
-    - summary.qmd
     - references.qmd
   appendices:
     - odes.qmd

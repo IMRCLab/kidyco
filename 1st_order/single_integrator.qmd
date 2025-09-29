@@ -1,3 +1,49 @@
-# Single Integrator
+::: {.content-visible unless-format="pdf"}
+{{< include ../macros.tex >}}
+:::
 
+# Single Integrator (2D)
+
+## Dynamics
+
+- Parameters
+    - state space $\sX$
+    - action space $\sU$
+- State: $\vx = \begin{pmatrix}x, y\end{pmatrix}^\top \in \sX$ [m, m] (position of the robot in the world frame)
+- Action: $\vu = \begin{pmatrix} v_x, v_y \end{pmatrix}^\top \in \sU$ [m/s, m/s] (speed of the robot in the world frame)
+- Dynamics: 
+    $$
+    \begin{aligned}
+        \dot x &= v_x\\
+        \dot y &= v_y \\
+    \end{aligned}
+    $$
+
+## Differential Flatness
+
+Pick *flat outputs* $\vz(t) = (x(t), y(t))^\top$, i.e., the position of the robot. Then we can compute all necessary variables if $\vz(t)$ is at least C1-continuous.
+$$
+\begin{aligned}
+    \vx(t) &= g_x(\vz) = \left(x, y\right)\\
+    \vu(t) &= g_u(\dot{\vz}) = \left(\dot x, \dot y \right)
+\end{aligned}
+$$
+
+## Invariance
+
+The dynamics are translation-invariant.
+
+## Controllers
+
+The system is linear, so an LQR controller is most suitable.
+
+## Useful Parameters
+
+### integrator1_2d_v0 (@2024-ortiz-haro-IDbAIterativeSearch)
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/integrator1_2d_v0.yaml -->
+
+A basic version
+$$
+\sU = [-0.5, 0.5] m/s \times [-0.5, 0.5] ms/s
+$$
 

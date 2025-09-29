@@ -4,7 +4,7 @@
 
 # Unicycle
 
-![Unicycle Robot](../media/choset_book_fig12.2.png)
+![Unicycle Robot (Picture from @chosetPrinciplesRobotMotion2005)](../media/choset_book_fig12.2.png)
 
 ## Dynamics
 
