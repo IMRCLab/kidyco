@@ -4,7 +4,7 @@
 
 # Differential Drive
 
-![Differential Drive Robot](../media/lavalle_13.2b.png)
+![Differential Drive Robot (Picture from @lavallePlanningAlgorithms2006)](../media/lavalle_13.2b.png)
 
 ## Dynamics
 
@@ -35,8 +35,8 @@ $$
 
 Then, the "original" actions can be computed as
 $$\begin{aligned}
-    u_r &= \frac{2v + L\omega}{2r}\\
-    u_l &= \frac{2v-L\omega}{2r}
+    u_l &= \frac{2v-L\omega}{2r}\\
+    u_r &= \frac{2v + L\omega}{2r}
 \end{aligned}
 $$
 
@@ -72,10 +72,80 @@ $$ {#eq-diffdrive-ul}
 
 ## Differential Flatness
 
+Pick *flat outputs* $\vz(t) = (x(t), y(t))^\top$, i.e., the position of the robot. Then we can compute all necessary variables if $\vz(t)$ is at least C2-continuous.
+$$
+\begin{aligned}
+    \vx(t) &= g_x(\vz, \dot{\vz}) = \left(x, y, \arctan \left(\frac{\dot y}{\dot x}\right)\right)\\
+    \vu(t) &= g_u(\dot{\vz}, \ddot{\vz}) = \left(\frac{2v-L\omega}{2r}, \frac{2v + L\omega}{2r}\right), \text{ where }\\
+    v &= {\color{red} \pm}\sqrt{\dot y^2 + \dot x^2}\\
+    \omega &= \frac{\dot x \ddot y - \dot y \ddot x}{\dot x^2 + \dot y^2}
+\end{aligned}
+$$
+
+
+
+::: {.callout-note collapse="true"}
+## Derivation
+
+One can apply the same differential flatness result from the unicycle, followed by the linear mapping derived earlier to recover the actual actions $g_u$.
+:::
+
+## Invariance
+
+The dynamics are translation-invariant.
+
 ## Controllers
+
+### Geometric Controller (@UGVTrajectoryController)
+
+This is the same controller as for the unicycle, with the linear mapping applied.
+
+- Given reference state $\vx_r = \begin{pmatrix}x_r, y_r, \theta_r\end{pmatrix}^\top \in \sX$ and reference action $\vu_r = \begin{pmatrix} u_{l,r}, u_{r,r} \end{pmatrix}^\top \in \sU$
+- $K_x, K_y, K_\theta\in\mathbb R^+$ are tuning gains 
+- Control law:
+    $$\begin{aligned}
+    v_r &= \frac{r}{2} (u_{l,r} + u_{r,r})\\
+    \omega_r &= \frac{r}{L} (u_{r,r} - u_{l,r})\\
+    x_e &= (x_r-x)\cos \theta + (y_r-y)\sin \theta\\
+    y_e &= -(x_r-x)\sin \theta + (y_r-y)\cos \theta\\
+    \theta_e &= \theta_d \ominus \theta \\
+    v &= v_r \cos \theta_e + K_x x_e\\
+    \omega &= \omega_r + v_r (K_y y_e + K_\theta \sin \theta_e)\\
+    u_l &= \frac{2v-L\omega}{2r}\\
+    u_r &= \frac{2v + L\omega}{2r}
+    \end{aligned}
+    $$
+
+### Action Mixing
+
+Geometric controllers might output actions that are outside the nominal action space $\sU$ (saturation limits). To remedy this, a QP can be used that prefers $\omega$ over $v$ using a tuning parameter $\lambda$:
+
+$$
+\begin{aligned}
+\min_{v^*, \omega^*} & \, (\omega^* - \omega) ^2 + \lambda (v^* - v)^2 \\
+\text{s.t.} & \, 
+\begin{pmatrix} \frac{2v^*-L\omega^*}{2r}, \frac{2v^* + L\omega^*}{2r} \end{pmatrix}^\top \in \sU
+\end{aligned}
+$$
+
+followed by converting the result back to the desired control values:
+
+$$\begin{aligned}
+u_l &= \frac{2v^*-L\omega^*}{2r}\\
+u_r &= \frac{2v^* + L\omega^*}{2r}
+\end{aligned}
+$$
+
 
 ## Useful Parameters
 
-### Pololu
+### pololu-3piplus-hyper
 
+Commercially off-the-shelves (Cots) robot: [Pololu 3pi+ Hyper Edition](https://www.pololu.com/product/5000)
 
+$$\begin{aligned}
+L &= 0.089\\
+r &= 0.016\\
+\sU &= [-157.08, 157.08] rad/s \times [-157.08, 157.08] rad/s
+\end{aligned}
+$$

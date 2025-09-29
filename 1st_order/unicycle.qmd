@@ -77,7 +77,7 @@ The dynamics are translation-invariant.
     $$\begin{aligned}
     x_e &= (x_r-x)\cos \theta + (y_r-y)\sin \theta\\
     y_e &= -(x_r-x)\sin \theta + (y_r-y)\cos \theta\\
-    \theta_e &= \theta_d - \theta \\
+    \theta_e &= \theta_d \ominus \theta \\
     v &= v_r \cos \theta_e + K_x x_e\\
     \omega &= \omega_r + v_r (K_y y_e + K_\theta \sin \theta_e)
     \end{aligned}
