@@ -1,4 +1,4 @@
-# Preface {.unnumbered}
+# Introduction
 
 This is a summary of important kinodynamic systems of varying complexity to simplify research and benchmarking in the area of motion planning and controls, for single- and multi-robot systems.
 

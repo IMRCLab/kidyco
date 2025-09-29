@@ -4,10 +4,9 @@ project:
 book:
   title: "Kinodynamic Compendium"
   author: "Wolfgang Hönig"
-  date: "July 2025"
+  date: "September 2025"
   chapters:
     - index.qmd
-    - intro.qmd
     - part: "First Order Systems"
       chapters: 
         - 1st_order/single_integrator.qmd
