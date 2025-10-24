@@ -23,7 +23,6 @@ C|[cmath3d](https://github.com/jpreiss/cmath3d)
 
 Notable other references are: @2007-saerkkae-notesOnQuaternions, @2024-toussaint-quaternions, @2024-jia-quaternions.
 
-
 ## Definition
 
 A quaternion for SO(3) is a 4D vector with the constraint to have norm 1:
@@ -54,7 +53,9 @@ $$
     \vec{\vq} = \extract(\vq)
 $$ {#eq-quat-extract}
 
+::: {.callout-warning}
 Note that the order of the components is not uniquely defined. Some software packages put $q_w$ first, some last in the vector.
+:::
 
 ## Conversion
 
@@ -68,7 +69,7 @@ q_w^2 + q_x^2 - q_y^2 - q_z^2 &  2(q_x q_y - q_w q_z) &  2(q_w q_y + q_x q_z) \\
 2(q_x q_y + q_w q_z) & q_w^2 - q_x^2 + q_y^2 - q_z^2 &  2(q_y q_z - q_w q_x) \\
 2(q_x q_z - q_w q_y) & 2( q_w q_x + q_y q_z) & q_w^2 - q_x^2 - q_y^2 + q_z^2 
 \end{pmatrix}
-$$
+$$ {#eq-quat-to-rot}
 
 ### From Rotation Matrix
 
@@ -88,9 +89,11 @@ $$
         -q_y\\
         -q_z
     \end{pmatrix}
-$$
+$$ {#eq-quat-negation}
 
-Note that $\vq$ and $-\vq$ represent the same rotation.
+::: {.callout-note}
+$\vq$ and $-\vq$ represent the same rotation.
+:::
 
 ### Addition, Substraction, Multiplication/Devision with Scalar
 
@@ -114,7 +117,10 @@ $$
         -q_z
     \end{pmatrix}
 $$
-Note that this is the inverse for normalized quaternions.
+
+::: {.callout-note}
+This is the inverse for normalized quaternions.
+:::
 
 ### Norm 
 
@@ -123,7 +129,10 @@ Note that this is the inverse for normalized quaternions.
 $$
 \| \vq \| = \sqrt{q_w^2 + q_x^2 + q_y^2 + q_z^2}
 $$
-Note that this should be always 1 for normalized quaternions.
+
+::: {.callout-note}
+This should be always 1 for normalized quaternions.
+:::
 
 <!-- % \item[Inverse]
 % \begin{equation}
@@ -176,9 +185,13 @@ q_z p_w - q_y p_x + q_x p_y + q_w p_z
 \end{pmatrix}
 $$
 
-Note that generally $\vq \otimes \vp \neq \vp \otimes \vq$.
+::: {.callout-note}
+Generally $\vq \otimes \vp \neq \vp \otimes \vq$.
+:::
 
+::: {.callout-warning}
 Be careful when looking at papers - sometimes it's defined inverse!
+:::
 
 ### Vector Rotation
 With a rotation matrix $\mathbf R(\vq)$, we can rotate a vector $\mathbf v$ as $\mathbf v_{rotated} = \mathbf R(\vq) \mathbf v$. Similarily, for quaternions we have:
@@ -189,7 +202,7 @@ $$
 
 (I.e., augment $\mathbf v$ to a quaternion, use two quaternion multiplications, and one conjugate, and then extract the vector part of the result.)
 
-**TODO**: THERE IS A FASTER VERSION, see https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
+<!-- **TODO**: THERE IS A FASTER VERSION, see https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles -->
 
 <!-- % Note: Use the conjugate $\vq^*$ for the inverse rotation. -->
 
@@ -226,7 +239,11 @@ $$
 \end{pmatrix}
 $$
 
-A derivation is in @2017-narayan-integrateQuaternions. Note that some libraries do not specify which frame they operate in, e.g., the Python library rowan assumes *world frame* for its methods.
+A derivation is in @2017-narayan-integrateQuaternions.
+
+::: {.callout-warning}
+Some libraries do not specify which frame they operate in, e.g., the Python library rowan assumes *world frame* for its methods.
+:::
 
 [^1]: See [this math.stackexchange post](https://math.stackexchange.com/questions/2282938/converting-from-quaternion-to-angular-velocity-then-back-to-quaternion).
 
@@ -280,6 +297,10 @@ $$
 $$
 
 Note, this is also used [inside OMPL](https://github.com/ompl/ompl/blob/18a5f5bea1940a8b56369a58d3c20dac0d884d8b/src/ompl/util/src/RandomNumbers.cpp#L263-L277).
+
+## Machine Learning
+
+@2025-schuck-PrimerSO3Action
 
 <!--
 
