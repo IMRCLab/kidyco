@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -58,7 +58,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -318,6 +318,7 @@ window.Quarto = {
   <li><a href="#interpolation" id="toc-interpolation" class="nav-link" data-scroll-target="#interpolation"><span class="header-section-number">C.7</span> Interpolation</a></li>
   <li><a href="#metrics" id="toc-metrics" class="nav-link" data-scroll-target="#metrics"><span class="header-section-number">C.8</span> Metrics</a></li>
   <li><a href="#random-generation" id="toc-random-generation" class="nav-link" data-scroll-target="#random-generation"><span class="header-section-number">C.9</span> Random Generation</a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning"><span class="header-section-number">C.10</span> Machine Learning</a></li>
   </ul>
 </nav>
     </div>
@@ -398,7 +399,19 @@ SO(3)=\{ R \in \mathbb R^{3 \times 3} | R^\top R = R R^\top = I \land \det R = 1
 <p>One can <em>extract</em> the vector or imaginary part of a quaternion: <span id="eq-quat-extract"><span class="math display">\[
     \vec{\mathbf{q}} = \mathop{\mathrm{Im}}(\mathbf{q})
 \tag{C.4}\]</span></span></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Note that the order of the components is not uniquely defined. Some software packages put <span class="math inline">\(q_w\)</span> first, some last in the vector.</p>
+</div>
+</div>
 </section>
 <section id="conversion" class="level2" data-number="C.3">
 <h2 data-number="C.3" class="anchored" data-anchor-id="conversion"><span class="header-section-number">C.3</span> Conversion</h2>
@@ -406,13 +419,13 @@ SO(3)=\{ R \in \mathbb R^{3 \times 3} | R^\top R = R R^\top = I \land \det R = 1
 <h3 data-number="C.3.1" class="anchored" data-anchor-id="to-rotation-matrix"><span class="header-section-number">C.3.1</span> To Rotation Matrix</h3>
 <!-- https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
 and https://users.aalto.fi/~ssarkka/pub/quat.pdf -->
-<p><span class="math display">\[
+<p><span id="eq-quat-to-rot"><span class="math display">\[
 R(\mathbf{q}) = \begin{pmatrix}
 q_w^2 + q_x^2 - q_y^2 - q_z^2 &amp;  2(q_x q_y - q_w q_z) &amp;  2(q_w q_y + q_x q_z) \\
 2(q_x q_y + q_w q_z) &amp; q_w^2 - q_x^2 + q_y^2 - q_z^2 &amp;  2(q_y q_z - q_w q_x) \\
 2(q_x q_z - q_w q_y) &amp; 2( q_w q_x + q_y q_z) &amp; q_w^2 - q_x^2 - q_y^2 + q_z^2
 \end{pmatrix}
-\]</span></p>
+\tag{C.5}\]</span></span></p>
 </section>
 <section id="from-rotation-matrix" class="level3" data-number="C.3.2">
 <h3 data-number="C.3.2" class="anchored" data-anchor-id="from-rotation-matrix"><span class="header-section-number">C.3.2</span> From Rotation Matrix</h3>
@@ -424,15 +437,27 @@ q_w^2 + q_x^2 - q_y^2 - q_z^2 &amp;  2(q_x q_y - q_w q_z) &amp;  2(q_w q_y + q_x
 <section id="negation" class="level3" data-number="C.4.1">
 <h3 data-number="C.4.1" class="anchored" data-anchor-id="negation"><span class="header-section-number">C.4.1</span> Negation</h3>
 <p>(same as any vector):</p>
-<p><span class="math display">\[
+<p><span id="eq-quat-negation"><span class="math display">\[
 -\mathbf{q}= \begin{pmatrix}
         -q_w\\
         -q_x\\
         -q_y\\
         -q_z
     \end{pmatrix}
-\]</span></p>
-<p>Note that <span class="math inline">\(\mathbf{q}\)</span> and <span class="math inline">\(-\mathbf{q}\)</span> represent the same rotation.</p>
+\tag{C.6}\]</span></span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(\mathbf{q}\)</span> and <span class="math inline">\(-\mathbf{q}\)</span> represent the same rotation.</p>
+</div>
+</div>
 </section>
 <section id="addition-substraction-multiplicationdevision-with-scalar" class="level3" data-number="C.4.2">
 <h3 data-number="C.4.2" class="anchored" data-anchor-id="addition-substraction-multiplicationdevision-with-scalar"><span class="header-section-number">C.4.2</span> Addition, Substraction, Multiplication/Devision with Scalar</h3>
@@ -455,14 +480,40 @@ q_w^2 + q_x^2 - q_y^2 - q_z^2 &amp;  2(q_x q_y - q_w q_z) &amp;  2(q_w q_y + q_x
         -q_y\\
         -q_z
     \end{pmatrix}
-\]</span> Note that this is the inverse for normalized quaternions.</p>
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is the inverse for normalized quaternions.</p>
+</div>
+</div>
 </section>
 <section id="norm" class="level3" data-number="C.4.4">
 <h3 data-number="C.4.4" class="anchored" data-anchor-id="norm"><span class="header-section-number">C.4.4</span> Norm</h3>
 <p>(regular <span class="math inline">\(L_2\)</span> norm on the vector)</p>
 <p><span class="math display">\[
 \| \mathbf{q}\| = \sqrt{q_w^2 + q_x^2 + q_y^2 + q_z^2}
-\]</span> Note that this should be always 1 for normalized quaternions.</p>
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This should be always 1 for normalized quaternions.</p>
+</div>
+</div>
 <!-- % \item[Inverse]
 % \begin{equation}
 % \vq^{-1} = \frac{\vq^*}{\| \vq \|^2}
@@ -513,8 +564,32 @@ q_y p_w + q_z p_x + q_w p_y - q_x p_z\\
 q_z p_w - q_y p_x + q_x p_y + q_w p_z
 \end{pmatrix}
 \]</span></p>
-<p>Note that generally <span class="math inline">\(\mathbf{q}\otimes \mathbf{p}\neq \mathbf{p}\otimes \mathbf{q}\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Generally <span class="math inline">\(\mathbf{q}\otimes \mathbf{p}\neq \mathbf{p}\otimes \mathbf{q}\)</span>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Be careful when looking at papers - sometimes it’s defined inverse!</p>
+</div>
+</div>
 </section>
 <section id="vector-rotation" class="level3" data-number="C.5.2">
 <h3 data-number="C.5.2" class="anchored" data-anchor-id="vector-rotation"><span class="header-section-number">C.5.2</span> Vector Rotation</h3>
@@ -523,7 +598,7 @@ q_z p_w - q_y p_x + q_x p_y + q_w p_z
 \mathbf{v}_{rotated} = \mathbf{q}\odot \mathbf{v}= \mathop{\mathrm{Im}}(\mathbf{q}\otimes \overline{\mathbf{v}} \otimes \mathbf{q}^*)
 \]</span></p>
 <p>(I.e., augment <span class="math inline">\(\mathbf v\)</span> to a quaternion, use two quaternion multiplications, and one conjugate, and then extract the vector part of the result.)</p>
-<p><strong>TODO</strong>: THERE IS A FASTER VERSION, see https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles</p>
+<!-- **TODO**: THERE IS A FASTER VERSION, see https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles -->
 <!-- % Note: Use the conjugate $\vq^*$ for the inverse rotation. -->
 </section>
 </section>
@@ -550,7 +625,20 @@ q_z p_w - q_y p_x + q_x p_y + q_w p_z
 \frac{\boldsymbol{\omega}}{\| \boldsymbol{\omega} \|} \sin{(\|\boldsymbol{\omega}\| \Delta t/2)}
 \end{pmatrix}
 \]</span></p>
-<p>A derivation is in <span class="citation" data-cites="2017-narayan-integrateQuaternions">Narayan (<a href="references.html#ref-2017-narayan-integrateQuaternions" role="doc-biblioref">2017</a>)</span>. Note that some libraries do not specify which frame they operate in, e.g., the Python library rowan assumes <em>world frame</em> for its methods.</p>
+<p>A derivation is in <span class="citation" data-cites="2017-narayan-integrateQuaternions">Narayan (<a href="references.html#ref-2017-narayan-integrateQuaternions" role="doc-biblioref">2017</a>)</span>.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Some libraries do not specify which frame they operate in, e.g., the Python library rowan assumes <em>world frame</em> for its methods.</p>
+</div>
+</div>
 </section>
 <section id="interpolation" class="level2" data-number="C.7">
 <h2 data-number="C.7" class="anchored" data-anchor-id="interpolation"><span class="header-section-number">C.7</span> Interpolation</h2>
@@ -589,6 +677,10 @@ d(\mathbf{q}, \mathbf{p}) = 1 - | \mathbf{q}\cdot \mathbf{p}| \in [0, 1]
 \end{aligned}
 \]</span></p>
 <p>Note, this is also used <a href="https://github.com/ompl/ompl/blob/18a5f5bea1940a8b56369a58d3c20dac0d884d8b/src/ompl/util/src/RandomNumbers.cpp#L263-L277">inside OMPL</a>.</p>
+</section>
+<section id="machine-learning" class="level2" data-number="C.10">
+<h2 data-number="C.10" class="anchored" data-anchor-id="machine-learning"><span class="header-section-number">C.10</span> Machine Learning</h2>
+<p><span class="citation" data-cites="2025-schuck-PrimerSO3Action">Schuck, Samy, and Schoellig (<a href="references.html#ref-2025-schuck-PrimerSO3Action" role="doc-biblioref">2025</a>)</span></p>
 <!--
 
 
@@ -618,6 +710,9 @@ Narayan, Dr. Ashwin. 2017. <span>“How to Integrate Quaternions.”</span> 2017
 </div>
 <div id="ref-2007-saerkkae-notesOnQuaternions" class="csl-entry" role="listitem">
 Särkkä, Prof. Simo. 2007. <span>“Notes on Quaternions.”</span> 2007. <a href="https://users.aalto.fi/~ssarkka/pub/quat.pdf">https://users.aalto.fi/~ssarkka/pub/quat.pdf</a>.
+</div>
+<div id="ref-2025-schuck-PrimerSO3Action" class="csl-entry" role="listitem">
+Schuck, Martin, Sherif Samy, and Angela P. Schoellig. 2025. <span>“A Primer on SO(3) Action Representations in Deep Reinforcement Learning.”</span> October 13, 2025. <a href="https://doi.org/10.48550/arXiv.2510.11103">https://doi.org/10.48550/arXiv.2510.11103</a>.
 </div>
 <div id="ref-random-rotations" class="csl-entry" role="listitem">
 Shoemake, Ken. 1992. <span>“Uniform Random Rotations.”</span> In <em>Graphics Gems III</em>, 124–32. USA: Academic Press Professional, Inc.
