@@ -26,14 +26,16 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: Install Rust
-        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+          . "$HOME/.cargo/env"
 
       - name: Install Evcxr Jupyter Kernel
         run: |
-          wget -q0- https://github.com/evcxr/evcxr/releases/download/v0.21.1/evcxr-v0.21.1-x86_64-unknown-linux-gnu.tar.gz | gunzip | tar xvf -
-          wget -q0- https://github.com/evcxr/evcxr/releases/download/v0.21.1/evcxr_jupyter-v0.21.1-x86_64-unknown-linux-gnu.tar.gz | gunzip | tar xvf -
+          curl -sL https://github.com/evcxr/evcxr/releases/download/v0.21.1/evcxr-v0.21.1-x86_64-unknown-linux-gnu.tar.gz | tar xz --strip-components 1
+          curl -sL https://github.com/evcxr/evcxr/releases/download/v0.21.1/evcxr_jupyter-v0.21.1-x86_64-unknown-linux-gnu.tar.gz | tar xz --strip-components 1
           ls -al
-          evcxr_jupyter --install
+          ./evcxr_jupyter --install
           rustup component add rust-srv
       
       - name: Render and Publish
