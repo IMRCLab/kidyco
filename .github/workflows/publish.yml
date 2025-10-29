@@ -17,6 +17,25 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install Python and Dependencies
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      - run: pip install jupyter
+      - run: pip install -r requirements.txt
+
+      - name: Install Rust
+        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+      - name: Install Evcxr Jupyter Kernel
+        run: |
+          wget -q0- https://github.com/evcxr/evcxr/releases/download/v0.21.1/evcxr-v0.21.1-x86_64-unknown-linux-gnu.tar.gz | gunzip | tar xvf -
+          wget -q0- https://github.com/evcxr/evcxr/releases/download/v0.21.1/evcxr_jupyter-v0.21.1-x86_64-unknown-linux-gnu.tar.gz | gunzip | tar xvf -
+          ls -al
+          evcxr_jupyter --install
+          rustup component add rust-srv
+      
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
