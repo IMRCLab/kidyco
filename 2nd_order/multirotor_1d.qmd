@@ -1,3 +1,47 @@
+::: {.content-visible unless-format="pdf"}
+{{< include ../macros.tex >}}
+:::
+
 # Multirotor (1D)
 
+![Multirotor 1D robot](../media/multirotor1d.svg)
+
+## Dynamics
+
+- Parameters
+    - state space $\sX$
+    - action space $\sU$
+    - mass $m$ [kg]
+    - gravity $g$ [$m/s^2$]
+- State: $\vx = \begin{pmatrix}z, \dot z\end{pmatrix}^\top \in \sX$ [m, m/s] (height and vertical velocity of the robot in the world frame)
+- Action: $\vu = \begin{pmatrix} f_1 \end{pmatrix}^\top \in \sU$ [N] (upward thrust)
+- Dynamics: 
+    $$
+        \begin{aligned}
+        \mathbf{\dot x} = f(\mathbf x, \mathbf u) = \begin{pmatrix} \dot z\\ \frac{f_1}{m} - g \end{pmatrix}
+        \end{aligned}
+    $$
+
+## Differential Flatness
+
+Pick *flat outputs* $\vz(t) = (z(t))^\top$, i.e., the position of the robot. Then we can compute all necessary variables if $\vz(t)$ is at least C2-continuous.
+$$
+\begin{aligned}
+        \vx(t) &= g_x(\vz, \dot{\vz}) = \left(z, \dot z \right)\\
+        \vu(t) &= g_u(\ddot{\vz}) = \left( m ( \ddot z + g ) \right)
+      \end{aligned}
+$$
+
+::: {.callout-note collapse="true"}
+## Derivation
+Follows directly from the dynamics.
+:::
+
+## Invariance
+
+
+## Controllers
+
+
+## Useful Parameters
 
