@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Differential Drive – Kinodynamic Compendium</title>
+<title>Appendix D — Python Playground – Kinodynamic Compendium</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,49 +20,64 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../1st_order/car.html" rel="next">
-<link href="../1st_order/unicycle.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./rust_playground.html" rel="next">
+<link href="./so3.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -91,35 +106,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -132,7 +118,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1st_order/single_integrator.html">First Order Systems</a></li><li class="breadcrumb-item"><a href="../1st_order/diffdrive.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Differential Drive</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./odes.html">Appendices</a></li><li class="breadcrumb-item"><a href="./python_playground.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Python Playground</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -146,10 +132,10 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
+      <a href="./index.html" class="sidebar-logo-link">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Kinodynamic Compendium</a> 
+      <a href="./">Kinodynamic Compendium</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -161,7 +147,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -176,31 +162,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1st_order/single_integrator.html" class="sidebar-item-text sidebar-link">
+  <a href="./1st_order/single_integrator.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Single Integrator (2D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1st_order/unicycle.html" class="sidebar-item-text sidebar-link">
+  <a href="./1st_order/unicycle.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Unicycle</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1st_order/diffdrive.html" class="sidebar-item-text sidebar-link active">
+  <a href="./1st_order/diffdrive.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Differential Drive</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1st_order/car.html" class="sidebar-item-text sidebar-link">
+  <a href="./1st_order/car.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Car</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../1st_order/car_with_trailer.html" class="sidebar-item-text sidebar-link">
+  <a href="./1st_order/car_with_trailer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Car With Trailer</span></span></a>
   </div>
 </li>
@@ -217,31 +203,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2nd_order/double_integrator.html" class="sidebar-item-text sidebar-link">
+  <a href="./2nd_order/double_integrator.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Double Integrator</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2nd_order/multirotor_1d.html" class="sidebar-item-text sidebar-link">
+  <a href="./2nd_order/multirotor_1d.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2nd_order/multirotor_2d.html" class="sidebar-item-text sidebar-link">
+  <a href="./2nd_order/multirotor_2d.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2nd_order/lunar_lander.html" class="sidebar-item-text sidebar-link">
+  <a href="./2nd_order/lunar_lander.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Lunar Lander</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2nd_order/multirotor.html" class="sidebar-item-text sidebar-link">
+  <a href="./2nd_order/multirotor.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Multirotor</span></span></a>
   </div>
 </li>
@@ -249,7 +235,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../references.html" class="sidebar-item-text sidebar-link">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -264,31 +250,31 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../odes.html" class="sidebar-item-text sidebar-link">
+  <a href="./odes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">ODEs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../so2.html" class="sidebar-item-text sidebar-link">
+  <a href="./so2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">SO(2) - Rotations in 2D</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../so3.html" class="sidebar-item-text sidebar-link">
+  <a href="./so3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">SO(3) - Rotations in 3D</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../python_playground.html" class="sidebar-item-text sidebar-link">
+  <a href="./python_playground.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Python Playground</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../rust_playground.html" class="sidebar-item-text sidebar-link">
+  <a href="./rust_playground.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Rust Playground</span></span></a>
   </div>
 </li>
@@ -299,35 +285,15 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#dynamics" id="toc-dynamics" class="nav-link active" data-scroll-target="#dynamics"><span class="header-section-number">4.1</span> Dynamics</a>
-  <ul class="collapse">
-  <li><a href="#relationship-to-unicycle" id="toc-relationship-to-unicycle" class="nav-link" data-scroll-target="#relationship-to-unicycle"><span class="header-section-number">4.1.1</span> Relationship to Unicycle</a></li>
-  </ul></li>
-  <li><a href="#differential-flatness" id="toc-differential-flatness" class="nav-link" data-scroll-target="#differential-flatness"><span class="header-section-number">4.2</span> Differential Flatness</a></li>
-  <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">4.3</span> Invariance</a></li>
-  <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">4.4</span> Controllers</a>
-  <ul class="collapse">
-  <li><a href="#geometric-controller-ugvtrajectorycontroller" id="toc-geometric-controller-ugvtrajectorycontroller" class="nav-link" data-scroll-target="#geometric-controller-ugvtrajectorycontroller"><span class="header-section-number">4.4.1</span> Geometric Controller (<span class="citation" data-cites="UGVTrajectoryController">Kanayama et al. (1990)</span>)</a></li>
-  <li><a href="#action-mixing" id="toc-action-mixing" class="nav-link" data-scroll-target="#action-mixing"><span class="header-section-number">4.4.2</span> Action Mixing</a></li>
-  </ul></li>
-  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">4.5</span> Useful Parameters</a>
-  <ul class="collapse">
-  <li><a href="#pololu-3piplus-hyper" id="toc-pololu-3piplus-hyper" class="nav-link" data-scroll-target="#pololu-3piplus-hyper"><span class="header-section-number">4.5.1</span> pololu-3piplus-hyper</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../1st_order/single_integrator.html">First Order Systems</a></li><li class="breadcrumb-item"><a href="../1st_order/diffdrive.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Differential Drive</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./odes.html">Appendices</a></li><li class="breadcrumb-item"><a href="./python_playground.html"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Python Playground</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Differential Drive</span></h1>
+<h1 class="title">Appendix D — Python Playground</h1>
 </div>
 
 
@@ -344,174 +310,37 @@ window.Quarto = {
 </header>
 
 
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../media/lavalle_13.2b.png" class="img-fluid figure-img"></p>
-<figcaption>Differential Drive Robot (Picture from <span class="citation" data-cites="lavallePlanningAlgorithms2006">LaValle (<a href="../references.html#ref-lavallePlanningAlgorithms2006" role="doc-biblioref">2006</a>)</span>)</figcaption>
+<div id="cell-fig-polar" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  subplot_kw <span class="op">=</span> {<span class="st">'projection'</span>: <span class="st">'polar'</span>} </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>ax.plot(theta, r)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ax.set_rticks([<span class="fl">0.5</span>, <span class="dv">1</span>, <span class="fl">1.5</span>, <span class="dv">2</span>])</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-polar" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="python_playground_files/figure-html/fig-polar-output-1.png" width="450" height="439" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-polar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;D.1: A line plot on a polar axis
+</figcaption>
 </figure>
 </div>
-<section id="dynamics" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="dynamics"><span class="header-section-number">4.1</span> Dynamics</h2>
-<ul>
-<li>Parameters
-<ul>
-<li><span class="math inline">\(r\)</span>: radius of the wheels [m]</li>
-<li><span class="math inline">\(L\)</span>: distance between the wheels [m]</li>
-</ul></li>
-<li>State: <span class="math inline">\(\mathbf{x}= \begin{pmatrix}x, y, \theta\end{pmatrix}^\top\)</span> [m, m, rad] (position and orientation of the robot in the world frame)</li>
-<li>Action: <span class="math inline">\(\mathbf{u}= \begin{pmatrix} u_l, u_r \end{pmatrix}^\top\)</span> [rad/s, rad/s] (angular velocity of the left and right wheels, respectively)</li>
-<li>Dynamics: <span class="math display">\[
-  \begin{aligned}
-      \dot x &amp;= \frac{r}{2} (u_l + u_r) \cos \theta \\
-      \dot y &amp;= \frac{r}{2} (u_l + u_r) \sin \theta \\
-      \dot \theta &amp;= \frac{r}{L} (u_r - u_l)
-  \end{aligned}
-  \]</span></li>
-</ul>
-<section id="relationship-to-unicycle" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="relationship-to-unicycle"><span class="header-section-number">4.1.1</span> Relationship to Unicycle</h3>
-<p>There is a linear relationship between the differential drive and the unicycle. One can substitute actions to <span class="math inline">\(v = \frac{r}{2} (u_l + u_r)\)</span> and <span class="math inline">\(\omega = \frac{r}{L} (u_r - u_l)\)</span> to get <span class="math display">\[
-\begin{aligned}
-        \dot x &amp;= v \cos \theta \\
-        \dot y &amp;= v \sin \theta \\
-        \dot \theta &amp;= \omega
-    \end{aligned}
-\]</span></p>
-<p>Then, the “original” actions can be computed as <span class="math display">\[\begin{aligned}
-    u_l &amp;= \frac{2v-L\omega}{2r}\\
-    u_r &amp;= \frac{2v + L\omega}{2r}
-\end{aligned}
-\]</span></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Derivation
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p><span id="eq-diffdrive-v"><span class="math display">\[
-2v = r (u_l + u_r)
-\tag{4.1}\]</span></span></p>
-<p><span id="eq-diffdrive-w"><span class="math display">\[
-L\omega = r (u_r - u_l)
-\tag{4.2}\]</span></span></p>
-<p>Adding <a href="#eq-diffdrive-v" class="quarto-xref">Equation&nbsp;<span>4.1</span></a> and <a href="#eq-diffdrive-w" class="quarto-xref">Equation&nbsp;<span>4.2</span></a>:</p>
-<p><span id="eq-diffdrive-ur"><span class="math display">\[
-\begin{aligned}
-2v + L\omega = r (u_l + u_r + u_r - u_l) = 2 r u_r\\
-u_r = \frac{2v + L\omega}{2 r}
-\end{aligned}
-\tag{4.3}\]</span></span></p>
-<p>Substituting <a href="#eq-diffdrive-ur" class="quarto-xref">Equation&nbsp;<span>4.3</span></a> in <a href="#eq-diffdrive-v" class="quarto-xref">Equation&nbsp;<span>4.1</span></a>: <span id="eq-diffdrive-ul"><span class="math display">\[
-\begin{aligned}
-2v = r (u_l + u_r) = r (u_l + \frac{2v + L\omega}{2 r}) = r u_l + v + \frac{L\omega}{2}\\
-u_l = \frac{2v - v - \frac{L\omega}{2}}{r} = \frac{2v - L \omega}{2 r}
-\end{aligned}
-\tag{4.4}\]</span></span></p>
 </div>
 </div>
-</div>
-</section>
-</section>
-<section id="differential-flatness" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="differential-flatness"><span class="header-section-number">4.2</span> Differential Flatness</h2>
-<p>Pick <em>flat outputs</em> <span class="math inline">\(\mathbf{z}(t) = (x(t), y(t))^\top\)</span>, i.e., the position of the robot. Then we can compute all necessary variables if <span class="math inline">\(\mathbf{z}(t)\)</span> is at least C2-continuous. <span class="math display">\[
-\begin{aligned}
-    \mathbf{x}(t) &amp;= g_x(\mathbf{z}, \dot{\mathbf{z}}) = \left(x, y, \arctan \left(\frac{\dot y}{\dot x}\right)\right)\\
-    \mathbf{u}(t) &amp;= g_u(\dot{\mathbf{z}}, \ddot{\mathbf{z}}) = \left(\frac{2v-L\omega}{2r}, \frac{2v + L\omega}{2r}\right), \text{ where }\\
-    v &amp;= {\color{red} \pm}\sqrt{\dot y^2 + \dot x^2}\\
-    \omega &amp;= \frac{\dot x \ddot y - \dot y \ddot x}{\dot x^2 + \dot y^2}
-\end{aligned}
-\]</span></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Derivation
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>One can apply the same differential flatness result from the unicycle, followed by the linear mapping derived earlier to recover the actual actions <span class="math inline">\(g_u\)</span>.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="invariance" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="invariance"><span class="header-section-number">4.3</span> Invariance</h2>
-<p>The dynamics are translation-invariant.</p>
-</section>
-<section id="controllers" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">4.4</span> Controllers</h2>
-<section id="geometric-controller-ugvtrajectorycontroller" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="geometric-controller-ugvtrajectorycontroller"><span class="header-section-number">4.4.1</span> Geometric Controller (<span class="citation" data-cites="UGVTrajectoryController">Kanayama et al. (<a href="../references.html#ref-UGVTrajectoryController" role="doc-biblioref">1990</a>)</span>)</h3>
-<p>This is the same controller as for the unicycle, with the linear mapping applied.</p>
-<ul>
-<li>Given reference state <span class="math inline">\(\mathbf{x}_r = \begin{pmatrix}x_r, y_r, \theta_r\end{pmatrix}^\top \in \mathcal{X}\)</span> and reference action <span class="math inline">\(\mathbf{u}_r = \begin{pmatrix} u_{l,r}, u_{r,r} \end{pmatrix}^\top \in \mathcal{U}\)</span></li>
-<li><span class="math inline">\(K_x, K_y, K_\theta\in\mathbb R^+\)</span> are tuning gains</li>
-<li>Control law: <span class="math display">\[\begin{aligned}
-  v_r &amp;= \frac{r}{2} (u_{l,r} + u_{r,r})\\
-  \omega_r &amp;= \frac{r}{L} (u_{r,r} - u_{l,r})\\
-  x_e &amp;= (x_r-x)\cos \theta + (y_r-y)\sin \theta\\
-  y_e &amp;= -(x_r-x)\sin \theta + (y_r-y)\cos \theta\\
-  \theta_e &amp;= \theta_d \ominus \theta \\
-  v &amp;= v_r \cos \theta_e + K_x x_e\\
-  \omega &amp;= \omega_r + v_r (K_y y_e + K_\theta \sin \theta_e)\\
-  u_l &amp;= \frac{2v-L\omega}{2r}\\
-  u_r &amp;= \frac{2v + L\omega}{2r}
-  \end{aligned}
-  \]</span></li>
-</ul>
-</section>
-<section id="action-mixing" class="level3" data-number="4.4.2">
-<h3 data-number="4.4.2" class="anchored" data-anchor-id="action-mixing"><span class="header-section-number">4.4.2</span> Action Mixing</h3>
-<p>Geometric controllers might output actions that are outside the nominal action space <span class="math inline">\(\mathcal{U}\)</span> (saturation limits). To remedy this, a QP can be used that prefers <span class="math inline">\(\omega\)</span> over <span class="math inline">\(v\)</span> using a tuning parameter <span class="math inline">\(\lambda\)</span>:</p>
-<p><span class="math display">\[
-\begin{aligned}
-\min_{v^*, \omega^*} &amp; \, (\omega^* - \omega) ^2 + \lambda (v^* - v)^2 \\
-\text{s.t.} &amp; \,
-\begin{pmatrix} \frac{2v^*-L\omega^*}{2r}, \frac{2v^* + L\omega^*}{2r} \end{pmatrix}^\top \in \mathcal{U}
-\end{aligned}
-\]</span></p>
-<p>followed by converting the result back to the desired control values:</p>
-<p><span class="math display">\[\begin{aligned}
-u_l &amp;= \frac{2v^*-L\omega^*}{2r}\\
-u_r &amp;= \frac{2v^* + L\omega^*}{2r}
-\end{aligned}
-\]</span></p>
-</section>
-</section>
-<section id="useful-parameters" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">4.5</span> Useful Parameters</h2>
-<section id="pololu-3piplus-hyper" class="level3" data-number="4.5.1">
-<h3 data-number="4.5.1" class="anchored" data-anchor-id="pololu-3piplus-hyper"><span class="header-section-number">4.5.1</span> pololu-3piplus-hyper</h3>
-<p>Commercially off-the-shelves (Cots) robot: <a href="https://www.pololu.com/product/5000">Pololu 3pi+ Hyper Edition</a></p>
-<p><span class="math display">\[\begin{aligned}
-L &amp;= 0.089\\
-r &amp;= 0.016\\
-\mathcal{U}&amp;= [-157.08, 157.08] rad/s \times [-157.08, 157.08] rad/s
-\end{aligned}
-\]</span></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-UGVTrajectoryController" class="csl-entry" role="listitem">
-Kanayama, Y., Y. Kimura, F. Miyazaki, and T. Noguchi. 1990. <span>“A Stable Tracking Control Method for an Autonomous Mobile Robot.”</span> In <em>IEEE International Conference on Robotics and Automation (ICRA)</em>, 384–89. <a href="https://doi.org/10.1109/ROBOT.1990.126006">https://doi.org/10.1109/ROBOT.1990.126006</a>.
-</div>
-<div id="ref-lavallePlanningAlgorithms2006" class="csl-entry" role="listitem">
-LaValle, Steven M. 2006. <em>Planning Algorithms</em>. Cambridge University Press.
-</div>
-</div>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -916,13 +745,13 @@ LaValle, Steven M. 2006. <em>Planning Algorithms</em>. Cambridge University Pres
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../1st_order/unicycle.html" class="pagination-link" aria-label="Unicycle">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Unicycle</span></span>
+      <a href="./so3.html" class="pagination-link" aria-label="SO(3) - Rotations in 3D">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">SO(3) - Rotations in 3D</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../1st_order/car.html" class="pagination-link" aria-label="Car">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Car</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./rust_playground.html" class="pagination-link" aria-label="Rust Playground">
+        <span class="nav-page-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Rust Playground</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
