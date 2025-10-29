@@ -1,0 +1,12 @@
+{
+  "hash": "eb533bb8d7a8507d039ec4153e3887df",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\nformat:\n  html:\n    code-fold: true\njupyter: python3\n---\n\n# Python Playground\n\n::: {#cell-fig-polar .cell execution_count=1}\n``` {.python .cell-code}\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nr = np.arange(0, 2, 0.01)\ntheta = 2 * np.pi * r\nfig, ax = plt.subplots(\n  subplot_kw = {'projection': 'polar'} \n)\nax.plot(theta, r)\nax.set_rticks([0.5, 1, 1.5, 2])\nax.grid(True)\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![A line plot on a polar axis](python_playground_files/figure-html/fig-polar-output-1.png){#fig-polar width=450 height=439}\n:::\n:::\n\n\n",
+    "supporting": [
+      "python_playground_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

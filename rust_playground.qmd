@@ -1,0 +1,22 @@
+---
+format:
+  html:
+    code-fold: true
+jupyter: rust
+---
+
+<!-- 
+General discussion:
+See https://github.com/quarto-dev/quarto-cli/discussions/10402
+
+Initial setup:
+https://github.com/evcxr/evcxr/blob/main/evcxr_jupyter/README.md
+-->
+
+# Rust Playground
+
+```{rust}
+println!("Hello Rust!");
+```
+
+

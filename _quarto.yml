@@ -26,8 +26,13 @@ book:
     - odes.qmd
     - so2.qmd
     - so3.qmd
+    - python_playground.qmd
+    - rust_playground.qmd
 
 bibliography: references.bib
+
+execute:
+  freeze: auto
 
 format:
   html:

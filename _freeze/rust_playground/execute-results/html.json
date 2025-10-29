@@ -1,0 +1,12 @@
+{
+  "hash": "0ddf286bfa043775d358c4953f6d1271",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\nformat:\n  html:\n    code-fold: true\njupyter: rust\n---\n\n<!-- \nGeneral discussion:\nSee https://github.com/quarto-dev/quarto-cli/discussions/10402\n\nInitial setup:\nhttps://github.com/evcxr/evcxr/blob/main/evcxr_jupyter/README.md\n-->\n\n# Rust Playground\n\n::: {#ae566517 .cell execution_count=1}\n``` {.rust .cell-code}\nprintln!(\"Hello Rust!\");\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nHello Rust!\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "rust_playground_files/figure-html"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
