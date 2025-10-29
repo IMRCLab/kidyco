@@ -31,8 +31,8 @@ book:
 
 bibliography: references.bib
 
-execute:
-  freeze: auto
+# execute:
+#   freeze: auto
 
 format:
   html:
