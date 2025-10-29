@@ -26,7 +26,7 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: Install Rust
-        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+        run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
       - name: Install Evcxr Jupyter Kernel
         run: |
