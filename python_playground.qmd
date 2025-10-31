@@ -25,4 +25,29 @@ ax.grid(True)
 plt.show()
 ```
 
+## MeshCat
 
+```{python}
+#| output: false
+#| echo: false
+import meshcat
+from meshcat.geometry import Box
+from meshcat.animation import Animation
+import meshcat.transformations as tf
+
+vis = meshcat.Visualizer()
+```
+
+```{python}
+vis["box1"].set_object(Box([0.1, 0.2, 0.3]))
+
+anim = Animation()
+
+with anim.at_frame(vis, 0) as frame:
+    frame["box1"].set_transform(tf.translation_matrix([0, 0, 0]))
+with anim.at_frame(vis, 30) as frame:
+    frame["box1"].set_transform(tf.translation_matrix([0, 1, 0]))
+    
+vis.set_animation(anim)
+vis.render_static()
+```
