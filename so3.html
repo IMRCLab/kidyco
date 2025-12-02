@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -59,7 +59,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -145,9 +145,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Kinodynamic Compendium</a> 
     </div>
@@ -305,33 +303,23 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">C.1</span> Introduction</a></li>
-  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><span class="header-section-number">C.2</span> Definition</a></li>
-  <li><a href="#conversion" id="toc-conversion" class="nav-link" data-scroll-target="#conversion"><span class="header-section-number">C.3</span> Conversion</a>
+  <li><a href="#quaternions" id="toc-quaternions" class="nav-link" data-scroll-target="#quaternions"><span class="header-section-number">C.2</span> Quaternions</a>
   <ul class="collapse">
-  <li><a href="#to-rotation-matrix" id="toc-to-rotation-matrix" class="nav-link" data-scroll-target="#to-rotation-matrix"><span class="header-section-number">C.3.1</span> To Rotation Matrix</a></li>
-  <li><a href="#from-rotation-matrix" id="toc-from-rotation-matrix" class="nav-link" data-scroll-target="#from-rotation-matrix"><span class="header-section-number">C.3.2</span> From Rotation Matrix</a></li>
+  <li><a href="#definition" id="toc-definition" class="nav-link" data-scroll-target="#definition"><span class="header-section-number">C.2.1</span> Definition</a></li>
+  <li><a href="#conversion" id="toc-conversion" class="nav-link" data-scroll-target="#conversion"><span class="header-section-number">C.2.2</span> Conversion</a></li>
+  <li><a href="#low-level-operations" id="toc-low-level-operations" class="nav-link" data-scroll-target="#low-level-operations"><span class="header-section-number">C.2.3</span> Low-Level Operations</a></li>
+  <li><a href="#useful-operations" id="toc-useful-operations" class="nav-link" data-scroll-target="#useful-operations"><span class="header-section-number">C.2.4</span> Useful Operations</a></li>
+  <li><a href="#vector-rotation" id="toc-vector-rotation" class="nav-link" data-scroll-target="#vector-rotation"><span class="header-section-number">C.2.5</span> Vector Rotation</a></li>
+  <li><a href="#derivatives-and-integration" id="toc-derivatives-and-integration" class="nav-link" data-scroll-target="#derivatives-and-integration"><span class="header-section-number">C.2.6</span> Derivatives and Integration</a></li>
+  <li><a href="#interpolation" id="toc-interpolation" class="nav-link" data-scroll-target="#interpolation"><span class="header-section-number">C.2.7</span> Interpolation</a></li>
+  <li><a href="#metrics" id="toc-metrics" class="nav-link" data-scroll-target="#metrics"><span class="header-section-number">C.2.8</span> Metrics</a></li>
+  <li><a href="#random-generation" id="toc-random-generation" class="nav-link" data-scroll-target="#random-generation"><span class="header-section-number">C.2.9</span> Random Generation</a></li>
   </ul></li>
-  <li><a href="#low-level-operations" id="toc-low-level-operations" class="nav-link" data-scroll-target="#low-level-operations"><span class="header-section-number">C.4</span> Low-Level Operations</a>
+  <li><a href="#rotation-matrices" id="toc-rotation-matrices" class="nav-link" data-scroll-target="#rotation-matrices"><span class="header-section-number">C.3</span> Rotation Matrices</a>
   <ul class="collapse">
-  <li><a href="#negation" id="toc-negation" class="nav-link" data-scroll-target="#negation"><span class="header-section-number">C.4.1</span> Negation</a></li>
-  <li><a href="#addition-substraction-multiplicationdevision-with-scalar" id="toc-addition-substraction-multiplicationdevision-with-scalar" class="nav-link" data-scroll-target="#addition-substraction-multiplicationdevision-with-scalar"><span class="header-section-number">C.4.2</span> Addition, Substraction, Multiplication/Devision with Scalar</a></li>
-  <li><a href="#conjugate" id="toc-conjugate" class="nav-link" data-scroll-target="#conjugate"><span class="header-section-number">C.4.3</span> Conjugate</a></li>
-  <li><a href="#norm" id="toc-norm" class="nav-link" data-scroll-target="#norm"><span class="header-section-number">C.4.4</span> Norm</a></li>
-  <li><a href="#exponential" id="toc-exponential" class="nav-link" data-scroll-target="#exponential"><span class="header-section-number">C.4.5</span> Exponential</a></li>
-  <li><a href="#logarithm" id="toc-logarithm" class="nav-link" data-scroll-target="#logarithm"><span class="header-section-number">C.4.6</span> Logarithm</a></li>
-  <li><a href="#power-with-real-number" id="toc-power-with-real-number" class="nav-link" data-scroll-target="#power-with-real-number"><span class="header-section-number">C.4.7</span> Power with Real Number</a></li>
-  <li><a href="#power-with-quaternion" id="toc-power-with-quaternion" class="nav-link" data-scroll-target="#power-with-quaternion"><span class="header-section-number">C.4.8</span> Power with Quaternion</a></li>
+  <li><a href="#skew-symmetric-mapping" id="toc-skew-symmetric-mapping" class="nav-link" data-scroll-target="#skew-symmetric-mapping"><span class="header-section-number">C.3.1</span> Skew-symmetric Mapping</a></li>
   </ul></li>
-  <li><a href="#useful-operations" id="toc-useful-operations" class="nav-link" data-scroll-target="#useful-operations"><span class="header-section-number">C.5</span> Useful Operations</a>
-  <ul class="collapse">
-  <li><a href="#multiplication" id="toc-multiplication" class="nav-link" data-scroll-target="#multiplication"><span class="header-section-number">C.5.1</span> Multiplication</a></li>
-  <li><a href="#vector-rotation" id="toc-vector-rotation" class="nav-link" data-scroll-target="#vector-rotation"><span class="header-section-number">C.5.2</span> Vector Rotation</a></li>
-  </ul></li>
-  <li><a href="#derivatives-and-integration" id="toc-derivatives-and-integration" class="nav-link" data-scroll-target="#derivatives-and-integration"><span class="header-section-number">C.6</span> Derivatives and Integration</a></li>
-  <li><a href="#interpolation" id="toc-interpolation" class="nav-link" data-scroll-target="#interpolation"><span class="header-section-number">C.7</span> Interpolation</a></li>
-  <li><a href="#metrics" id="toc-metrics" class="nav-link" data-scroll-target="#metrics"><span class="header-section-number">C.8</span> Metrics</a></li>
-  <li><a href="#random-generation" id="toc-random-generation" class="nav-link" data-scroll-target="#random-generation"><span class="header-section-number">C.9</span> Random Generation</a></li>
-  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning"><span class="header-section-number">C.10</span> Machine Learning</a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning"><span class="header-section-number">C.4</span> Machine Learning</a></li>
   </ul>
 </nav>
     </div>
@@ -388,8 +376,10 @@ SO(3)=\{ R \in \mathbb R^{3 \times 3} | R^\top R = R R^\top = I \land \det R = 1
 </table>
 <p>Notable other references are: <span class="citation" data-cites="2007-saerkkae-notesOnQuaternions">Särkkä (<a href="references.html#ref-2007-saerkkae-notesOnQuaternions" role="doc-biblioref">2007</a>)</span>, <span class="citation" data-cites="2024-toussaint-quaternions">Toussaint (<a href="references.html#ref-2024-toussaint-quaternions" role="doc-biblioref">2024</a>)</span>, <span class="citation" data-cites="2024-jia-quaternions">Jia (<a href="references.html#ref-2024-jia-quaternions" role="doc-biblioref">2024</a>)</span>.</p>
 </section>
-<section id="definition" class="level2" data-number="C.2">
-<h2 data-number="C.2" class="anchored" data-anchor-id="definition"><span class="header-section-number">C.2</span> Definition</h2>
+<section id="quaternions" class="level2" data-number="C.2">
+<h2 data-number="C.2" class="anchored" data-anchor-id="quaternions"><span class="header-section-number">C.2</span> Quaternions</h2>
+<section id="definition" class="level3" data-number="C.2.1">
+<h3 data-number="C.2.1" class="anchored" data-anchor-id="definition"><span class="header-section-number">C.2.1</span> Definition</h3>
 <p>A quaternion for SO(3) is a 4D vector with the constraint to have norm 1:</p>
 <p><span id="eq-def-quaternion"><span class="math display">\[
     \mathbf{q}=\begin{pmatrix}
@@ -426,10 +416,10 @@ Warning
 </div>
 </div>
 </section>
-<section id="conversion" class="level2" data-number="C.3">
-<h2 data-number="C.3" class="anchored" data-anchor-id="conversion"><span class="header-section-number">C.3</span> Conversion</h2>
-<section id="to-rotation-matrix" class="level3" data-number="C.3.1">
-<h3 data-number="C.3.1" class="anchored" data-anchor-id="to-rotation-matrix"><span class="header-section-number">C.3.1</span> To Rotation Matrix</h3>
+<section id="conversion" class="level3" data-number="C.2.2">
+<h3 data-number="C.2.2" class="anchored" data-anchor-id="conversion"><span class="header-section-number">C.2.2</span> Conversion</h3>
+<section id="to-rotation-matrix" class="level4" data-number="C.2.2.1">
+<h4 data-number="C.2.2.1" class="anchored" data-anchor-id="to-rotation-matrix"><span class="header-section-number">C.2.2.1</span> To Rotation Matrix</h4>
 <!-- https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
 and https://users.aalto.fi/~ssarkka/pub/quat.pdf -->
 <p><span id="eq-quat-to-rot"><span class="math display">\[
@@ -440,15 +430,15 @@ q_w^2 + q_x^2 - q_y^2 - q_z^2 &amp;  2(q_x q_y - q_w q_z) &amp;  2(q_w q_y + q_x
 \end{pmatrix}
 \tag{C.5}\]</span></span></p>
 </section>
-<section id="from-rotation-matrix" class="level3" data-number="C.3.2">
-<h3 data-number="C.3.2" class="anchored" data-anchor-id="from-rotation-matrix"><span class="header-section-number">C.3.2</span> From Rotation Matrix</h3>
+<section id="from-rotation-matrix" class="level4" data-number="C.2.2.2">
+<h4 data-number="C.2.2.2" class="anchored" data-anchor-id="from-rotation-matrix"><span class="header-section-number">C.2.2.2</span> From Rotation Matrix</h4>
 <!-- \todo{\url{https://github.com/jpreiss/cmath3d/blob/39f4fcdc8ec41a8120a3c43c29f3ce47e8d852c1/math3d.h#L605-L615}} -->
 </section>
 </section>
-<section id="low-level-operations" class="level2" data-number="C.4">
-<h2 data-number="C.4" class="anchored" data-anchor-id="low-level-operations"><span class="header-section-number">C.4</span> Low-Level Operations</h2>
-<section id="negation" class="level3" data-number="C.4.1">
-<h3 data-number="C.4.1" class="anchored" data-anchor-id="negation"><span class="header-section-number">C.4.1</span> Negation</h3>
+<section id="low-level-operations" class="level3" data-number="C.2.3">
+<h3 data-number="C.2.3" class="anchored" data-anchor-id="low-level-operations"><span class="header-section-number">C.2.3</span> Low-Level Operations</h3>
+<section id="negation" class="level4" data-number="C.2.3.1">
+<h4 data-number="C.2.3.1" class="anchored" data-anchor-id="negation"><span class="header-section-number">C.2.3.1</span> Negation</h4>
 <p>(same as any vector):</p>
 <p><span id="eq-quat-negation"><span class="math display">\[
 -\mathbf{q}= \begin{pmatrix}
@@ -472,8 +462,8 @@ Note
 </div>
 </div>
 </section>
-<section id="addition-substraction-multiplicationdevision-with-scalar" class="level3" data-number="C.4.2">
-<h3 data-number="C.4.2" class="anchored" data-anchor-id="addition-substraction-multiplicationdevision-with-scalar"><span class="header-section-number">C.4.2</span> Addition, Substraction, Multiplication/Devision with Scalar</h3>
+<section id="addition-substraction-multiplicationdevision-with-scalar" class="level4" data-number="C.2.3.2">
+<h4 data-number="C.2.3.2" class="anchored" data-anchor-id="addition-substraction-multiplicationdevision-with-scalar"><span class="header-section-number">C.2.3.2</span> Addition, Substraction, Multiplication/Devision with Scalar</h4>
 <p>same as any vector, e.g.,:</p>
 <p><span class="math display">\[
 \mathbf{q}+ \mathbf{p}= \begin{pmatrix}
@@ -484,8 +474,8 @@ Note
     \end{pmatrix}
 \]</span></p>
 </section>
-<section id="conjugate" class="level3" data-number="C.4.3">
-<h3 data-number="C.4.3" class="anchored" data-anchor-id="conjugate"><span class="header-section-number">C.4.3</span> Conjugate</h3>
+<section id="conjugate" class="level4" data-number="C.2.3.3">
+<h4 data-number="C.2.3.3" class="anchored" data-anchor-id="conjugate"><span class="header-section-number">C.2.3.3</span> Conjugate</h4>
 <p><span class="math display">\[
 \mathbf{q}^* = \begin{pmatrix}
         q_w\\
@@ -508,8 +498,8 @@ Note
 </div>
 </div>
 </section>
-<section id="norm" class="level3" data-number="C.4.4">
-<h3 data-number="C.4.4" class="anchored" data-anchor-id="norm"><span class="header-section-number">C.4.4</span> Norm</h3>
+<section id="norm" class="level4" data-number="C.2.3.4">
+<h4 data-number="C.2.3.4" class="anchored" data-anchor-id="norm"><span class="header-section-number">C.2.3.4</span> Norm</h4>
 <p>(regular <span class="math inline">\(L_2\)</span> norm on the vector)</p>
 <p><span class="math display">\[
 \| \mathbf{q}\| = \sqrt{q_w^2 + q_x^2 + q_y^2 + q_z^2}
@@ -533,8 +523,8 @@ Note
 % \end{equation}
 % Note that for normalized quaternions, one uses $\vq^*$ as the inverse operations. -->
 </section>
-<section id="exponential" class="level3" data-number="C.4.5">
-<h3 data-number="C.4.5" class="anchored" data-anchor-id="exponential"><span class="header-section-number">C.4.5</span> Exponential</h3>
+<section id="exponential" class="level4" data-number="C.2.3.5">
+<h4 data-number="C.2.3.5" class="anchored" data-anchor-id="exponential"><span class="header-section-number">C.2.3.5</span> Exponential</h4>
 <p><span class="math display">\[
 \exp{(\mathbf{q})} = \exp{(q_w)} \begin{pmatrix}
 \cos{(\| \vec{\mathbf{q}} \|)}\\
@@ -542,8 +532,8 @@ Note
 \end{pmatrix}
 \]</span></p>
 </section>
-<section id="logarithm" class="level3" data-number="C.4.6">
-<h3 data-number="C.4.6" class="anchored" data-anchor-id="logarithm"><span class="header-section-number">C.4.6</span> Logarithm</h3>
+<section id="logarithm" class="level4" data-number="C.2.3.6">
+<h4 data-number="C.2.3.6" class="anchored" data-anchor-id="logarithm"><span class="header-section-number">C.2.3.6</span> Logarithm</h4>
 <p><span class="math display">\[
 \ln{(\mathbf{q})} = \begin{pmatrix}
 \ln{(\| \mathbf{q}\|)}\\
@@ -551,32 +541,32 @@ Note
 \end{pmatrix}
 \]</span></p>
 </section>
-<section id="power-with-real-number" class="level3" data-number="C.4.7">
-<h3 data-number="C.4.7" class="anchored" data-anchor-id="power-with-real-number"><span class="header-section-number">C.4.7</span> Power with Real Number</h3>
+<section id="power-with-real-number" class="level4" data-number="C.2.3.7">
+<h4 data-number="C.2.3.7" class="anchored" data-anchor-id="power-with-real-number"><span class="header-section-number">C.2.3.7</span> Power with Real Number</h4>
 <p><span class="math display">\[
 \mathbf{q}^p = \exp{(\ln(\mathbf{q}) p)}
 \]</span></p>
 </section>
-<section id="power-with-quaternion" class="level3" data-number="C.4.8">
-<h3 data-number="C.4.8" class="anchored" data-anchor-id="power-with-quaternion"><span class="header-section-number">C.4.8</span> Power with Quaternion</h3>
+<section id="power-with-quaternion" class="level4" data-number="C.2.3.8">
+<h4 data-number="C.2.3.8" class="anchored" data-anchor-id="power-with-quaternion"><span class="header-section-number">C.2.3.8</span> Power with Quaternion</h4>
 <p><span class="math display">\[
 \mathbf{q}^\mathbf{p}= \exp{(\ln(\mathbf{q}) \otimes \mathbf{p})}
 \]</span></p>
 </section>
 </section>
-<section id="useful-operations" class="level2" data-number="C.5">
-<h2 data-number="C.5" class="anchored" data-anchor-id="useful-operations"><span class="header-section-number">C.5</span> Useful Operations</h2>
-<section id="multiplication" class="level3" data-number="C.5.1">
-<h3 data-number="C.5.1" class="anchored" data-anchor-id="multiplication"><span class="header-section-number">C.5.1</span> Multiplication</h3>
+<section id="useful-operations" class="level3" data-number="C.2.4">
+<h3 data-number="C.2.4" class="anchored" data-anchor-id="useful-operations"><span class="header-section-number">C.2.4</span> Useful Operations</h3>
+<section id="multiplication" class="level4" data-number="C.2.4.1">
+<h4 data-number="C.2.4.1" class="anchored" data-anchor-id="multiplication"><span class="header-section-number">C.2.4.1</span> Multiplication</h4>
 <p>Similar to rotation matrices, this can be used to concatenate rotations.</p>
-<p><span class="math display">\[
+<p><span id="eq-quat-mult"><span class="math display">\[
 \mathbf{q}\otimes \mathbf{p}= \begin{pmatrix}
 q_w p_w - q_x p_x - q_y p_y - q_z p_z\\
 q_x p_w + q_w p_x - q_z p_y + q_y p_z\\
 q_y p_w + q_z p_x + q_w p_y - q_x p_z\\
 q_z p_w - q_y p_x + q_x p_y + q_w p_z
 \end{pmatrix}
-\]</span></p>
+\tag{C.7}\]</span></span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -604,19 +594,19 @@ Warning
 </div>
 </div>
 </section>
-<section id="vector-rotation" class="level3" data-number="C.5.2">
-<h3 data-number="C.5.2" class="anchored" data-anchor-id="vector-rotation"><span class="header-section-number">C.5.2</span> Vector Rotation</h3>
+</section>
+<section id="vector-rotation" class="level3" data-number="C.2.5">
+<h3 data-number="C.2.5" class="anchored" data-anchor-id="vector-rotation"><span class="header-section-number">C.2.5</span> Vector Rotation</h3>
 <p>With a rotation matrix <span class="math inline">\(\mathbf R(\mathbf{q})\)</span>, we can rotate a vector <span class="math inline">\(\mathbf v\)</span> as <span class="math inline">\(\mathbf v_{rotated} = \mathbf R(\mathbf{q}) \mathbf v\)</span>. Similarily, for quaternions we have:</p>
-<p><span class="math display">\[
+<p><span id="eq-quat-vec-rot"><span class="math display">\[
 \mathbf{v}_{rotated} = \mathbf{q}\odot \mathbf{v}= \mathop{\mathrm{Im}}(\mathbf{q}\otimes \overline{\mathbf{v}} \otimes \mathbf{q}^*)
-\]</span></p>
+\tag{C.8}\]</span></span></p>
 <p>(I.e., augment <span class="math inline">\(\mathbf v\)</span> to a quaternion, use two quaternion multiplications, and one conjugate, and then extract the vector part of the result.)</p>
 <!-- **TODO**: THERE IS A FASTER VERSION, see https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles -->
 <!-- % Note: Use the conjugate $\vq^*$ for the inverse rotation. -->
 </section>
-</section>
-<section id="derivatives-and-integration" class="level2" data-number="C.6">
-<h2 data-number="C.6" class="anchored" data-anchor-id="derivatives-and-integration"><span class="header-section-number">C.6</span> Derivatives and Integration</h2>
+<section id="derivatives-and-integration" class="level3" data-number="C.2.6">
+<h3 data-number="C.2.6" class="anchored" data-anchor-id="derivatives-and-integration"><span class="header-section-number">C.2.6</span> Derivatives and Integration</h3>
 <p>Assuming <span class="math inline">\(\boldsymbol{\omega}\in \mathbb R^3\)</span> is the angular velocity in (e.g., gyroscope): <span class="math display">\[
 \dot{\mathbf{q}} = \frac{1}{2} \mathbf{q}\otimes \overline{\boldsymbol{\omega}}
 \]</span></p>
@@ -653,14 +643,14 @@ Warning
 </div>
 </div>
 </section>
-<section id="interpolation" class="level2" data-number="C.7">
-<h2 data-number="C.7" class="anchored" data-anchor-id="interpolation"><span class="header-section-number">C.7</span> Interpolation</h2>
+<section id="interpolation" class="level3" data-number="C.2.7">
+<h3 data-number="C.2.7" class="anchored" data-anchor-id="interpolation"><span class="header-section-number">C.2.7</span> Interpolation</h3>
 <p>If we want to linearly interpolate from a rotation <span class="math inline">\(\mathbf{q}(0)\)</span> to another rotation <span class="math inline">\(\mathbf{q}(1)\)</span>, we can use the <strong>slerp</strong> operation: <span class="math display">\[
 \mathbf{q}(t) = \left( \mathbf{q}(1) \otimes \mathbf{q}(0)^* \right)^t \otimes \mathbf{q}(0) \,\,\, \forall t \in [0, 1]
 \]</span></p>
 </section>
-<section id="metrics" class="level2" data-number="C.8">
-<h2 data-number="C.8" class="anchored" data-anchor-id="metrics"><span class="header-section-number">C.8</span> Metrics</h2>
+<section id="metrics" class="level3" data-number="C.2.8">
+<h3 data-number="C.2.8" class="anchored" data-anchor-id="metrics"><span class="header-section-number">C.2.8</span> Metrics</h3>
 <p>A metric measures the difference between two rotations as a scalar value. A comparison of different metrics is in <span class="citation" data-cites="2009-huynh-Metrics3DRotations">Huynh (<a href="references.html#ref-2009-huynh-Metrics3DRotations" role="doc-biblioref">2009</a>)</span>. Below are common metrics.</p>
 <!-- 2 in paper, sym_distance in rowan -->
 <p>The following is metric 2 in <span class="citation" data-cites="2009-huynh-Metrics3DRotations">Huynh (<a href="references.html#ref-2009-huynh-Metrics3DRotations" role="doc-biblioref">2009</a>)</span> and <strong>sym_distance</strong> in rowan: <span class="math display">\[
@@ -675,8 +665,8 @@ d(\mathbf{q}, \mathbf{p}) = \arccos{| \mathbf{q}\cdot \mathbf{p}|} \in [0, \pi/2
 d(\mathbf{q}, \mathbf{p}) = 1 - | \mathbf{q}\cdot \mathbf{p}| \in [0, 1]
 \]</span></p>
 </section>
-<section id="random-generation" class="level2" data-number="C.9">
-<h2 data-number="C.9" class="anchored" data-anchor-id="random-generation"><span class="header-section-number">C.9</span> Random Generation</h2>
+<section id="random-generation" class="level3" data-number="C.2.9">
+<h3 data-number="C.2.9" class="anchored" data-anchor-id="random-generation"><span class="header-section-number">C.2.9</span> Random Generation</h3>
 <!-- % also at https://lavalle.pl/planning/node198.html -->
 <p>Sampling rotations uniformly is not trivial. Here is one approach <span class="citation" data-cites="random-rotations">Shoemake (<a href="references.html#ref-random-rotations" role="doc-biblioref">1992</a>)</span>: <span class="math display">\[
 \begin{aligned}
@@ -691,8 +681,23 @@ d(\mathbf{q}, \mathbf{p}) = 1 - | \mathbf{q}\cdot \mathbf{p}| \in [0, 1]
 \]</span></p>
 <p>Note, this is also used <a href="https://github.com/ompl/ompl/blob/18a5f5bea1940a8b56369a58d3c20dac0d884d8b/src/ompl/util/src/RandomNumbers.cpp#L263-L277">inside OMPL</a>.</p>
 </section>
-<section id="machine-learning" class="level2" data-number="C.10">
-<h2 data-number="C.10" class="anchored" data-anchor-id="machine-learning"><span class="header-section-number">C.10</span> Machine Learning</h2>
+</section>
+<section id="rotation-matrices" class="level2" data-number="C.3">
+<h2 data-number="C.3" class="anchored" data-anchor-id="rotation-matrices"><span class="header-section-number">C.3</span> Rotation Matrices</h2>
+<section id="skew-symmetric-mapping" class="level3" data-number="C.3.1">
+<h3 data-number="C.3.1" class="anchored" data-anchor-id="skew-symmetric-mapping"><span class="header-section-number">C.3.1</span> Skew-symmetric Mapping</h3>
+<p>The hat-map constructs a metrix from a vector: <span class="math inline">\(\mathbb R^3 \to \mathbb R^{3\times 3}\)</span> <span id="eq-def-hat-map"><span class="math display">\[
+\hat{\boldsymbol{\omega}} = \begin{bmatrix}
+0 &amp; -\boldsymbol{\omega}_z &amp; \boldsymbol{\omega}_y\\
+\boldsymbol{\omega}_z &amp; 0 &amp; -\boldsymbol{\omega}_x\\
+-\boldsymbol{\omega}_y &amp; \boldsymbol{\omega}_x &amp; 0
+\end{bmatrix}
+\tag{C.9}\]</span></span></p>
+<p>The vee-map <span class="math inline">\(\mathbf{R}^{\vee}\)</span> does the inverse operation.</p>
+</section>
+</section>
+<section id="machine-learning" class="level2" data-number="C.4">
+<h2 data-number="C.4" class="anchored" data-anchor-id="machine-learning"><span class="header-section-number">C.4</span> Machine Learning</h2>
 <p><span class="citation" data-cites="2025-schuck-PrimerSO3Action">Schuck, Samy, and Schoellig (<a href="references.html#ref-2025-schuck-PrimerSO3Action" role="doc-biblioref">2025</a>)</span></p>
 <!--
 

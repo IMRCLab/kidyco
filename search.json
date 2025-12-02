@@ -340,11 +340,77 @@
     ]
   },
   {
+    "objectID": "2nd_order/multirotor.html",
+    "href": "2nd_order/multirotor.html",
+    "title": "11  Multirotor",
+    "section": "",
+    "text": "11.1 Dynamics",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multirotor</span>"
+    ]
+  },
+  {
+    "objectID": "2nd_order/multirotor.html#dynamics",
+    "href": "2nd_order/multirotor.html#dynamics",
+    "title": "11  Multirotor",
+    "section": "",
+    "text": "Parameters\n\nstate space \\(\\mathcal{X}\\)\naction space \\(\\mathcal{U}\\)\nnumber of rotors \\(N\\)\nmass \\(m\\) [kg]\nactuation matrix \\(\\mathbf{B}\\in \\mathbb R^{4\\times N}\\)\ninertia matrix \\(\\mathbf{J}\\in \\mathbb R^{3\\times 3}\\) [\\(kg\\cdot m^2\\)]\ngravity constant \\(g\\) [\\(m/s^2\\)]\n\nState: \\(\\mathbf{x}= (\\mathbf{p}, \\mathbf{v}, \\mathbf{R}, \\boldsymbol{\\omega})^\\top \\in \\mathbb R^3 \\times \\mathbb R^3 \\times SO(3) \\times \\mathbb R^3\\)\n\nPosition \\(\\mathbf{p}= (x,y,z)^\\top\\) [m, global frame]\nVelocity \\(\\mathbf{v}= (\\dot x, \\dot y, \\dot z)^\\top\\) [m/s, global frame]\nOrientation \\(\\mathbf{R}\\) [attitude rotation matrix]\nAngular velocity \\(\\boldsymbol{\\omega}= (\\omega_x, \\omega_y, \\omega_z)^\\top\\) [rad/s, body frame]\n\nAction: \\(\\mathbf{u}= (\\omega_1, \\ldots, \\omega_N)^\\top \\in \\mathbb R^N\\)\n\nAngular velocity of each rotor \\(\\omega_i\\) [rad/s]\n\n\n\n11.1.1 Basic Rotation Matrix Formulation\n\\[\n\\begin{aligned}\n    \\dot{\\mathbf{p}} &= \\mathbf{v}\\\\\n    m \\dot{\\mathbf{v}} &= f \\mathbf{R}\\mathbf{e}_z - m g \\mathbf{e}_z\\\\\n    \\dot{\\mathbf{R}} &= \\mathbf{R}\\hat{\\boldsymbol{\\omega}} \\\\\n    \\mathbf{J}\\dot{\\boldsymbol{\\omega}} &= \\mathbf{J}\\boldsymbol{\\omega}\\times \\boldsymbol{\\omega}+ \\boldsymbol{\\tau}_u\\\\\n    (f, \\boldsymbol{\\tau}_u)^\\top &= \\mathbf{B}(\\omega_1^2, \\ldots, \\omega_N^2)^\\top\n\\end{aligned}\n\\] where \\(\\mathbf{e}_z = (0,0,1)^\\top\\) and \\(\\hat{\\boldsymbol{\\omega}}\\) is defined in Equation C.9.\n\n\n\n\n\n\nNote\n\n\n\nWhen integrating, \\(\\mathbf{R}\\) has to be preserve the properties of a rotation matrix.\n\n\n\n\n11.1.2 Basic Quaternion Formulation\nThe state becomes \\(\\mathbf{x}= (\\mathbf{p}, \\mathbf{v}, \\mathbf{q}, \\boldsymbol{\\omega})^\\top \\in \\mathbb R^3 \\times \\mathbb R^3 \\times SO(3) \\times \\mathbb R^3\\)\n\\[\n\\begin{aligned}\n    \\dot{\\mathbf{p}} &= \\mathbf{v}\\\\\n    m \\dot{\\mathbf{v}} &= \\mathbf{q} \\odot (0, 0, f)^\\top - m g \\mathbf{e}_z\\\\\n    \\dot{\\mathbf{q}} &= \\frac{1}{2} \\mathbf{q}\\otimes  \\overline{\\boldsymbol{\\omega}} \\\\\n    \\mathbf{J}\\dot{\\boldsymbol{\\omega}} &= \\mathbf{J}\\boldsymbol{\\omega}\\times \\boldsymbol{\\omega}+ \\boldsymbol{\\tau}_u\\\\\n    (f, \\boldsymbol{\\tau}_u)^\\top &= \\mathbf{B}(\\omega_1^2, \\ldots, \\omega_N^2)^\\top\n\\end{aligned}\n\\] where \\(\\mathbf{q}\\) is a unit quaternion, \\(\\overline{\\boldsymbol{\\omega}}\\) is defined in Equation C.3, \\(\\otimes\\) is defined in Equation C.7, and \\(\\odot\\) is defined in Equation C.8.\n\n\n11.1.3 Basic Dual-Quaternion Formulation\n\n\n11.1.4 Motor-Delay Formulation",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multirotor</span>"
+    ]
+  },
+  {
+    "objectID": "2nd_order/multirotor.html#differential-flatness",
+    "href": "2nd_order/multirotor.html#differential-flatness",
+    "title": "11  Multirotor",
+    "section": "11.2 Differential Flatness",
+    "text": "11.2 Differential Flatness\n\n\n\n\n\n\n\nNoteDerivation",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multirotor</span>"
+    ]
+  },
+  {
+    "objectID": "2nd_order/multirotor.html#invariance",
+    "href": "2nd_order/multirotor.html#invariance",
+    "title": "11  Multirotor",
+    "section": "11.3 Invariance",
+    "text": "11.3 Invariance\nThe dynamics are translation-invariant.",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multirotor</span>"
+    ]
+  },
+  {
+    "objectID": "2nd_order/multirotor.html#controllers",
+    "href": "2nd_order/multirotor.html#controllers",
+    "title": "11  Multirotor",
+    "section": "11.4 Controllers",
+    "text": "11.4 Controllers\n\n11.4.1 Geometric Controller (Lee, Leok, and McClamroch (2010))\n\nGiven reference trajectory tuple: \\(\\mathbf{r}_d  = (\\ddddot{\\mathbf{p}}_d(t), \\dddot{\\mathbf{p}}_d(t), \\ddot{\\mathbf{p}}_d(t), \\dot{\\mathbf{p}}_d(t), \\mathbf{p}_d(t), \\psi_d(t), \\dot{\\psi}_d(t), \\ddot{\\psi}_d(t))\\) (i.e, desired snap, jerk, acceleration, velocity, position, heading, angular velocity for heading, acceleration for heading)\n\\(\\mathbf{K}_p, \\mathbf{K}_v, \\mathbf{K}_R, \\mathbf{K}_\\omega \\in\\mathbb R^{3\\times 3}\\) are tuning matrices (typically only positive diagonal entries, so 12 parameters)\nControl law: \\[\\begin{aligned}\n\\mathbf{e}_p &= \\mathbf{p}_d - \\mathbf{p}\\\\\n\\mathbf{e}_v &= \\dot{\\mathbf{p}}_d - \\dot{\\mathbf{p}}\\\\\n\\mathbf{e}_R &= \\frac{1}{2} \\left( \\mathbf{R}^\\top_d \\mathbf{R}- \\mathbf{R}^\\top \\mathbf{R}_d \\right)^\\vee\\\\\n\\mathbf{e}_\\omega &= \\boldsymbol{\\omega}- \\mathbf{R}^\\top \\mathbf{R}_d \\boldsymbol{\\omega}_d\\\\\nf &=  m(\\ddot{\\mathbf{p}}_d + \\mathbf{K}_p \\mathbf{e}_p + \\mathbf{K}_v \\mathbf{e}_v + g \\mathbf{e}_z) \\cdot \\mathbf{R}\\mathbf{e}_z\\\\\n\\boldsymbol{\\tau}_u &= -\\mathbf{K}_R \\mathbf{e}_R - \\mathbf{K}_\\omega \\mathbf{e}_\\omega + \\boldsymbol{\\omega}\\times \\mathbf{J}\\boldsymbol{\\omega}- \\mathbf{J}(\\hat{\\boldsymbol{\\omega}} \\mathbf{R}^\\top \\mathbf{R}_d \\boldsymbol{\\omega}_d - \\mathbf{R}^\\top \\mathbf{R}_d \\dot{\\boldsymbol{\\omega}}_d)\\\\\n(\\omega_1^2, \\ldots, \\omega_N^2)^\\top &= \\mathbf{B}^{-1} (f, \\boldsymbol{\\tau}_u)^\\top \\text{(or solving a QP, see also action mixing below.)}\n\\end{aligned}\n\\] where \\((\\cdot)^\\vee\\) is defined below Equation C.9.\n\nThe additional reference signals \\(\\mathbf{R}_d\\), \\(\\boldsymbol{\\omega}_d\\), and \\(\\dot{\\boldsymbol{\\omega}}_d\\) can be computed via differential flatness as follows:\n\\[\n\\begin{aligned}\n\\mathbf{x}_{c_d} &= \\begin{bmatrix} \\cos(\\psi_d) & \\sin(\\psi_d) & 0\\end{bmatrix}^\\top &\n\\mathbf{y}_{c_d} &= \\begin{bmatrix} -\\sin(\\psi_d) & \\cos(\\psi_d) & 0\\end{bmatrix}^\\top\\\\\n\\mathbf{x}_{b_d} &= n(\\mathbf{y}_{c_d} \\times \\mathbf{F}_d) &\n\\mathbf{y}_{b_d} &= n(\\mathbf{F}_d \\times \\mathbf{x}_{b_d}) &\n\\mathbf{z}_{b_d} &= \\mathbf{x}_{b_d} \\times \\mathbf{y}_{b_d}\\\\\n\\mathbf{R}_d &= \\begin{bmatrix} \\mathbf{x}_{b_d} & \\mathbf{y}_{b_d} & \\mathbf{z}_{b_d} \\end{bmatrix}\\\\\nc &= \\mathbf{z}_{b_d}^\\top (\\ddot{\\mathbf{p}}_d + g \\mathbf{e}_z) &\nd_1 &= \\mathbf{x}_{b_d}^\\top \\dddot{\\mathbf{p}}_d &\nd_2 &= -\\mathbf{y}_{b_d}^\\top \\dddot{\\mathbf{p}}_d \\\\\nb_3 &= -\\mathbf{y}_{c_d}^\\top \\mathbf{z}_{b_d} &\nc_3 &= \\| \\mathbf{y}_{c_d} \\times \\mathbf{z}_{b_d} \\| &\nd_3 &= \\dot \\psi_d \\mathbf{x}_{c_d}^\\top \\mathbf{x}_{b_d}\\\\\n\\omega_x &= \\frac{d_2}{c} &\n\\omega_y &= \\frac{d_1}{c} &\n\\omega_z &= \\frac{c d_3 - b_3 d_1}{c c_3}\\\\\n\\boldsymbol{\\omega}_d &= \\begin{bmatrix} \\omega_x & \\omega_y & \\omega_z \\end{bmatrix}^\\top\\\\\n\\dot{c} &= \\mathbf{z}_b^\\top \\dddot{\\mathbf{p}}\\\\\ne_1 &= \\mathbf{x}_{b_d}^\\top \\ddddot{\\mathbf{p}}_d - 2\\dot{c} \\omega_y - c \\omega_x \\omega_z &\ne_2 &= -\\mathbf{y}_{b_d}^\\top \\ddddot{\\mathbf{p}}_d - 2\\dot{c} \\omega_x + c \\omega_y \\omega_z &\ne_3 &= \\ddot{\\psi}_d \\mathbf{x}_{c_d}^\\top \\mathbf{x}_{b_d} + 2 \\dot{\\psi}_d \\omega_z \\mathbf{x}_{c_d}^\\top \\mathbf{y}_{b_d} \\\\\n    &&&&&- 2 \\dot{\\psi}_d \\omega_y \\mathbf{x}_{c_d}^\\top \\mathbf{z}_{b_d} - \\omega_x \\omega_y \\mathbf{y}_{c_d}^\\top \\mathbf{y}_{b_d} \\\\\n    &&&&&- \\omega_x \\omega_z \\mathbf{y}_{c_d}^\\top \\mathbf{z}_{b_d}\\\\\n\\dot{\\omega}_x &= \\frac{e_2}{c}&\n\\dot{\\omega}_y &= \\frac{e_1}{c}&\n\\dot{\\omega}_z &= \\frac{c e_3 - b_3 e_1}{c c_3}\\\\\n\\dot{\\boldsymbol{\\omega}}_d &= \\begin{bmatrix} \\dot{\\omega}_x & \\dot{\\omega}_y & \\dot{\\omega}_z \\end{bmatrix}^\\top\n\\end{aligned}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nNote that \\(\\omega_z\\) is wrong in (Mellinger and Kumar 2011). Details are in (Faessler, Franchi, and Scaramuzza 2018) (Appendix A), from which we obtained the results.\n\n\n\n\n11.4.2 Action Mixing",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multirotor</span>"
+    ]
+  },
+  {
+    "objectID": "2nd_order/multirotor.html#useful-parameters",
+    "href": "2nd_order/multirotor.html#useful-parameters",
+    "title": "11  Multirotor",
+    "section": "11.5 Useful Parameters",
+    "text": "11.5 Useful Parameters\n\n\n\n\nFaessler, Matthias, Antonio Franchi, and Davide Scaramuzza. 2018. “Differential Flatness of Quadrotor Dynamics Subject to Rotor Drag for Accurate Tracking of High-Speed Trajectories.” IEEE Robotics and Automation Letters 3 (2): 620–26. https://doi.org/10.1109/LRA.2017.2776353.\n\n\nLee, Taeyoung, Melvin Leok, and N. Harris McClamroch. 2010. “Geometric Tracking Control of a Quadrotor UAV on SE(3).” In IEEE Conference on Decision and Control (CDC), 5420–25. https://doi.org/10.1109/CDC.2010.5717652.\n\n\nMellinger, Daniel, and Vijay Kumar. 2011. “Minimum Snap Trajectory Generation and Control for Quadrotors.” In 2011 IEEE International Conference on Robotics and Automation, 2520–25. https://doi.org/10.1109/ICRA.2011.5980409.",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Multirotor</span>"
+    ]
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Choset, Howie, Kevin M. Lynch, Seth Hutchinson, George A. Kantor,\nWolfram Burgard, Lydia E. Kavraki, and Sebastian Thrun. 2005.\nPrinciples of Robot Motion: Theory, Algorithms, and\nImplementations. Edited by Ronald C. Arkin. Intelligent Robotics\nand Autonomous Agents Series. Cambridge, MA, USA: A Bradford Book.\n\n\nHuynh, Du Q. 2009. “Metrics for 3D Rotations: Comparison and\nAnalysis.” Journal of Mathematical Imaging and Vision 35\n(2): 155–64. https://doi.org/10.1007/s10851-009-0161-2.\n\n\nJia, Prof. Yan-Bin. 2024. “Quaternions (Com s 477/577\nNotes).” 2024. https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf.\n\n\nKanayama, Y., Y. Kimura, F. Miyazaki, and T. Noguchi. 1990. “A\nStable Tracking Control Method for an Autonomous Mobile Robot.”\nIn IEEE International Conference on Robotics and Automation\n(ICRA), 384–89. https://doi.org/10.1109/ROBOT.1990.126006.\n\n\nLaValle, Steven M. 2006. Planning Algorithms. Cambridge\nUniversity Press.\n\n\nNarayan, Dr. Ashwin. 2017. “How to Integrate Quaternions.”\n2017. https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc\nToussaint. 2024. “iDb-a*: Iterative Search and Optimization for\nOptimal Kinodynamic Motion Planning.” IEEE Transactions on\nRobotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.\n\n\nSärkkä, Prof. Simo. 2007. “Notes on Quaternions.” 2007. https://users.aalto.fi/~ssarkka/pub/quat.pdf.\n\n\nSchuck, Martin, Sherif Samy, and Angela P. Schoellig. 2025. “A\nPrimer on SO(3) Action Representations in Deep Reinforcement\nLearning.” October 13, 2025. https://doi.org/10.48550/arXiv.2510.11103.\n\n\nShoemake, Ken. 1992. “Uniform Random Rotations.” In\nGraphics Gems III, 124–32. USA: Academic Press Professional,\nInc.\n\n\nToussaint, Prof. Marc. 2024. “Lecture Note: Quaternions,\nExponential Map, and Quaternion Jacobians.” 2024. https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html.",
+    "text": "Choset, Howie, Kevin M. Lynch, Seth Hutchinson, George A. Kantor,\nWolfram Burgard, Lydia E. Kavraki, and Sebastian Thrun. 2005.\nPrinciples of Robot Motion: Theory, Algorithms, and\nImplementations. Edited by Ronald C. Arkin. Intelligent Robotics\nand Autonomous Agents Series. Cambridge, MA, USA: A Bradford Book.\n\n\nFaessler, Matthias, Antonio Franchi, and Davide Scaramuzza. 2018.\n“Differential Flatness of Quadrotor Dynamics Subject to Rotor Drag\nfor Accurate Tracking of High-Speed Trajectories.” IEEE\nRobotics and Automation Letters 3 (2): 620–26. https://doi.org/10.1109/LRA.2017.2776353.\n\n\nHuynh, Du Q. 2009. “Metrics for 3D Rotations: Comparison and\nAnalysis.” Journal of Mathematical Imaging and Vision 35\n(2): 155–64. https://doi.org/10.1007/s10851-009-0161-2.\n\n\nJia, Prof. Yan-Bin. 2024. “Quaternions (Com s 477/577\nNotes).” 2024. https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf.\n\n\nKanayama, Y., Y. Kimura, F. Miyazaki, and T. Noguchi. 1990. “A\nStable Tracking Control Method for an Autonomous Mobile Robot.”\nIn IEEE International Conference on Robotics and Automation\n(ICRA), 384–89. https://doi.org/10.1109/ROBOT.1990.126006.\n\n\nLaValle, Steven M. 2006. Planning Algorithms. Cambridge\nUniversity Press.\n\n\nLee, Taeyoung, Melvin Leok, and N. Harris McClamroch. 2010.\n“Geometric Tracking Control of a Quadrotor UAV on SE(3).”\nIn IEEE Conference on Decision and Control (CDC), 5420–25. https://doi.org/10.1109/CDC.2010.5717652.\n\n\nMellinger, Daniel, and Vijay Kumar. 2011. “Minimum Snap Trajectory\nGeneration and Control for Quadrotors.” In 2011 IEEE\nInternational Conference on Robotics and Automation, 2520–25. https://doi.org/10.1109/ICRA.2011.5980409.\n\n\nNarayan, Dr. Ashwin. 2017. “How to Integrate Quaternions.”\n2017. https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc\nToussaint. 2024. “iDb-a*: Iterative Search and Optimization for\nOptimal Kinodynamic Motion Planning.” IEEE Transactions on\nRobotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.\n\n\nSärkkä, Prof. Simo. 2007. “Notes on Quaternions.” 2007. https://users.aalto.fi/~ssarkka/pub/quat.pdf.\n\n\nSchuck, Martin, Sherif Samy, and Angela P. Schoellig. 2025. “A\nPrimer on SO(3) Action Representations in Deep Reinforcement\nLearning.” October 13, 2025. https://doi.org/10.48550/arXiv.2510.11103.\n\n\nShoemake, Ken. 1992. “Uniform Random Rotations.” In\nGraphics Gems III, 124–32. USA: Academic Press Professional,\nInc.\n\n\nToussaint, Prof. Marc. 2024. “Lecture Note: Quaternions,\nExponential Map, and Quaternion Jacobians.” 2024. https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html.",
     "crumbs": [
       "References"
     ]
@@ -372,88 +438,22 @@
     ]
   },
   {
-    "objectID": "so3.html#definition",
-    "href": "so3.html#definition",
+    "objectID": "so3.html#quaternions",
+    "href": "so3.html#quaternions",
     "title": "Appendix C — SO(3) - Rotations in 3D",
-    "section": "C.2 Definition",
-    "text": "C.2 Definition\nA quaternion for SO(3) is a 4D vector with the constraint to have norm 1:\n\\[\n    \\mathbf{q}=\\begin{pmatrix}\n        q_w\\\\\n        q_x\\\\\n        q_y\\\\\n        q_z\n    \\end{pmatrix}=\n    \\begin{pmatrix}\n        q_w\\\\\n        \\vec{\\mathbf{q}}\n    \\end{pmatrix}\\in \\mathbb R^4 \\,\\, s.t. \\| \\mathbf{q}\\|_2 = 1\n\\tag{C.2}\\]\nOne can augment or promote a vector \\(\\mathbf{v}\\in \\mathbb R^3\\) to be a quaternion: \\[\n    \\bar{\\mathbf{v}} = \\begin{pmatrix}\n        0\\\\\n        \\mathbf{v}\n    \\end{pmatrix}\n\\tag{C.3}\\]\nOne can extract the vector or imaginary part of a quaternion: \\[\n    \\vec{\\mathbf{q}} = \\mathop{\\mathrm{Im}}(\\mathbf{q})\n\\tag{C.4}\\]\n\n\n\n\n\n\nWarning\n\n\n\nNote that the order of the components is not uniquely defined. Some software packages put \\(q_w\\) first, some last in the vector.",
+    "section": "C.2 Quaternions",
+    "text": "C.2 Quaternions\n\nC.2.1 Definition\nA quaternion for SO(3) is a 4D vector with the constraint to have norm 1:\n\\[\n    \\mathbf{q}=\\begin{pmatrix}\n        q_w\\\\\n        q_x\\\\\n        q_y\\\\\n        q_z\n    \\end{pmatrix}=\n    \\begin{pmatrix}\n        q_w\\\\\n        \\vec{\\mathbf{q}}\n    \\end{pmatrix}\\in \\mathbb R^4 \\,\\, s.t. \\| \\mathbf{q}\\|_2 = 1\n\\tag{C.2}\\]\nOne can augment or promote a vector \\(\\mathbf{v}\\in \\mathbb R^3\\) to be a quaternion: \\[\n    \\bar{\\mathbf{v}} = \\begin{pmatrix}\n        0\\\\\n        \\mathbf{v}\n    \\end{pmatrix}\n\\tag{C.3}\\]\nOne can extract the vector or imaginary part of a quaternion: \\[\n    \\vec{\\mathbf{q}} = \\mathop{\\mathrm{Im}}(\\mathbf{q})\n\\tag{C.4}\\]\n\n\n\n\n\n\nWarning\n\n\n\nNote that the order of the components is not uniquely defined. Some software packages put \\(q_w\\) first, some last in the vector.\n\n\n\n\nC.2.2 Conversion\n\nC.2.2.1 To Rotation Matrix\n\n\\[\nR(\\mathbf{q}) = \\begin{pmatrix}\nq_w^2 + q_x^2 - q_y^2 - q_z^2 &  2(q_x q_y - q_w q_z) &  2(q_w q_y + q_x q_z) \\\\\n2(q_x q_y + q_w q_z) & q_w^2 - q_x^2 + q_y^2 - q_z^2 &  2(q_y q_z - q_w q_x) \\\\\n2(q_x q_z - q_w q_y) & 2( q_w q_x + q_y q_z) & q_w^2 - q_x^2 - q_y^2 + q_z^2\n\\end{pmatrix}\n\\tag{C.5}\\]\n\n\nC.2.2.2 From Rotation Matrix\n\n\n\n\nC.2.3 Low-Level Operations\n\nC.2.3.1 Negation\n(same as any vector):\n\\[\n-\\mathbf{q}= \\begin{pmatrix}\n        -q_w\\\\\n        -q_x\\\\\n        -q_y\\\\\n        -q_z\n    \\end{pmatrix}\n\\tag{C.6}\\]\n\n\n\n\n\n\nNote\n\n\n\n\\(\\mathbf{q}\\) and \\(-\\mathbf{q}\\) represent the same rotation.\n\n\n\n\nC.2.3.2 Addition, Substraction, Multiplication/Devision with Scalar\nsame as any vector, e.g.,:\n\\[\n\\mathbf{q}+ \\mathbf{p}= \\begin{pmatrix}\n        q_w + p_w\\\\\n        q_x + p_x\\\\\n        q_y + p_y\\\\\n        q_z + p_z\n    \\end{pmatrix}\n\\]\n\n\nC.2.3.3 Conjugate\n\\[\n\\mathbf{q}^* = \\begin{pmatrix}\n        q_w\\\\\n        -q_x\\\\\n        -q_y\\\\\n        -q_z\n    \\end{pmatrix}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nThis is the inverse for normalized quaternions.\n\n\n\n\nC.2.3.4 Norm\n(regular \\(L_2\\) norm on the vector)\n\\[\n\\| \\mathbf{q}\\| = \\sqrt{q_w^2 + q_x^2 + q_y^2 + q_z^2}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nThis should be always 1 for normalized quaternions.\n\n\n\n\n\nC.2.3.5 Exponential\n\\[\n\\exp{(\\mathbf{q})} = \\exp{(q_w)} \\begin{pmatrix}\n\\cos{(\\| \\vec{\\mathbf{q}} \\|)}\\\\\n\\frac{\\vec{\\mathbf{q}}}{\\| \\vec{\\mathbf{q}} \\|} \\sin{(\\| \\vec{\\mathbf{q}} \\|)}\n\\end{pmatrix}\n\\]\n\n\nC.2.3.6 Logarithm\n\\[\n\\ln{(\\mathbf{q})} = \\begin{pmatrix}\n\\ln{(\\| \\mathbf{q}\\|)}\\\\\n\\frac{\\vec{\\mathbf{q}}}{\\| \\vec{\\mathbf{q}} \\|} \\arccos{\\left( \\frac{q_w}{\\| \\mathbf{q}\\| }\\right)}\n\\end{pmatrix}\n\\]\n\n\nC.2.3.7 Power with Real Number\n\\[\n\\mathbf{q}^p = \\exp{(\\ln(\\mathbf{q}) p)}\n\\]\n\n\nC.2.3.8 Power with Quaternion\n\\[\n\\mathbf{q}^\\mathbf{p}= \\exp{(\\ln(\\mathbf{q}) \\otimes \\mathbf{p})}\n\\]\n\n\n\nC.2.4 Useful Operations\n\nC.2.4.1 Multiplication\nSimilar to rotation matrices, this can be used to concatenate rotations.\n\\[\n\\mathbf{q}\\otimes \\mathbf{p}= \\begin{pmatrix}\nq_w p_w - q_x p_x - q_y p_y - q_z p_z\\\\\nq_x p_w + q_w p_x - q_z p_y + q_y p_z\\\\\nq_y p_w + q_z p_x + q_w p_y - q_x p_z\\\\\nq_z p_w - q_y p_x + q_x p_y + q_w p_z\n\\end{pmatrix}\n\\tag{C.7}\\]\n\n\n\n\n\n\nNote\n\n\n\nGenerally \\(\\mathbf{q}\\otimes \\mathbf{p}\\neq \\mathbf{p}\\otimes \\mathbf{q}\\).\n\n\n\n\n\n\n\n\nWarning\n\n\n\nBe careful when looking at papers - sometimes it’s defined inverse!\n\n\n\n\n\nC.2.5 Vector Rotation\nWith a rotation matrix \\(\\mathbf R(\\mathbf{q})\\), we can rotate a vector \\(\\mathbf v\\) as \\(\\mathbf v_{rotated} = \\mathbf R(\\mathbf{q}) \\mathbf v\\). Similarily, for quaternions we have:\n\\[\n\\mathbf{v}_{rotated} = \\mathbf{q}\\odot \\mathbf{v}= \\mathop{\\mathrm{Im}}(\\mathbf{q}\\otimes \\overline{\\mathbf{v}} \\otimes \\mathbf{q}^*)\n\\tag{C.8}\\]\n(I.e., augment \\(\\mathbf v\\) to a quaternion, use two quaternion multiplications, and one conjugate, and then extract the vector part of the result.)\n\n\n\n\nC.2.6 Derivatives and Integration\nAssuming \\(\\boldsymbol{\\omega}\\in \\mathbb R^3\\) is the angular velocity in (e.g., gyroscope): \\[\n\\dot{\\mathbf{q}} = \\frac{1}{2} \\mathbf{q}\\otimes \\overline{\\boldsymbol{\\omega}}\n\\]\nAssuming \\(\\boldsymbol{\\omega}\\) in world frame: \\[\n\\dot{\\mathbf{q}} = \\frac{1}{2} \\overline{\\boldsymbol{\\omega}} \\otimes \\mathbf{q}\n\\]\nThis can also be used to numerically estimate \\(\\boldsymbol{\\omega}\\). One can approximate \\(\\dot{\\mathbf{q}} \\approx (\\mathbf{q}(t+\\Delta t) - \\mathbf{q}(t)) / \\Delta t\\) and then proceed (remembering to use \\(\\mathbf{q}^*\\) as inverse of \\(\\mathbf{q}\\)). A nicer solution can be derived to reach the following (body frame)1: \\[\n\\boldsymbol{\\omega} \\approx\n2 \\mathop{\\mathrm{Im}}\\left( \\frac{\\mathbf{q}^*(t) \\otimes \\mathbf{q}(t+\\Delta t)}{\\Delta t} \\right)\n\\]\nOr similarly in world frame: \\[\n\\boldsymbol{\\omega} \\approx\n2 \\mathop{\\mathrm{Im}}\\left( \\frac{ \\mathbf{q}(t+\\Delta t) \\otimes \\mathbf{q}^*(t)}{\\Delta t} \\right)\n\\]\nFor integration, one can use Euler or RK4 to integrate \\(\\mathbf{q}\\), followed by normalizing the quaternion. Alternatively, the exponential map can be used as a more accurate, explicit integrator (body frame):\n\\[\n\\mathbf{q}_{t+\\Delta t} = \\mathbf{q}_t \\otimes \\begin{pmatrix}\n\\cos{(\\| \\boldsymbol{\\omega} \\| \\Delta t/2)}\\\\\n\\frac{\\boldsymbol{\\omega}}{\\| \\boldsymbol{\\omega} \\|} \\sin{(\\|\\boldsymbol{\\omega}\\| \\Delta t/2)}\n\\end{pmatrix}\n\\]\nA derivation is in Narayan (2017).\n\n\n\n\n\n\nWarning\n\n\n\nSome libraries do not specify which frame they operate in, e.g., the Python library rowan assumes world frame for its methods.\n\n\n\n\nC.2.7 Interpolation\nIf we want to linearly interpolate from a rotation \\(\\mathbf{q}(0)\\) to another rotation \\(\\mathbf{q}(1)\\), we can use the slerp operation: \\[\n\\mathbf{q}(t) = \\left( \\mathbf{q}(1) \\otimes \\mathbf{q}(0)^* \\right)^t \\otimes \\mathbf{q}(0) \\,\\,\\, \\forall t \\in [0, 1]\n\\]\n\n\nC.2.8 Metrics\nA metric measures the difference between two rotations as a scalar value. A comparison of different metrics is in Huynh (2009). Below are common metrics.\n\nThe following is metric 2 in Huynh (2009) and sym_distance in rowan: \\[\nd(\\mathbf{q}, \\mathbf{p}) = \\min \\left( \\| \\mathbf{q}- \\mathbf{p}\\|, \\| \\mathbf{q}+ \\mathbf{p}\\| \\right) \\in [0, \\sqrt 2]\n\\]\n\nThe following is metric 3 in Huynh (2009), is used by OMPL, and called sym_intrinsic_distance in rowan: \\[\nd(\\mathbf{q}, \\mathbf{p}) = \\arccos{| \\mathbf{q}\\cdot \\mathbf{p}|} \\in [0, \\pi/2]\n\\]\n\nThe following is metric 4 in Huynh (2009): \\[\nd(\\mathbf{q}, \\mathbf{p}) = 1 - | \\mathbf{q}\\cdot \\mathbf{p}| \\in [0, 1]\n\\]\n\n\nC.2.9 Random Generation\n\nSampling rotations uniformly is not trivial. Here is one approach Shoemake (1992): \\[\n\\begin{aligned}\n    r_1, r_2, r_3 &\\sim \\mathcal U(0, 1)\\\\\n    \\mathbf{q}&=\\begin{pmatrix}\n        \\sqrt{1-r_1} \\sin 2\\pi r_2\\\\\n        \\sqrt{1-r_1} \\cos 2\\pi r_2\\\\\n        \\sqrt{r_1} \\sin 2\\pi r_3\\\\\n        \\sqrt{r_1} \\cos 2\\pi r_3\n    \\end{pmatrix}\n\\end{aligned}\n\\]\nNote, this is also used inside OMPL.",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>SO(3) - Rotations in 3D</span>"
     ]
   },
   {
-    "objectID": "so3.html#conversion",
-    "href": "so3.html#conversion",
+    "objectID": "so3.html#rotation-matrices",
+    "href": "so3.html#rotation-matrices",
     "title": "Appendix C — SO(3) - Rotations in 3D",
-    "section": "C.3 Conversion",
-    "text": "C.3 Conversion\n\nC.3.1 To Rotation Matrix\n\n\\[\nR(\\mathbf{q}) = \\begin{pmatrix}\nq_w^2 + q_x^2 - q_y^2 - q_z^2 &  2(q_x q_y - q_w q_z) &  2(q_w q_y + q_x q_z) \\\\\n2(q_x q_y + q_w q_z) & q_w^2 - q_x^2 + q_y^2 - q_z^2 &  2(q_y q_z - q_w q_x) \\\\\n2(q_x q_z - q_w q_y) & 2( q_w q_x + q_y q_z) & q_w^2 - q_x^2 - q_y^2 + q_z^2\n\\end{pmatrix}\n\\tag{C.5}\\]\n\n\nC.3.2 From Rotation Matrix",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>C</span>  <span class='chapter-title'>SO(3) - Rotations in 3D</span>"
-    ]
-  },
-  {
-    "objectID": "so3.html#low-level-operations",
-    "href": "so3.html#low-level-operations",
-    "title": "Appendix C — SO(3) - Rotations in 3D",
-    "section": "C.4 Low-Level Operations",
-    "text": "C.4 Low-Level Operations\n\nC.4.1 Negation\n(same as any vector):\n\\[\n-\\mathbf{q}= \\begin{pmatrix}\n        -q_w\\\\\n        -q_x\\\\\n        -q_y\\\\\n        -q_z\n    \\end{pmatrix}\n\\tag{C.6}\\]\n\n\n\n\n\n\nNote\n\n\n\n\\(\\mathbf{q}\\) and \\(-\\mathbf{q}\\) represent the same rotation.\n\n\n\n\nC.4.2 Addition, Substraction, Multiplication/Devision with Scalar\nsame as any vector, e.g.,:\n\\[\n\\mathbf{q}+ \\mathbf{p}= \\begin{pmatrix}\n        q_w + p_w\\\\\n        q_x + p_x\\\\\n        q_y + p_y\\\\\n        q_z + p_z\n    \\end{pmatrix}\n\\]\n\n\nC.4.3 Conjugate\n\\[\n\\mathbf{q}^* = \\begin{pmatrix}\n        q_w\\\\\n        -q_x\\\\\n        -q_y\\\\\n        -q_z\n    \\end{pmatrix}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nThis is the inverse for normalized quaternions.\n\n\n\n\nC.4.4 Norm\n(regular \\(L_2\\) norm on the vector)\n\\[\n\\| \\mathbf{q}\\| = \\sqrt{q_w^2 + q_x^2 + q_y^2 + q_z^2}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nThis should be always 1 for normalized quaternions.\n\n\n\n\n\nC.4.5 Exponential\n\\[\n\\exp{(\\mathbf{q})} = \\exp{(q_w)} \\begin{pmatrix}\n\\cos{(\\| \\vec{\\mathbf{q}} \\|)}\\\\\n\\frac{\\vec{\\mathbf{q}}}{\\| \\vec{\\mathbf{q}} \\|} \\sin{(\\| \\vec{\\mathbf{q}} \\|)}\n\\end{pmatrix}\n\\]\n\n\nC.4.6 Logarithm\n\\[\n\\ln{(\\mathbf{q})} = \\begin{pmatrix}\n\\ln{(\\| \\mathbf{q}\\|)}\\\\\n\\frac{\\vec{\\mathbf{q}}}{\\| \\vec{\\mathbf{q}} \\|} \\arccos{\\left( \\frac{q_w}{\\| \\mathbf{q}\\| }\\right)}\n\\end{pmatrix}\n\\]\n\n\nC.4.7 Power with Real Number\n\\[\n\\mathbf{q}^p = \\exp{(\\ln(\\mathbf{q}) p)}\n\\]\n\n\nC.4.8 Power with Quaternion\n\\[\n\\mathbf{q}^\\mathbf{p}= \\exp{(\\ln(\\mathbf{q}) \\otimes \\mathbf{p})}\n\\]",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>C</span>  <span class='chapter-title'>SO(3) - Rotations in 3D</span>"
-    ]
-  },
-  {
-    "objectID": "so3.html#useful-operations",
-    "href": "so3.html#useful-operations",
-    "title": "Appendix C — SO(3) - Rotations in 3D",
-    "section": "C.5 Useful Operations",
-    "text": "C.5 Useful Operations\n\nC.5.1 Multiplication\nSimilar to rotation matrices, this can be used to concatenate rotations.\n\\[\n\\mathbf{q}\\otimes \\mathbf{p}= \\begin{pmatrix}\nq_w p_w - q_x p_x - q_y p_y - q_z p_z\\\\\nq_x p_w + q_w p_x - q_z p_y + q_y p_z\\\\\nq_y p_w + q_z p_x + q_w p_y - q_x p_z\\\\\nq_z p_w - q_y p_x + q_x p_y + q_w p_z\n\\end{pmatrix}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nGenerally \\(\\mathbf{q}\\otimes \\mathbf{p}\\neq \\mathbf{p}\\otimes \\mathbf{q}\\).\n\n\n\n\n\n\n\n\nWarning\n\n\n\nBe careful when looking at papers - sometimes it’s defined inverse!\n\n\n\n\nC.5.2 Vector Rotation\nWith a rotation matrix \\(\\mathbf R(\\mathbf{q})\\), we can rotate a vector \\(\\mathbf v\\) as \\(\\mathbf v_{rotated} = \\mathbf R(\\mathbf{q}) \\mathbf v\\). Similarily, for quaternions we have:\n\\[\n\\mathbf{v}_{rotated} = \\mathbf{q}\\odot \\mathbf{v}= \\mathop{\\mathrm{Im}}(\\mathbf{q}\\otimes \\overline{\\mathbf{v}} \\otimes \\mathbf{q}^*)\n\\]\n(I.e., augment \\(\\mathbf v\\) to a quaternion, use two quaternion multiplications, and one conjugate, and then extract the vector part of the result.)",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>C</span>  <span class='chapter-title'>SO(3) - Rotations in 3D</span>"
-    ]
-  },
-  {
-    "objectID": "so3.html#derivatives-and-integration",
-    "href": "so3.html#derivatives-and-integration",
-    "title": "Appendix C — SO(3) - Rotations in 3D",
-    "section": "C.6 Derivatives and Integration",
-    "text": "C.6 Derivatives and Integration\nAssuming \\(\\boldsymbol{\\omega}\\in \\mathbb R^3\\) is the angular velocity in (e.g., gyroscope): \\[\n\\dot{\\mathbf{q}} = \\frac{1}{2} \\mathbf{q}\\otimes \\overline{\\boldsymbol{\\omega}}\n\\]\nAssuming \\(\\boldsymbol{\\omega}\\) in world frame: \\[\n\\dot{\\mathbf{q}} = \\frac{1}{2} \\overline{\\boldsymbol{\\omega}} \\otimes \\mathbf{q}\n\\]\nThis can also be used to numerically estimate \\(\\boldsymbol{\\omega}\\). One can approximate \\(\\dot{\\mathbf{q}} \\approx (\\mathbf{q}(t+\\Delta t) - \\mathbf{q}(t)) / \\Delta t\\) and then proceed (remembering to use \\(\\mathbf{q}^*\\) as inverse of \\(\\mathbf{q}\\)). A nicer solution can be derived to reach the following (body frame)1: \\[\n\\boldsymbol{\\omega} \\approx\n2 \\mathop{\\mathrm{Im}}\\left( \\frac{\\mathbf{q}^*(t) \\otimes \\mathbf{q}(t+\\Delta t)}{\\Delta t} \\right)\n\\]\nOr similarly in world frame: \\[\n\\boldsymbol{\\omega} \\approx\n2 \\mathop{\\mathrm{Im}}\\left( \\frac{ \\mathbf{q}(t+\\Delta t) \\otimes \\mathbf{q}^*(t)}{\\Delta t} \\right)\n\\]\nFor integration, one can use Euler or RK4 to integrate \\(\\mathbf{q}\\), followed by normalizing the quaternion. Alternatively, the exponential map can be used as a more accurate, explicit integrator (body frame):\n\\[\n\\mathbf{q}_{t+\\Delta t} = \\mathbf{q}_t \\otimes \\begin{pmatrix}\n\\cos{(\\| \\boldsymbol{\\omega} \\| \\Delta t/2)}\\\\\n\\frac{\\boldsymbol{\\omega}}{\\| \\boldsymbol{\\omega} \\|} \\sin{(\\|\\boldsymbol{\\omega}\\| \\Delta t/2)}\n\\end{pmatrix}\n\\]\nA derivation is in Narayan (2017).\n\n\n\n\n\n\nWarning\n\n\n\nSome libraries do not specify which frame they operate in, e.g., the Python library rowan assumes world frame for its methods.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>C</span>  <span class='chapter-title'>SO(3) - Rotations in 3D</span>"
-    ]
-  },
-  {
-    "objectID": "so3.html#interpolation",
-    "href": "so3.html#interpolation",
-    "title": "Appendix C — SO(3) - Rotations in 3D",
-    "section": "C.7 Interpolation",
-    "text": "C.7 Interpolation\nIf we want to linearly interpolate from a rotation \\(\\mathbf{q}(0)\\) to another rotation \\(\\mathbf{q}(1)\\), we can use the slerp operation: \\[\n\\mathbf{q}(t) = \\left( \\mathbf{q}(1) \\otimes \\mathbf{q}(0)^* \\right)^t \\otimes \\mathbf{q}(0) \\,\\,\\, \\forall t \\in [0, 1]\n\\]",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>C</span>  <span class='chapter-title'>SO(3) - Rotations in 3D</span>"
-    ]
-  },
-  {
-    "objectID": "so3.html#metrics",
-    "href": "so3.html#metrics",
-    "title": "Appendix C — SO(3) - Rotations in 3D",
-    "section": "C.8 Metrics",
-    "text": "C.8 Metrics\nA metric measures the difference between two rotations as a scalar value. A comparison of different metrics is in Huynh (2009). Below are common metrics.\n\nThe following is metric 2 in Huynh (2009) and sym_distance in rowan: \\[\nd(\\mathbf{q}, \\mathbf{p}) = \\min \\left( \\| \\mathbf{q}- \\mathbf{p}\\|, \\| \\mathbf{q}+ \\mathbf{p}\\| \\right) \\in [0, \\sqrt 2]\n\\]\n\nThe following is metric 3 in Huynh (2009), is used by OMPL, and called sym_intrinsic_distance in rowan: \\[\nd(\\mathbf{q}, \\mathbf{p}) = \\arccos{| \\mathbf{q}\\cdot \\mathbf{p}|} \\in [0, \\pi/2]\n\\]\n\nThe following is metric 4 in Huynh (2009): \\[\nd(\\mathbf{q}, \\mathbf{p}) = 1 - | \\mathbf{q}\\cdot \\mathbf{p}| \\in [0, 1]\n\\]",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>C</span>  <span class='chapter-title'>SO(3) - Rotations in 3D</span>"
-    ]
-  },
-  {
-    "objectID": "so3.html#random-generation",
-    "href": "so3.html#random-generation",
-    "title": "Appendix C — SO(3) - Rotations in 3D",
-    "section": "C.9 Random Generation",
-    "text": "C.9 Random Generation\n\nSampling rotations uniformly is not trivial. Here is one approach Shoemake (1992): \\[\n\\begin{aligned}\n    r_1, r_2, r_3 &\\sim \\mathcal U(0, 1)\\\\\n    \\mathbf{q}&=\\begin{pmatrix}\n        \\sqrt{1-r_1} \\sin 2\\pi r_2\\\\\n        \\sqrt{1-r_1} \\cos 2\\pi r_2\\\\\n        \\sqrt{r_1} \\sin 2\\pi r_3\\\\\n        \\sqrt{r_1} \\cos 2\\pi r_3\n    \\end{pmatrix}\n\\end{aligned}\n\\]\nNote, this is also used inside OMPL.",
+    "section": "C.3 Rotation Matrices",
+    "text": "C.3 Rotation Matrices\n\nC.3.1 Skew-symmetric Mapping\nThe hat-map constructs a metrix from a vector: \\(\\mathbb R^3 \\to \\mathbb R^{3\\times 3}\\) \\[\n\\hat{\\boldsymbol{\\omega}} = \\begin{bmatrix}\n0 & -\\boldsymbol{\\omega}_z & \\boldsymbol{\\omega}_y\\\\\n\\boldsymbol{\\omega}_z & 0 & -\\boldsymbol{\\omega}_x\\\\\n-\\boldsymbol{\\omega}_y & \\boldsymbol{\\omega}_x & 0\n\\end{bmatrix}\n\\tag{C.9}\\]\nThe vee-map \\(\\mathbf{R}^{\\vee}\\) does the inverse operation.",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>SO(3) - Rotations in 3D</span>"
@@ -463,8 +463,8 @@
     "objectID": "so3.html#machine-learning",
     "href": "so3.html#machine-learning",
     "title": "Appendix C — SO(3) - Rotations in 3D",
-    "section": "C.10 Machine Learning",
-    "text": "C.10 Machine Learning\nSchuck, Samy, and Schoellig (2025)\n\n\n\n\n\nHuynh, Du Q. 2009. “Metrics for 3D Rotations: Comparison and Analysis.” Journal of Mathematical Imaging and Vision 35 (2): 155–64. https://doi.org/10.1007/s10851-009-0161-2.\n\n\nJia, Prof. Yan-Bin. 2024. “Quaternions (Com s 477/577 Notes).” 2024. https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf.\n\n\nNarayan, Dr. Ashwin. 2017. “How to Integrate Quaternions.” 2017. https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/.\n\n\nSärkkä, Prof. Simo. 2007. “Notes on Quaternions.” 2007. https://users.aalto.fi/~ssarkka/pub/quat.pdf.\n\n\nSchuck, Martin, Sherif Samy, and Angela P. Schoellig. 2025. “A Primer on SO(3) Action Representations in Deep Reinforcement Learning.” October 13, 2025. https://doi.org/10.48550/arXiv.2510.11103.\n\n\nShoemake, Ken. 1992. “Uniform Random Rotations.” In Graphics Gems III, 124–32. USA: Academic Press Professional, Inc.\n\n\nToussaint, Prof. Marc. 2024. “Lecture Note: Quaternions, Exponential Map, and Quaternion Jacobians.” 2024. https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html.",
+    "section": "C.4 Machine Learning",
+    "text": "C.4 Machine Learning\nSchuck, Samy, and Schoellig (2025)\n\n\n\n\n\nHuynh, Du Q. 2009. “Metrics for 3D Rotations: Comparison and Analysis.” Journal of Mathematical Imaging and Vision 35 (2): 155–64. https://doi.org/10.1007/s10851-009-0161-2.\n\n\nJia, Prof. Yan-Bin. 2024. “Quaternions (Com s 477/577 Notes).” 2024. https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf.\n\n\nNarayan, Dr. Ashwin. 2017. “How to Integrate Quaternions.” 2017. https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/.\n\n\nSärkkä, Prof. Simo. 2007. “Notes on Quaternions.” 2007. https://users.aalto.fi/~ssarkka/pub/quat.pdf.\n\n\nSchuck, Martin, Sherif Samy, and Angela P. Schoellig. 2025. “A Primer on SO(3) Action Representations in Deep Reinforcement Learning.” October 13, 2025. https://doi.org/10.48550/arXiv.2510.11103.\n\n\nShoemake, Ken. 1992. “Uniform Random Rotations.” In Graphics Gems III, 124–32. USA: Academic Press Professional, Inc.\n\n\nToussaint, Prof. Marc. 2024. “Lecture Note: Quaternions, Exponential Map, and Quaternion Jacobians.” 2024. https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html.",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>C</span>  <span class='chapter-title'>SO(3) - Rotations in 3D</span>"

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -39,7 +59,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -71,6 +91,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -96,9 +145,7 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Kinodynamic Compendium</a> 
     </div>
@@ -250,8 +297,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#dynamics" id="toc-dynamics" class="nav-link active" data-scroll-target="#dynamics"><span class="header-section-number">11.1</span> Dynamics</a>
+  <ul class="collapse">
+  <li><a href="#basic-rotation-matrix-formulation" id="toc-basic-rotation-matrix-formulation" class="nav-link" data-scroll-target="#basic-rotation-matrix-formulation"><span class="header-section-number">11.1.1</span> Basic Rotation Matrix Formulation</a></li>
+  <li><a href="#basic-quaternion-formulation" id="toc-basic-quaternion-formulation" class="nav-link" data-scroll-target="#basic-quaternion-formulation"><span class="header-section-number">11.1.2</span> Basic Quaternion Formulation</a></li>
+  <li><a href="#basic-dual-quaternion-formulation" id="toc-basic-dual-quaternion-formulation" class="nav-link" data-scroll-target="#basic-dual-quaternion-formulation"><span class="header-section-number">11.1.3</span> Basic Dual-Quaternion Formulation</a></li>
+  <li><a href="#motor-delay-formulation" id="toc-motor-delay-formulation" class="nav-link" data-scroll-target="#motor-delay-formulation"><span class="header-section-number">11.1.4</span> Motor-Delay Formulation</a></li>
+  </ul></li>
+  <li><a href="#differential-flatness" id="toc-differential-flatness" class="nav-link" data-scroll-target="#differential-flatness"><span class="header-section-number">11.2</span> Differential Flatness</a></li>
+  <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">11.3</span> Invariance</a></li>
+  <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">11.4</span> Controllers</a>
+  <ul class="collapse">
+  <li><a href="#geometric-controller-2010-lee-geometrictrackingcontrol" id="toc-geometric-controller-2010-lee-geometrictrackingcontrol" class="nav-link" data-scroll-target="#geometric-controller-2010-lee-geometrictrackingcontrol"><span class="header-section-number">11.4.1</span> Geometric Controller (<span class="citation" data-cites="2010-lee-geometricTrackingControl">Lee, Leok, and McClamroch (2010)</span>)</a></li>
+  <li><a href="#action-mixing" id="toc-action-mixing" class="nav-link" data-scroll-target="#action-mixing"><span class="header-section-number">11.4.2</span> Action Mixing</a></li>
+  </ul></li>
+  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">11.5</span> Useful Parameters</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -275,8 +342,198 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="dynamics" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="dynamics"><span class="header-section-number">11.1</span> Dynamics</h2>
+<ul>
+<li>Parameters
+<ul>
+<li>state space <span class="math inline">\(\mathcal{X}\)</span></li>
+<li>action space <span class="math inline">\(\mathcal{U}\)</span></li>
+<li>number of rotors <span class="math inline">\(N\)</span></li>
+<li>mass <span class="math inline">\(m\)</span> [kg]</li>
+<li>actuation matrix <span class="math inline">\(\mathbf{B}\in \mathbb R^{4\times N}\)</span></li>
+<li>inertia matrix <span class="math inline">\(\mathbf{J}\in \mathbb R^{3\times 3}\)</span> [<span class="math inline">\(kg\cdot m^2\)</span>]</li>
+<li>gravity constant <span class="math inline">\(g\)</span> [<span class="math inline">\(m/s^2\)</span>]</li>
+</ul></li>
+<li>State: <span class="math inline">\(\mathbf{x}= (\mathbf{p}, \mathbf{v}, \mathbf{R}, \boldsymbol{\omega})^\top \in \mathbb R^3 \times \mathbb R^3 \times SO(3) \times \mathbb R^3\)</span>
+<ul>
+<li>Position <span class="math inline">\(\mathbf{p}= (x,y,z)^\top\)</span> [m, global frame]</li>
+<li>Velocity <span class="math inline">\(\mathbf{v}= (\dot x, \dot y, \dot z)^\top\)</span> [m/s, global frame]</li>
+<li>Orientation <span class="math inline">\(\mathbf{R}\)</span> [attitude rotation matrix]</li>
+<li>Angular velocity <span class="math inline">\(\boldsymbol{\omega}= (\omega_x, \omega_y, \omega_z)^\top\)</span> [rad/s, body frame]</li>
+</ul></li>
+<li>Action: <span class="math inline">\(\mathbf{u}= (\omega_1, \ldots, \omega_N)^\top \in \mathbb R^N\)</span>
+<ul>
+<li>Angular velocity of each rotor <span class="math inline">\(\omega_i\)</span> [rad/s]</li>
+</ul></li>
+</ul>
+<section id="basic-rotation-matrix-formulation" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="basic-rotation-matrix-formulation"><span class="header-section-number">11.1.1</span> Basic Rotation Matrix Formulation</h3>
+<p><span class="math display">\[
+\begin{aligned}
+    \dot{\mathbf{p}} &amp;= \mathbf{v}\\
+    m \dot{\mathbf{v}} &amp;= f \mathbf{R}\mathbf{e}_z - m g \mathbf{e}_z\\
+    \dot{\mathbf{R}} &amp;= \mathbf{R}\hat{\boldsymbol{\omega}} \\
+    \mathbf{J}\dot{\boldsymbol{\omega}} &amp;= \mathbf{J}\boldsymbol{\omega}\times \boldsymbol{\omega}+ \boldsymbol{\tau}_u\\
+    (f, \boldsymbol{\tau}_u)^\top &amp;= \mathbf{B}(\omega_1^2, \ldots, \omega_N^2)^\top
+\end{aligned}
+\]</span> where <span class="math inline">\(\mathbf{e}_z = (0,0,1)^\top\)</span> and <span class="math inline">\(\hat{\boldsymbol{\omega}}\)</span> is defined in <a href="../so3.html#eq-def-hat-map" class="quarto-xref">Equation&nbsp;<span>C.9</span></a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When integrating, <span class="math inline">\(\mathbf{R}\)</span> has to be preserve the properties of a rotation matrix.</p>
+</div>
+</div>
+</section>
+<section id="basic-quaternion-formulation" class="level3" data-number="11.1.2">
+<h3 data-number="11.1.2" class="anchored" data-anchor-id="basic-quaternion-formulation"><span class="header-section-number">11.1.2</span> Basic Quaternion Formulation</h3>
+<p>The state becomes <span class="math inline">\(\mathbf{x}= (\mathbf{p}, \mathbf{v}, \mathbf{q}, \boldsymbol{\omega})^\top \in \mathbb R^3 \times \mathbb R^3 \times SO(3) \times \mathbb R^3\)</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+    \dot{\mathbf{p}} &amp;= \mathbf{v}\\
+    m \dot{\mathbf{v}} &amp;= \mathbf{q} \odot (0, 0, f)^\top - m g \mathbf{e}_z\\
+    \dot{\mathbf{q}} &amp;= \frac{1}{2} \mathbf{q}\otimes  \overline{\boldsymbol{\omega}} \\
+    \mathbf{J}\dot{\boldsymbol{\omega}} &amp;= \mathbf{J}\boldsymbol{\omega}\times \boldsymbol{\omega}+ \boldsymbol{\tau}_u\\
+    (f, \boldsymbol{\tau}_u)^\top &amp;= \mathbf{B}(\omega_1^2, \ldots, \omega_N^2)^\top
+\end{aligned}
+\]</span> where <span class="math inline">\(\mathbf{q}\)</span> is a unit quaternion, <span class="math inline">\(\overline{\boldsymbol{\omega}}\)</span> is defined in <a href="../so3.html#eq-quat-promote" class="quarto-xref">Equation&nbsp;<span>C.3</span></a>, <span class="math inline">\(\otimes\)</span> is defined in <a href="../so3.html#eq-quat-mult" class="quarto-xref">Equation&nbsp;<span>C.7</span></a>, and <span class="math inline">\(\odot\)</span> is defined in <a href="../so3.html#eq-quat-vec-rot" class="quarto-xref">Equation&nbsp;<span>C.8</span></a>.</p>
+</section>
+<section id="basic-dual-quaternion-formulation" class="level3" data-number="11.1.3">
+<h3 data-number="11.1.3" class="anchored" data-anchor-id="basic-dual-quaternion-formulation"><span class="header-section-number">11.1.3</span> Basic Dual-Quaternion Formulation</h3>
+</section>
+<section id="motor-delay-formulation" class="level3" data-number="11.1.4">
+<h3 data-number="11.1.4" class="anchored" data-anchor-id="motor-delay-formulation"><span class="header-section-number">11.1.4</span> Motor-Delay Formulation</h3>
+</section>
+</section>
+<section id="differential-flatness" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="differential-flatness"><span class="header-section-number">11.2</span> Differential Flatness</h2>
+<!-- Pick *flat outputs* $\vz(t) = (x(t), y(t))^\top$, i.e., the position of the unicycle. Then we can compute all necessary variables if $\vz(t)$ is at least C2-continuous.
+$$
+\begin{aligned}
+        \vx(t) &= g_x(\vz, \dot{\vz}) = \left(x, y, \arctan \left(\frac{\dot y}{\dot x}\right)\right)\\
+        \vu(t) &= g_u(\dot{\vz}, \ddot{\vz}) = \left({\color{red} \pm}\sqrt{\dot y^2 + \dot x^2}, \frac{\dot x \ddot y - \dot y \ddot x}{\dot x^2 + \dot y^2} \right)
+      \end{aligned}
+$$ -->
+<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Derivation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+</section>
+<section id="invariance" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="invariance"><span class="header-section-number">11.3</span> Invariance</h2>
+<p>The dynamics are translation-invariant.</p>
+</section>
+<section id="controllers" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">11.4</span> Controllers</h2>
+<section id="geometric-controller-2010-lee-geometrictrackingcontrol" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="geometric-controller-2010-lee-geometrictrackingcontrol"><span class="header-section-number">11.4.1</span> Geometric Controller (<span class="citation" data-cites="2010-lee-geometricTrackingControl">Lee, Leok, and McClamroch (<a href="../references.html#ref-2010-lee-geometricTrackingControl" role="doc-biblioref">2010</a>)</span>)</h3>
+<ul>
+<li>Given reference trajectory tuple: <span class="math inline">\(\mathbf{r}_d  = (\ddddot{\mathbf{p}}_d(t), \dddot{\mathbf{p}}_d(t), \ddot{\mathbf{p}}_d(t), \dot{\mathbf{p}}_d(t), \mathbf{p}_d(t), \psi_d(t), \dot{\psi}_d(t), \ddot{\psi}_d(t))\)</span> (i.e, desired snap, jerk, acceleration, velocity, position, heading, angular velocity for heading, acceleration for heading)</li>
+<li><span class="math inline">\(\mathbf{K}_p, \mathbf{K}_v, \mathbf{K}_R, \mathbf{K}_\omega \in\mathbb R^{3\times 3}\)</span> are tuning matrices (typically only positive diagonal entries, so 12 parameters)</li>
+<li>Control law: <span class="math display">\[\begin{aligned}
+\mathbf{e}_p &amp;= \mathbf{p}_d - \mathbf{p}\\
+\mathbf{e}_v &amp;= \dot{\mathbf{p}}_d - \dot{\mathbf{p}}\\
+\mathbf{e}_R &amp;= \frac{1}{2} \left( \mathbf{R}^\top_d \mathbf{R}- \mathbf{R}^\top \mathbf{R}_d \right)^\vee\\
+\mathbf{e}_\omega &amp;= \boldsymbol{\omega}- \mathbf{R}^\top \mathbf{R}_d \boldsymbol{\omega}_d\\
+f &amp;=  m(\ddot{\mathbf{p}}_d + \mathbf{K}_p \mathbf{e}_p + \mathbf{K}_v \mathbf{e}_v + g \mathbf{e}_z) \cdot \mathbf{R}\mathbf{e}_z\\
+\boldsymbol{\tau}_u &amp;= -\mathbf{K}_R \mathbf{e}_R - \mathbf{K}_\omega \mathbf{e}_\omega + \boldsymbol{\omega}\times \mathbf{J}\boldsymbol{\omega}- \mathbf{J}(\hat{\boldsymbol{\omega}} \mathbf{R}^\top \mathbf{R}_d \boldsymbol{\omega}_d - \mathbf{R}^\top \mathbf{R}_d \dot{\boldsymbol{\omega}}_d)\\
+(\omega_1^2, \ldots, \omega_N^2)^\top &amp;= \mathbf{B}^{-1} (f, \boldsymbol{\tau}_u)^\top \text{(or solving a QP, see also action mixing below.)}
+\end{aligned}
+\]</span> where <span class="math inline">\((\cdot)^\vee\)</span> is defined below <a href="../so3.html#eq-def-hat-map" class="quarto-xref">Equation&nbsp;<span>C.9</span></a>.</li>
+</ul>
+<p>The additional reference signals <span class="math inline">\(\mathbf{R}_d\)</span>, <span class="math inline">\(\boldsymbol{\omega}_d\)</span>, and <span class="math inline">\(\dot{\boldsymbol{\omega}}_d\)</span> can be computed via differential flatness as follows:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathbf{x}_{c_d} &amp;= \begin{bmatrix} \cos(\psi_d) &amp; \sin(\psi_d) &amp; 0\end{bmatrix}^\top &amp;
+\mathbf{y}_{c_d} &amp;= \begin{bmatrix} -\sin(\psi_d) &amp; \cos(\psi_d) &amp; 0\end{bmatrix}^\top\\
+\mathbf{x}_{b_d} &amp;= n(\mathbf{y}_{c_d} \times \mathbf{F}_d) &amp;
+\mathbf{y}_{b_d} &amp;= n(\mathbf{F}_d \times \mathbf{x}_{b_d}) &amp;
+\mathbf{z}_{b_d} &amp;= \mathbf{x}_{b_d} \times \mathbf{y}_{b_d}\\
+\mathbf{R}_d &amp;= \begin{bmatrix} \mathbf{x}_{b_d} &amp; \mathbf{y}_{b_d} &amp; \mathbf{z}_{b_d} \end{bmatrix}\\
+c &amp;= \mathbf{z}_{b_d}^\top (\ddot{\mathbf{p}}_d + g \mathbf{e}_z) &amp;
+d_1 &amp;= \mathbf{x}_{b_d}^\top \dddot{\mathbf{p}}_d &amp;
+d_2 &amp;= -\mathbf{y}_{b_d}^\top \dddot{\mathbf{p}}_d \\
+b_3 &amp;= -\mathbf{y}_{c_d}^\top \mathbf{z}_{b_d} &amp;
+c_3 &amp;= \| \mathbf{y}_{c_d} \times \mathbf{z}_{b_d} \| &amp;
+d_3 &amp;= \dot \psi_d \mathbf{x}_{c_d}^\top \mathbf{x}_{b_d}\\
+\omega_x &amp;= \frac{d_2}{c} &amp;
+\omega_y &amp;= \frac{d_1}{c} &amp;
+\omega_z &amp;= \frac{c d_3 - b_3 d_1}{c c_3}\\
+\boldsymbol{\omega}_d &amp;= \begin{bmatrix} \omega_x &amp; \omega_y &amp; \omega_z \end{bmatrix}^\top\\
+\dot{c} &amp;= \mathbf{z}_b^\top \dddot{\mathbf{p}}\\
+e_1 &amp;= \mathbf{x}_{b_d}^\top \ddddot{\mathbf{p}}_d - 2\dot{c} \omega_y - c \omega_x \omega_z &amp;
+e_2 &amp;= -\mathbf{y}_{b_d}^\top \ddddot{\mathbf{p}}_d - 2\dot{c} \omega_x + c \omega_y \omega_z &amp;
+e_3 &amp;= \ddot{\psi}_d \mathbf{x}_{c_d}^\top \mathbf{x}_{b_d} + 2 \dot{\psi}_d \omega_z \mathbf{x}_{c_d}^\top \mathbf{y}_{b_d} \\
+    &amp;&amp;&amp;&amp;&amp;- 2 \dot{\psi}_d \omega_y \mathbf{x}_{c_d}^\top \mathbf{z}_{b_d} - \omega_x \omega_y \mathbf{y}_{c_d}^\top \mathbf{y}_{b_d} \\
+    &amp;&amp;&amp;&amp;&amp;- \omega_x \omega_z \mathbf{y}_{c_d}^\top \mathbf{z}_{b_d}\\
+\dot{\omega}_x &amp;= \frac{e_2}{c}&amp;
+\dot{\omega}_y &amp;= \frac{e_1}{c}&amp;
+\dot{\omega}_z &amp;= \frac{c e_3 - b_3 e_1}{c c_3}\\
+\dot{\boldsymbol{\omega}}_d &amp;= \begin{bmatrix} \dot{\omega}_x &amp; \dot{\omega}_y &amp; \dot{\omega}_z \end{bmatrix}^\top
+\end{aligned}
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that <span class="math inline">\(\omega_z\)</span> is wrong in <span class="citation" data-cites="mellingerMinimumSnapTrajectory2011">(<a href="../references.html#ref-mellingerMinimumSnapTrajectory2011" role="doc-biblioref">Mellinger and Kumar 2011</a>)</span>. Details are in <span class="citation" data-cites="2018-faessler-DifferentialFlatnessQuadrotor">(<a href="../references.html#ref-2018-faessler-DifferentialFlatnessQuadrotor" role="doc-biblioref">Faessler, Franchi, and Scaramuzza 2018</a>)</span> (Appendix A), from which we obtained the results.</p>
+</div>
+</div>
+</section>
+<section id="action-mixing" class="level3" data-number="11.4.2">
+<h3 data-number="11.4.2" class="anchored" data-anchor-id="action-mixing"><span class="header-section-number">11.4.2</span> Action Mixing</h3>
+<!-- Geometric controllers might output actions that are outside the nominal action space $\sU$ (saturation limits). To remedy this, a QP can be used that prefers $\omega$ over $v$ using a tuning parameter $\lambda$:
+
+$$
+\begin{aligned}
+\min_{v^*, \omega^*} & \, (\omega^* - \omega) ^2 + \lambda (v^* - v)^2 \\
+\text{s.t.} & \, 
+\begin{pmatrix} v^*, \omega^* \end{pmatrix}^\top \in \sU
+\end{aligned}
+$$ -->
+</section>
+</section>
+<section id="useful-parameters" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">11.5</span> Useful Parameters</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-2018-faessler-DifferentialFlatnessQuadrotor" class="csl-entry" role="listitem">
+Faessler, Matthias, Antonio Franchi, and Davide Scaramuzza. 2018. <span>“Differential Flatness of Quadrotor Dynamics Subject to Rotor Drag for Accurate Tracking of High-Speed Trajectories.”</span> <em>IEEE Robotics and Automation Letters</em> 3 (2): 620–26. <a href="https://doi.org/10.1109/LRA.2017.2776353">https://doi.org/10.1109/LRA.2017.2776353</a>.
+</div>
+<div id="ref-2010-lee-geometricTrackingControl" class="csl-entry" role="listitem">
+Lee, Taeyoung, Melvin Leok, and N. Harris McClamroch. 2010. <span>“Geometric Tracking Control of a Quadrotor UAV on SE(3).”</span> In <em>IEEE Conference on Decision and Control (CDC)</em>, 5420–25. <a href="https://doi.org/10.1109/CDC.2010.5717652">https://doi.org/10.1109/CDC.2010.5717652</a>.
+</div>
+<div id="ref-mellingerMinimumSnapTrajectory2011" class="csl-entry" role="listitem">
+Mellinger, Daniel, and Vijay Kumar. 2011. <span>“Minimum Snap Trajectory Generation and Control for Quadrotors.”</span> In <em>2011 IEEE International Conference on Robotics and Automation</em>, 2520–25. <a href="https://doi.org/10.1109/ICRA.2011.5980409">https://doi.org/10.1109/ICRA.2011.5980409</a>.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
