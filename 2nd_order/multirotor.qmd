@@ -1,3 +1,155 @@
+::: {.content-visible unless-format="pdf"}
+{{< include ../macros.tex >}}
+:::
+
 # Multirotor
+
+## Dynamics
+
+- Parameters
+    - state space $\sX$
+    - action space $\sU$
+    - number of rotors $N$
+    - mass $m$ [kg]
+    - actuation matrix $\mB \in \mathbb R^{4\times N}$
+    - inertia matrix $\mJ \in \mathbb R^{3\times 3}$ [$kg\cdot m^2$]
+    - gravity constant $g$ [$m/s^2$]
+- State: $\vx = (\vp, \vv, \mR, \vomega)^\top \in \mathbb R^3 \times \mathbb R^3 \times SO(3) \times \mathbb R^3$
+    - Position $\vp = (x,y,z)^\top$ [m, global frame]
+    - Velocity $\vv = (\dot x, \dot y, \dot z)^\top$ [m/s, global frame]
+    - Orientation $\mR$ [attitude rotation matrix]
+    - Angular velocity $\vomega = (\omega_x, \omega_y, \omega_z)^\top$ [rad/s, body frame]
+- Action: $\vu = (\omega_1, \ldots, \omega_N)^\top \in \mathbb R^N$
+    - Angular velocity of each rotor $\omega_i$ [rad/s]
+
+### Basic Rotation Matrix Formulation
+
+$$
+\begin{aligned}
+    \dot{\vp} &= \vv\\
+    m \dot{\vv} &= f \mR \ve_z - m g \ve_z\\
+    \dot{\mR} &= \mR\hat{\vomega} \\
+    \mJ\dot{\vomega} &= \mJ\vomega \times \vomega + \vtau_u\\
+    (f, \vtau_u)^\top &= \mB (\omega_1^2, \ldots, \omega_N^2)^\top
+\end{aligned}
+$$
+where $\ve_z = (0,0,1)^\top$ and $\hat{\vomega}$ is defined in @eq-def-hat-map.
+
+::: {.callout-note}
+When integrating, $\mR$ has to be preserve the properties of a rotation matrix.
+:::
+
+### Basic Quaternion Formulation
+
+The state becomes
+$\vx = (\vp, \vv, \vq, \vomega)^\top \in \mathbb R^3 \times \mathbb R^3 \times SO(3) \times \mathbb R^3$
+
+$$
+\begin{aligned}
+    \dot{\vp} &= \vv\\
+    m \dot{\vv} &= \mathbf{q} \odot (0, 0, f)^\top - m g \ve_z\\
+    \dot{\vq} &= \frac{1}{2} \vq \otimes  \overline{\vomega} \\
+    \mJ\dot{\vomega} &= \mJ\vomega \times \vomega + \vtau_u\\
+    (f, \vtau_u)^\top &= \mB (\omega_1^2, \ldots, \omega_N^2)^\top
+\end{aligned}
+$$
+where $\vq$ is a unit quaternion, $\overline{\vomega}$ is defined in @eq-quat-promote, $\otimes$ is defined in @eq-quat-mult, and $\odot$ is defined in @eq-quat-vec-rot.
+
+### Basic Dual-Quaternion Formulation
+
+
+### Motor-Delay Formulation
+
+
+
+## Differential Flatness
+
+<!-- Pick *flat outputs* $\vz(t) = (x(t), y(t))^\top$, i.e., the position of the unicycle. Then we can compute all necessary variables if $\vz(t)$ is at least C2-continuous.
+$$
+\begin{aligned}
+        \vx(t) &= g_x(\vz, \dot{\vz}) = \left(x, y, \arctan \left(\frac{\dot y}{\dot x}\right)\right)\\
+        \vu(t) &= g_u(\dot{\vz}, \ddot{\vz}) = \left({\color{red} \pm}\sqrt{\dot y^2 + \dot x^2}, \frac{\dot x \ddot y - \dot y \ddot x}{\dot x^2 + \dot y^2} \right)
+      \end{aligned}
+$$ -->
+
+::: {.callout-note collapse="true"}
+## Derivation
+
+:::
+
+## Invariance
+
+The dynamics are translation-invariant.
+
+## Controllers
+
+### Geometric Controller (@2010-lee-geometricTrackingControl)
+
+- Given reference trajectory tuple: $\mathbf{r}_d  = (\ddddot{\vp}_d(t), \dddot{\vp}_d(t), \ddot{\vp}_d(t), \dot{\vp}_d(t), \vp_d(t), \psi_d(t), \dot{\psi}_d(t), \ddot{\psi}_d(t))$ (i.e, desired snap, jerk, acceleration, velocity, position, heading, angular velocity for heading, acceleration for heading)
+- $\mK_p, \mK_v, \mK_R, \mK_\omega \in\mathbb R^{3\times 3}$ are tuning matrices (typically only positive diagonal entries, so 12 parameters) 
+- Control law:
+$$\begin{aligned}
+\ve_p &= \vp_d - \vp\\
+\ve_v &= \dot{\vp}_d - \dot{\vp}\\
+\ve_R &= \frac{1}{2} \left( \mR^\top_d \mR - \mR^\top \mR_d \right)^\vee\\
+\ve_\omega &= \vomega - \mR^\top \mR_d \vomega_d\\
+f &=  m(\ddot{\vp}_d + \mK_p \ve_p + \mK_v \ve_v + g \ve_z) \cdot \mR \ve_z\\
+\vtau_u &= -\mK_R \ve_R - \mK_\omega \ve_\omega + \vomega \times \mJ \vomega - \mJ (\hat{\vomega} \mR^\top \mR_d \vomega_d - \mR^\top \mR_d \dot{\vomega}_d)\\
+(\omega_1^2, \ldots, \omega_N^2)^\top &= \mB^{-1} (f, \vtau_u)^\top \text{(or solving a QP, see also action mixing below.)}
+\end{aligned}
+$$
+where $(\cdot)^\vee$ is defined below @eq-def-hat-map.
+
+The additional reference signals $\mR_d$, $\vomega_d$, and $\dot{\vomega}_d$ can be computed via differential flatness as follows:
+
+$$
+\begin{aligned}
+\vx_{c_d} &= \begin{bmatrix} \cos(\psi_d) & \sin(\psi_d) & 0\end{bmatrix}^\top &
+\vy_{c_d} &= \begin{bmatrix} -\sin(\psi_d) & \cos(\psi_d) & 0\end{bmatrix}^\top\\
+\vx_{b_d} &= n(\vy_{c_d} \times \mathbf{F}_d) &
+\vy_{b_d} &= n(\mathbf{F}_d \times \vx_{b_d}) &
+\vz_{b_d} &= \vx_{b_d} \times \vy_{b_d}\\
+\mR_d &= \begin{bmatrix} \vx_{b_d} & \vy_{b_d} & \vz_{b_d} \end{bmatrix}\\
+c &= \vz_{b_d}^\top (\ddot{\vp}_d + g \ve_z) &
+d_1 &= \vx_{b_d}^\top \dddot{\vp}_d &
+d_2 &= -\vy_{b_d}^\top \dddot{\vp}_d \\
+b_3 &= -\vy_{c_d}^\top \vz_{b_d} &
+c_3 &= \| \vy_{c_d} \times \vz_{b_d} \| &
+d_3 &= \dot \psi_d \vx_{c_d}^\top \vx_{b_d}\\
+\omega_x &= \frac{d_2}{c} &
+\omega_y &= \frac{d_1}{c} &
+\omega_z &= \frac{c d_3 - b_3 d_1}{c c_3}\\
+\vomega_d &= \begin{bmatrix} \omega_x & \omega_y & \omega_z \end{bmatrix}^\top\\
+\dot{c} &= \vz_b^\top \dddot{\vp}\\
+e_1 &= \vx_{b_d}^\top \ddddot{\vp}_d - 2\dot{c} \omega_y - c \omega_x \omega_z &
+e_2 &= -\vy_{b_d}^\top \ddddot{\vp}_d - 2\dot{c} \omega_x + c \omega_y \omega_z &
+e_3 &= \ddot{\psi}_d \vx_{c_d}^\top \vx_{b_d} + 2 \dot{\psi}_d \omega_z \vx_{c_d}^\top \vy_{b_d} \\
+    &&&&&- 2 \dot{\psi}_d \omega_y \vx_{c_d}^\top \vz_{b_d} - \omega_x \omega_y \vy_{c_d}^\top \vy_{b_d} \\
+    &&&&&- \omega_x \omega_z \vy_{c_d}^\top \vz_{b_d}\\
+\dot{\omega}_x &= \frac{e_2}{c}&
+\dot{\omega}_y &= \frac{e_1}{c}&
+\dot{\omega}_z &= \frac{c e_3 - b_3 e_1}{c c_3}\\
+\dot{\vomega}_d &= \begin{bmatrix} \dot{\omega}_x & \dot{\omega}_y & \dot{\omega}_z \end{bmatrix}^\top
+\end{aligned}
+$$
+
+::: {.callout-note}
+Note that $\omega_z$ is wrong in [@mellingerMinimumSnapTrajectory2011]. Details are in [@2018-faessler-DifferentialFlatnessQuadrotor] (Appendix A), from which we obtained the results.
+::: 
+
+### Action Mixing
+
+<!-- Geometric controllers might output actions that are outside the nominal action space $\sU$ (saturation limits). To remedy this, a QP can be used that prefers $\omega$ over $v$ using a tuning parameter $\lambda$:
+
+$$
+\begin{aligned}
+\min_{v^*, \omega^*} & \, (\omega^* - \omega) ^2 + \lambda (v^* - v)^2 \\
+\text{s.t.} & \, 
+\begin{pmatrix} v^*, \omega^* \end{pmatrix}^\top \in \sU
+\end{aligned}
+$$ -->
+
+## Useful Parameters
+
 
 

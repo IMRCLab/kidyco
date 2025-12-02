@@ -23,7 +23,9 @@ C|[cmath3d](https://github.com/jpreiss/cmath3d)
 
 Notable other references are: @2007-saerkkae-notesOnQuaternions, @2024-toussaint-quaternions, @2024-jia-quaternions.
 
-## Definition
+## Quaternions
+
+### Definition
 
 A quaternion for SO(3) is a 4D vector with the constraint to have norm 1:
 
@@ -57,9 +59,9 @@ $$ {#eq-quat-extract}
 Note that the order of the components is not uniquely defined. Some software packages put $q_w$ first, some last in the vector.
 :::
 
-## Conversion
+### Conversion
 
-### To Rotation Matrix
+#### To Rotation Matrix
 <!-- https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
 and https://users.aalto.fi/~ssarkka/pub/quat.pdf -->
 
@@ -71,14 +73,14 @@ q_w^2 + q_x^2 - q_y^2 - q_z^2 &  2(q_x q_y - q_w q_z) &  2(q_w q_y + q_x q_z) \\
 \end{pmatrix}
 $$ {#eq-quat-to-rot}
 
-### From Rotation Matrix
+#### From Rotation Matrix
 
 <!-- \todo{\url{https://github.com/jpreiss/cmath3d/blob/39f4fcdc8ec41a8120a3c43c29f3ce47e8d852c1/math3d.h#L605-L615}} -->
 
 
-## Low-Level Operations
+### Low-Level Operations
 
-### Negation
+#### Negation
 
 (same as any vector):
 
@@ -95,7 +97,7 @@ $$ {#eq-quat-negation}
 $\vq$ and $-\vq$ represent the same rotation.
 :::
 
-### Addition, Substraction, Multiplication/Devision with Scalar
+#### Addition, Substraction, Multiplication/Devision with Scalar
 
 same as any vector, e.g.,:
 
@@ -108,7 +110,7 @@ $$
     \end{pmatrix}
 $$
 
-### Conjugate
+#### Conjugate
 $$
 \vq^* = \begin{pmatrix}
         q_w\\
@@ -122,7 +124,7 @@ $$
 This is the inverse for normalized quaternions.
 :::
 
-### Norm 
+#### Norm 
 
 (regular $L_2$ norm on the vector)
 
@@ -140,7 +142,7 @@ This should be always 1 for normalized quaternions.
 % \end{equation}
 % Note that for normalized quaternions, one uses $\vq^*$ as the inverse operations. -->
 
-### Exponential
+#### Exponential
 
 $$
 \exp{(\vq)} = \exp{(q_w)} \begin{pmatrix}
@@ -149,7 +151,7 @@ $$
 \end{pmatrix}
 $$
 
-### Logarithm
+#### Logarithm
 
 $$
 \ln{(\vq)} = \begin{pmatrix}
@@ -158,21 +160,21 @@ $$
 \end{pmatrix}
 $$
 
-### Power with Real Number
+#### Power with Real Number
 
 $$
 \vq^p = \exp{(\ln(\vq) p)}
 $$
 
-### Power with Quaternion
+#### Power with Quaternion
 
 $$
 \vq^\vp = \exp{(\ln(\vq) \otimes \vp)}
 $$
 
-## Useful Operations
+### Useful Operations
 
-### Multiplication
+#### Multiplication
 
 Similar to rotation matrices, this can be used to concatenate rotations.
 
@@ -183,7 +185,7 @@ q_x p_w + q_w p_x - q_z p_y + q_y p_z\\
 q_y p_w + q_z p_x + q_w p_y - q_x p_z\\
 q_z p_w - q_y p_x + q_x p_y + q_w p_z
 \end{pmatrix}
-$$
+$$ {#eq-quat-mult}
 
 ::: {.callout-note}
 Generally $\vq \otimes \vp \neq \vp \otimes \vq$.
@@ -198,7 +200,7 @@ With a rotation matrix $\mathbf R(\vq)$, we can rotate a vector $\mathbf v$ as $
 
 $$
 \vv_{rotated} = \vq \odot \vv = \extract(\vq \otimes \overline{\vv} \otimes \vq^*)
-$$
+$$ {#eq-quat-vec-rot}
 
 (I.e., augment $\mathbf v$ to a quaternion, use two quaternion multiplications, and one conjugate, and then extract the vector part of the result.)
 
@@ -206,7 +208,7 @@ $$
 
 <!-- % Note: Use the conjugate $\vq^*$ for the inverse rotation. -->
 
-## Derivatives and Integration
+### Derivatives and Integration
 
 Assuming $\boldsymbol{\omega}\in \mathbb R^3$ is the angular velocity in \emph{body frame} (e.g., gyroscope):
 $$
@@ -248,7 +250,7 @@ Some libraries do not specify which frame they operate in, e.g., the Python libr
 [^1]: See [this math.stackexchange post](https://math.stackexchange.com/questions/2282938/converting-from-quaternion-to-angular-velocity-then-back-to-quaternion).
 
 
-## Interpolation
+### Interpolation
 
 If we want to linearly interpolate from a rotation $\vq(0)$ to another rotation $\vq(1)$, we can use the **slerp** operation:
 $$
@@ -256,7 +258,7 @@ $$
 $$
 
 
-## Metrics
+### Metrics
 
 A metric measures the difference between two rotations as a scalar value.
 A comparison of different metrics is in @2009-huynh-Metrics3DRotations.
@@ -280,7 +282,7 @@ $$
 d(\vq, \vp) = 1 - | \vq \cdot \vp | \in [0, 1]
 $$
 
-## Random Generation
+### Random Generation
 
 <!-- % also at https://lavalle.pl/planning/node198.html -->
 Sampling rotations uniformly is not trivial. Here is one approach @random-rotations:
@@ -297,6 +299,21 @@ $$
 $$
 
 Note, this is also used [inside OMPL](https://github.com/ompl/ompl/blob/18a5f5bea1940a8b56369a58d3c20dac0d884d8b/src/ompl/util/src/RandomNumbers.cpp#L263-L277).
+
+## Rotation Matrices
+
+### Skew-symmetric Mapping
+
+The hat-map constructs a metrix from a vector: $\mathbb R^3 \to \mathbb R^{3\times 3}$ 
+$$
+\hat{\vomega} = \begin{bmatrix} 
+0 & -\vomega_z & \vomega_y\\
+\vomega_z & 0 & -\vomega_x\\
+-\vomega_y & \vomega_x & 0
+\end{bmatrix}
+$$ {#eq-def-hat-map}
+
+The vee-map $\mR^{\vee}$ does the inverse operation.
 
 ## Machine Learning
 
