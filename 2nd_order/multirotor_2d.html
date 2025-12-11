@@ -71,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -248,8 +277,18 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#dynamics" id="toc-dynamics" class="nav-link active" data-scroll-target="#dynamics"><span class="header-section-number">9.1</span> Dynamics</a></li>
+  <li><a href="#differential-flatness" id="toc-differential-flatness" class="nav-link" data-scroll-target="#differential-flatness"><span class="header-section-number">9.2</span> Differential Flatness</a></li>
+  <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">9.3</span> Invariance</a></li>
+  <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">9.4</span> Controllers</a></li>
+  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">9.5</span> Useful Parameters</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -273,8 +312,181 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../media/multirotor2d.svg" class="img-fluid figure-img"></p>
+<figcaption>Multirotor 2D robot</figcaption>
+</figure>
+</div>
+<section id="dynamics" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="dynamics"><span class="header-section-number">9.1</span> Dynamics</h2>
+<ul>
+<li>Parameters
+<ul>
+<li>state space <span class="math inline">\(\mathcal{X}\in \mathbb R^4 \times SO(2) \times \mathbb R\)</span></li>
+<li>action space <span class="math inline">\(\mathcal{U}\in \mathbb R^2\)</span></li>
+<li>mass <span class="math inline">\(m \in \mathbb R^+\)</span> [kg]</li>
+<li>Arm length <span class="math inline">\(l \in \mathbb R^+\)</span> [m]</li>
+<li>inertia <span class="math inline">\(\mathbf J_{yy}  \in \mathbb R^+\)</span> [<span class="math inline">\(kg\cdot m^2\)</span>]</li>
+<li>gravity <span class="math inline">\(g \in \mathbb R\)</span> [<span class="math inline">\(m/s^2\)</span>]</li>
+</ul></li>
+<li>State: <span class="math inline">\(\mathbf{x}= \begin{pmatrix}x, \dot x, z, \dot z, \theta, \dot \theta\end{pmatrix}^\top \in \mathcal{X}\)</span>
+<ul>
+<li>position <span class="math inline">\(x \in \mathbb R\)</span> [m]</li>
+<li>height <span class="math inline">\(z \in \mathbb R\)</span> [m]</li>
+<li>velocities <span class="math inline">\(\dot x \in \mathbb R\)</span>, <span class="math inline">\(\dot z \in \mathbb R\)</span> [m/s]</li>
+<li>rotation around <span class="math inline">\(x\)</span>-axis <span class="math inline">\(\theta \in SO(2)\)</span> [rad]</li>
+<li>angular velocity <span class="math inline">\(\dot \theta \in \mathbb R\)</span> [rad/s]</li>
+</ul></li>
+<li>Action: <span class="math inline">\(\mathbf{u}= \begin{pmatrix} f_1, f_2 \end{pmatrix}^\top \in \mathcal{U}\)</span>
+<ul>
+<li>thrust left <span class="math inline">\(f_1 \in \mathbb R^+\)</span> [N]</li>
+<li>thrust right <span class="math inline">\(f_2 \in \mathbb R^+\)</span> [N]</li>
+</ul></li>
+<li>Dynamics: <span class="math display">\[
+      \begin{aligned}
+      \mathbf{\dot x} = f(\mathbf x, \mathbf u) = \begin{pmatrix}
+      \dot x\\
+      \frac{-(f_1 + f_2) \sin \theta}{m}\\
+      \dot z\\
+      \frac{(f_1 + f_2) \cos \theta}{m} - g\\
+      \dot \theta\\
+      \frac{(f_2 - f_1) l}{\mathbf J_{yy}}
+      \end{pmatrix}
+      \end{aligned}
+  \]</span></li>
+</ul>
+</section>
+<section id="differential-flatness" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="differential-flatness"><span class="header-section-number">9.2</span> Differential Flatness</h2>
+<p>Pick <em>flat outputs</em> <span class="math inline">\(\mathbf{z}(t) = (x(t), z(t))^\top\)</span>, i.e., the position of the robot. Then we can compute all necessary variables if <span class="math inline">\(\mathbf{z}(t)\)</span> is at least C4-continuous. <span class="math display">\[
+\begin{aligned}
+    \mathbf{x}(t) &amp;= g_x(\mathbf{z}, \dot{\mathbf{z}}, \ddot{\mathbf{z}}, \dddot{\mathbf{z}}) = \ldots\\
+    \mathbf{u}(t) &amp;= g_u(\ddot{\mathbf{z}}, \dddot{\mathbf{z}}, \ddddot{\mathbf{z}}) = \ldots,
+\end{aligned}
+\]</span> See derivation below for the exact expressions needed.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Derivation
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><span class="math inline">\(\theta\)</span></p>
+<p><!-- $$
+ \begin{aligned}
+ \ddot x &= \frac{-(f_1 + f_2) \sin \theta}{m}\\
+ \ddot z &= \frac{(f_1 + f_2) \cos \theta}{m} - g 
+ \end{aligned}
+ $$ --></p>
+<p>From the dynamics we have: <span class="math display">\[
+\ddot{x} = \frac{\left(- f_{1} - f_{2}\right) \sin{\left(\theta \right)}}{m}
+\]</span></p>
+<p><span class="math display">\[
+\ddot{z} = - g + \frac{\left(f_{1} + f_{2}\right) \cos{\left(\theta \right)}}{m}
+\]</span></p>
+<p>Solving for sum of forces and rearranging: <span class="math display">\[
+- \frac{m \ddot{x}}{\sin{\left(\theta \right)}} = \frac{m \left(g + \ddot{z}\right)}{\cos{\left(\theta \right)}}
+\]</span></p>
+<p>Dividing and solving for <span class="math inline">\(\theta\)</span>: <span class="math display">\[
+\theta = - \operatorname{atan}{\left(\frac{\ddot{x}}{h_{1}} \right)}
+\]</span></p>
+<p>where: <span class="math display">\[
+h_{1} = g + \ddot{z}
+\]</span></p>
+<p><!-- Rearranging and solving for theta:
+ $$
+ \begin{aligned}
+ \frac{m\ddot x}{-(f_1 + f_2)} &= \sin \theta\\
+ \frac{m (\ddot z + g)}{(f_1 + f_2)} &= \cos \theta \Rightarrow\\
+ \frac{\ddot x}{-(\ddot z + g)} &= \frac{\sin \theta}{\cos \theta} = \tan \theta \Rightarrow\\
+ \theta &= \arctan \left( \frac{\ddot x}{-\ddot z - g} \right)
+ \end{aligned}
+ $$ --></p></li>
+<li><p><span class="math inline">\(\dot \theta\)</span></p>
+<p><!-- Take time derivative of $\theta$ from step 1 to obtain:
+ $$
+ \begin{aligned}
+ \dot \theta &= \frac{\ddot x\,\, \dddot z - (g+\ddot z) \dddot x}{(g+\ddot z)^2 + {\ddot x}^2}
+ \end{aligned}
+ $$ --></p>
+<p>Take time derivative of <span class="math inline">\(\theta\)</span> from step 1 to obtain: <span class="math display">\[
+\dot{\theta} = \frac{- h_{1} \dddot{x} + \dot{h_{1}} \ddot{x}}{h_{1}^{2} + \ddot{x}^{2}}
+\]</span></p>
+<p><!-- Rearranging and solving for theta:
+ $$
+ \begin{aligned}
+ \frac{m\ddot x}{-(f_1 + f_2)} &= \sin \theta\\
+ \frac{m (\ddot z + g)}{(f_1 + f_2)} &= \cos \theta \Rightarrow\\
+ \frac{\ddot x}{-(\ddot z + g)} &= \frac{\sin \theta}{\cos \theta} = \tan \theta \Rightarrow\\
+ \theta &= \arctan \left( \frac{\ddot x}{-\ddot z - g} \right)
+ \end{aligned}
+ $$ --></p></li>
+<li><p><span class="math inline">\(f_1, f_2\)</span></p>
+<p><!-- $$
+ \begin{aligned}
+ \ddot \theta &= \frac{(f_2 - f_1) l}{\mathbf J_{yy}} \\
+ \ddot x &= \frac{-(f_1 + f_2) \sin \theta}{m}\\
+ f_2 - f_1 &= \frac{\mathbf J_{yy}}{l} \ddot \theta\\
+ f_1 + f_2 &= - \frac{m \ddot x}{\sin \theta}\\
+ 2 f_2 &= \frac{\mathbf J_{yy}}{l} \ddot \theta - \frac{m \ddot x}{\sin \theta}
+ \end{aligned}
+ $$  --></p>
+<p>Take time derivative of <span class="math inline">\(\dot \theta\)</span> from step 2 to obtain: <span class="math display">\[
+\ddot{\theta} = \frac{2 \left(h_{1} \dddot{x} - \dot{h_{1}} \ddot{x}\right)^{2} \ddot{x} + \left(2 \dot{h_{1}} \dddot{x} + \ddot{h_{1}} \ddot{x}\right) h_{1} h_{2} - h_{1}^{2} h_{2} \ddddot{x} - 2 h_{2} \dot{h_{1}}^{2} \ddot{x}}{h_{1} h_{2}^{2}}
+\]</span></p>
+<p>where <span class="math display">\[
+h_{2} = h_{1}^{2} + \ddot{x}^{2}
+\]</span></p>
+<p><span class="math display">\[
+\dot{h_{1}} = \dddot{z}
+\]</span></p>
+<p><span class="math display">\[
+\ddot{h_{1}} = \ddddot{z}
+\]</span></p>
+<p>From the dynamics we have: <span class="math display">\[
+\ddot{x} = \frac{\left(- f_{1} - f_{2}\right) \sin{\left(\theta \right)}}{m}
+\]</span></p>
+<p><span class="math display">\[
+f_{1} + f_{2} = - \frac{m \ddot{x}}{\sin{\left(\theta \right)}}
+\]</span></p>
+<p>Substituting <span class="math inline">\(\theta\)</span> from step 1 <span class="math display">\[
+h_{3} = m \sqrt{1 + \frac{\ddot{x}^{2}}{h_{1}^{2}}} h_{1}
+\]</span></p>
+<p>From the dynamics we have: <span class="math display">\[
+\ddot{\theta} = \frac{l \left(- f_{1} + f_{2}\right)}{J_{yy}}
+\]</span></p>
+<p><span class="math display">\[
+- f_{1} + f_{2} = \frac{J_{yy} \ddot{\theta}}{l}
+\]</span></p>
+<p>Adding the two <span class="math display">\[
+f_{2} = \frac{J_{yy} \ddot{\theta}}{2 l} + \frac{h_{3}}{2}
+\]</span></p>
+<p><span class="math display">\[
+f_{1} = - f_{2} + h_{3}
+\]</span></p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="invariance" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="invariance"><span class="header-section-number">9.3</span> Invariance</h2>
+</section>
+<section id="controllers" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">9.4</span> Controllers</h2>
+</section>
+<section id="useful-parameters" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">9.5</span> Useful Parameters</h2>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
