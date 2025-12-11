@@ -486,7 +486,7 @@
     "href": "python_playground.html",
     "title": "Appendix D — Python Playground",
     "section": "",
-    "text": "D.1 MeshCat\nCode\nvis[\"box1\"].set_object(Box([0.1, 0.2, 0.3]))\n\nanim = Animation()\n\nwith anim.at_frame(vis, 0) as frame:\n    frame[\"box1\"].set_transform(tf.translation_matrix([0, 0, 0]))\nwith anim.at_frame(vis, 30) as frame:\n    frame[\"box1\"].set_transform(tf.translation_matrix([0, 1, 0]))\n    \nvis.set_animation(anim)\nvis.render_static()",
+    "text": "D.1 MeshCat\nCode\nvis[\"box1\"].set_object(Box([0.1, 0.2, 0.3]))\n\nanim = Animation()\n\nwith anim.at_frame(vis, 0) as frame:\n    frame[\"box1\"].set_transform(tf.translation_matrix([0, 0, 0]))\nwith anim.at_frame(vis, 30) as frame:\n    frame[\"box1\"].set_transform(tf.translation_matrix([0, 1, 0]))\n    \nvis.set_animation(anim)\nvis.render_static()\n\\[\nx\n\\]\n\\[\nx^{2}\n\\]\n\\[\n\\dot{x}\n\\]\n\\[\n\\ddot{x}\n\\]",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>D</span>  <span class='chapter-title'>Python Playground</span>"
