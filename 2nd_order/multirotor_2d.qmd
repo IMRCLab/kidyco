@@ -1,3 +1,237 @@
+---
+format:
+  html:
+    code-fold: true
+jupyter: python3
+---
+
+::: {.content-visible unless-format="pdf"}
+{{< include ../macros.tex >}}
+:::
+
 # Multirotor (2D)
 
+![Multirotor 2D robot](../media/multirotor2d.svg)
+
+## Dynamics
+
+- Parameters
+    - state space $\sX \in \mathbb R^4 \times SO(2) \times \mathbb R$
+    - action space $\sU \in \mathbb R^2$
+    - mass $m \in \mathbb R^+$ [kg]
+    - Arm length $l \in \mathbb R^+$ [m]
+    - inertia $\mathbf J_{yy}  \in \mathbb R^+$ [$kg\cdot m^2$]
+    - gravity $g \in \mathbb R$ [$m/s^2$]
+- State: $\vx = \begin{pmatrix}x, \dot x, z, \dot z, \theta, \dot \theta\end{pmatrix}^\top \in \sX$
+    - position $x \in \mathbb R$ [m]
+    - height $z \in \mathbb R$ [m]
+    - velocities $\dot x \in \mathbb R$, $\dot z \in \mathbb R$ [m/s]
+    - rotation around $x$-axis $\theta \in SO(2)$ [rad]
+    - angular velocity $\dot \theta \in \mathbb R$ [rad/s]
+- Action: $\vu = \begin{pmatrix} f_1, f_2 \end{pmatrix}^\top \in \sU$
+    - thrust left $f_1 \in \mathbb R^+$ [N]
+    - thrust right $f_2 \in \mathbb R^+$ [N] 
+- Dynamics: 
+    $$
+        \begin{aligned}
+        \mathbf{\dot x} = f(\mathbf x, \mathbf u) = \begin{pmatrix} 
+        \dot x\\
+        \frac{-(f_1 + f_2) \sin \theta}{m}\\
+        \dot z\\
+        \frac{(f_1 + f_2) \cos \theta}{m} - g\\
+        \dot \theta\\
+        \frac{(f_2 - f_1) l}{\mathbf J_{yy}}
+        \end{pmatrix}
+        \end{aligned}
+    $$
+
+## Differential Flatness
+
+Pick *flat outputs* $\vz(t) = (x(t), z(t))^\top$, i.e., the position of the robot. Then we can compute all necessary variables if $\vz(t)$ is at least C4-continuous.
+$$
+\begin{aligned}
+    \vx(t) &= g_x(\vz, \dot{\vz}, \ddot{\vz}, \dddot{\vz}) = \ldots\\
+    \vu(t) &= g_u(\ddot{\vz}, \dddot{\vz}, \ddddot{\vz}) = \ldots,
+\end{aligned}
+$$
+See derivation below for the exact expressions needed.
+
+
+::: {.callout-note collapse="true"}
+## Derivation
+
+1. $\theta$ 
+
+    <!-- $$
+    \begin{aligned}
+    \ddot x &= \frac{-(f_1 + f_2) \sin \theta}{m}\\
+    \ddot z &= \frac{(f_1 + f_2) \cos \theta}{m} - g 
+    \end{aligned}
+    $$ -->
+
+    ```{python}
+    #| echo: false
+    #| output: asis
+
+    import sympy as sp
+    import numpy as np
+
+    # load our custom module
+    import sys
+    from pathlib import Path
+    module_path = str(Path.cwd().parents[0] / "code")
+    if module_path not in sys.path:
+        sys.path.append(module_path)
+    from sympy_helper import *
+
+    t = sp.Symbol("t")
+
+    printer = MyLatexPrinter(t)
+
+    x = sp.Function("x")(t)
+    z = sp.Function("z")(t)
+    f1 = sp.Function("f1")(t)
+    f2 = sp.Function("f2")(t)
+    theta = sp.Function("theta")(t)
+    m = sp.Symbol("m")
+    g = sp.Symbol("g")
+    l = sp.Symbol("l")
+    J = sp.Symbol("J_{yy}")
+
+    h1 = sp.Function("h1")(t)
+
+    exp1 = sp.Eq(
+        sp.diff(x, t, 2),
+        (-(f1+f2) * sp.sin(theta))/m)
+
+    exp2 = sp.Eq(
+        sp.diff(z, t, 2), 
+        ((f1+f2) * sp.cos(theta))/m - g)
+
+    print("From the dynamics we have:")
+    printer.show(exp1)
+    printer.show(exp2)
+    
+    # compute the step
+    print("Solving for sum of forces and rearranging:") 
+    exp3 = sp.solve(exp1, f1+f2)
+    exp4 = sp.solve(exp2, f1+f2)
+    printer.show(sp.Eq(exp3[0], exp4[0]))
+
+    print("Dividing and solving for $\\theta$:")
+    exp5 = sp.simplify(exp3[0] / exp4[0])
+    theta_exp = sp.solve(sp.Eq(1, exp5), theta)[0] 
+    h1_exp = sp.Eq(h1, sp.diff(z, t, 2) + g)
+    theta_exp = theta_exp.subs(h1_exp.rhs, h1_exp.lhs)
+    exp6 = sp.Eq(theta, theta_exp)
+    printer.show(exp6)
+
+    print("where:")
+    printer.show(h1_exp)
+
+    ```
+
+    <!-- Rearranging and solving for theta:
+    $$
+    \begin{aligned}
+    \frac{m\ddot x}{-(f_1 + f_2)} &= \sin \theta\\
+    \frac{m (\ddot z + g)}{(f_1 + f_2)} &= \cos \theta \Rightarrow\\
+    \frac{\ddot x}{-(\ddot z + g)} &= \frac{\sin \theta}{\cos \theta} = \tan \theta \Rightarrow\\
+    \theta &= \arctan \left( \frac{\ddot x}{-\ddot z - g} \right)
+    \end{aligned}
+    $$ -->
+
+2. $\dot \theta$
+
+    <!-- Take time derivative of $\theta$ from step 1 to obtain:
+    $$
+    \begin{aligned}
+    \dot \theta &= \frac{\ddot x\,\, \dddot z - (g+\ddot z) \dddot x}{(g+\ddot z)^2 + {\ddot x}^2}
+    \end{aligned}
+    $$ -->
+
+    ```{python}
+    #| echo: false
+    #| output: asis
+
+    print("Take time derivative of $\\theta$ from step 1 to obtain:")
+    exp7 = sp.simplify(sp.diff(exp6.rhs, t, 1))
+    printer.show(sp.Eq(sp.diff(theta, t, 1), exp7))
+    ```
+
+    <!-- Rearranging and solving for theta:
+    $$
+    \begin{aligned}
+    \frac{m\ddot x}{-(f_1 + f_2)} &= \sin \theta\\
+    \frac{m (\ddot z + g)}{(f_1 + f_2)} &= \cos \theta \Rightarrow\\
+    \frac{\ddot x}{-(\ddot z + g)} &= \frac{\sin \theta}{\cos \theta} = \tan \theta \Rightarrow\\
+    \theta &= \arctan \left( \frac{\ddot x}{-\ddot z - g} \right)
+    \end{aligned}
+    $$ -->
+
+3. $f_1, f_2$
+
+    <!-- $$
+    \begin{aligned}
+    \ddot \theta &= \frac{(f_2 - f_1) l}{\mathbf J_{yy}} \\
+    \ddot x &= \frac{-(f_1 + f_2) \sin \theta}{m}\\
+    f_2 - f_1 &= \frac{\mathbf J_{yy}}{l} \ddot \theta\\
+    f_1 + f_2 &= - \frac{m \ddot x}{\sin \theta}\\
+    2 f_2 &= \frac{\mathbf J_{yy}}{l} \ddot \theta - \frac{m \ddot x}{\sin \theta}
+    \end{aligned}
+    $$  -->
+
+
+    ```{python}
+    #| echo: false
+    #| output: asis
+    print("Take time derivative of $\\dot \\theta$ from step 2 to obtain:")
+    h2 = sp.Function("h2")(t)
+    h2_eq = sp.Eq(h2, h1**2+sp.diff(x,t,2)**2)
+
+    exp7 = sp.simplify(sp.diff(exp6.rhs, t, 2)).subs(h2_eq.rhs, h2_eq.lhs) 
+    printer.show(sp.Eq(sp.diff(theta, t, 2), exp7))
+    print("where")
+    printer.show(h2_eq)
+    printer.show(sp.Eq(sp.diff(h1, t, 1), sp.diff(h1_exp.rhs, t, 1)))
+    printer.show(sp.Eq(sp.diff(h1, t, 2), sp.diff(h1_exp.rhs, t, 2)))
+
+    print("From the dynamics we have:")
+
+    x_dd = -(f1+f2) * sp.sin(theta)/m
+    theta_dd = (f2 - f1) * l / J
+
+    x_dd_eq = sp.Eq(sp.diff(x, t, 2), x_dd)
+    theta_dd_eq = sp.Eq(sp.diff(theta, t, 2), theta_dd)
+    printer.show(x_dd_eq)
+
+    printer.show(sp.Eq(f1+f2, sp.solve(x_dd_eq, f1+f2)[0]))
+
+    print("Substituting $\\theta$ from step 1")
+    h3 = sp.Function("h3")(t)
+    f1_plus_f2_eq = sp.Eq(h3, sp.solve(x_dd_eq, f1+f2)[0].subs(theta, theta_exp))
+    printer.show(f1_plus_f2_eq)
+
+    print("From the dynamics we have:")
+    printer.show(theta_dd_eq)
+    f2_minus_f1_eq = sp.Eq(f2-f1, sp.solve(theta_dd_eq, f2-f1)[0])
+    printer.show(f2_minus_f1_eq)
+
+    print("Adding the two")
+    f2_eq = sp.Eq(f2, (f1_plus_f2_eq.lhs + f2_minus_f1_eq.rhs)/2)
+    printer.show(f2_eq)
+
+    f1_eq = sp.Eq(f1, sp.simplify(f1_plus_f2_eq.lhs - f2))
+    printer.show(f1_eq)
+    ```
+
+:::
+
+## Invariance
+
+
+## Controllers
+
+
+## Useful Parameters
 
