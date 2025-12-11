@@ -83,7 +83,9 @@ The dynamics are translation-invariant.
 
 ## Controllers
 
-### Geometric Controller (@2010-lee-geometricTrackingControl)
+### Geometric Controller
+
+This controller was proposed in (@2010-lee-geometricTrackingControl).
 
 - Given reference trajectory tuple: $\mathbf{r}_d  = (\ddddot{\vp}_d(t), \dddot{\vp}_d(t), \ddot{\vp}_d(t), \dot{\vp}_d(t), \vp_d(t), \psi_d(t), \dot{\psi}_d(t), \ddot{\psi}_d(t))$ (i.e, desired snap, jerk, acceleration, velocity, position, heading, angular velocity for heading, acceleration for heading)
 - $\mK_p, \mK_v, \mK_R, \mK_\omega \in\mathbb R^{3\times 3}$ are tuning matrices (typically only positive diagonal entries, so 12 parameters) 

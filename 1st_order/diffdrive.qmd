@@ -96,9 +96,9 @@ The dynamics are translation-invariant.
 
 ## Controllers
 
-### Geometric Controller (@UGVTrajectoryController)
+### Geometric Controller
 
-This is the same controller as for the unicycle, with the linear mapping applied.
+This is the same controller as for the unicycle proposed in (@UGVTrajectoryController), with the linear mapping applied.
 
 - Given reference state $\vx_r = \begin{pmatrix}x_r, y_r, \theta_r\end{pmatrix}^\top \in \sX$ and reference action $\vu_r = \begin{pmatrix} u_{l,r}, u_{r,r} \end{pmatrix}^\top \in \sU$
 - $K_x, K_y, K_\theta\in\mathbb R^+$ are tuning gains 

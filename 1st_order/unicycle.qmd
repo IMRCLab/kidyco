@@ -69,7 +69,9 @@ The dynamics are translation-invariant.
 
 ## Controllers
 
-### Geometric Controller (@UGVTrajectoryController)
+### Geometric Controller
+
+This controller was proposed in (@UGVTrajectoryController).
 
 - Given reference state $\vx_r = \begin{pmatrix}x_r, y_r, \theta_r\end{pmatrix}^\top \in \sX$ and reference action $\vu_r = \begin{pmatrix} v_r, \omega_r \end{pmatrix}^\top \in \sU$
 - $K_x, K_y, K_\theta\in\mathbb R^+$ are tuning gains 
@@ -97,27 +99,27 @@ $$
 
 ## Useful Parameters
 
-### unicycle1_v0 (@2024-ortiz-haro-IDbAIterativeSearch)
+### unicycle1_v0
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v0.yaml -->
 
-A basic version
+A basic version proposed at (@2024-ortiz-haro-IDbAIterativeSearch)
 $$
 \sU = [-0.5, 0.5] m/s \times [-0.5, 0.5] rad/s
 $$
 
-### unicycle1_v1 (@2024-ortiz-haro-IDbAIterativeSearch)
+### unicycle1_v1
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v1.yaml -->
 
-A plane-like version with minimum speed
+A plane-like version with minimum speed proposed at (@2024-ortiz-haro-IDbAIterativeSearch)
 
 $$
 \sU = [0.25, 0.5] m/s \times [-0.5, 0.5] rad/s
 $$
 
-### unicycle1_v2 (@2024-ortiz-haro-IDbAIterativeSearch)
+### unicycle1_v2
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v2.yaml -->
 
-A plane-like version with a rudder damage
+A plane-like version with a rudder damage proposed at (@2024-ortiz-haro-IDbAIterativeSearch)
 
 $$
 \sU = [0.25, 0.5] m/s \times [-0.25, 0.5] rad/s

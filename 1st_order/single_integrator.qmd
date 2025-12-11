@@ -39,10 +39,11 @@ The system is linear, so an LQR controller is most suitable.
 
 ## Useful Parameters
 
-### integrator1_2d_v0 (@2024-ortiz-haro-IDbAIterativeSearch)
+### integrator1_2d_v0
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/integrator1_2d_v0.yaml -->
 
-A basic version
+A basic version proposed at (@2024-ortiz-haro-IDbAIterativeSearch)
+
 $$
 \sU = [-0.5, 0.5] m/s \times [-0.5, 0.5] ms/s
 $$
