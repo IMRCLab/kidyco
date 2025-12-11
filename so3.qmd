@@ -4,7 +4,10 @@
 
 # SO(3) - Rotations in 3D
 
-## Introduction
+
+## Quaternions
+
+### Introduction
 
 For rotations without singularities, rotation matrices and quaternions are common. The special orthogonal group SO(3) is often defined using a constrained set of $3\times 3$ rotation matrices:
 $$
@@ -22,8 +25,6 @@ C++|[Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page), [Sophus](htt
 C|[cmath3d](https://github.com/jpreiss/cmath3d)
 
 Notable other references are: @2007-saerkkae-notesOnQuaternions, @2024-toussaint-quaternions, @2024-jia-quaternions.
-
-## Quaternions
 
 ### Definition
 
