@@ -51,3 +51,31 @@ with anim.at_frame(vis, 30) as frame:
 vis.set_animation(anim)
 vis.render_static()
 ```
+
+```{python}
+#| echo: false
+#| output: asis
+
+import sympy as sp
+import numpy as np
+
+# load our custom module
+import sys
+from pathlib import Path
+module_path = str(Path.cwd() / "code")
+if module_path not in sys.path:
+    sys.path.append(module_path)
+from sympy_helper import *
+
+t = sp.Symbol("t")
+
+printer = MyLatexPrinter(t)
+
+x = sp.Function("x")(t)
+
+printer.show(x)
+printer.show(x**2)
+
+printer.show(sp.diff(x,t,1))
+printer.show(sp.diff(x,t,2))
+```
