@@ -209,7 +209,7 @@ $$ {#eq-quat-vec-rot}
 
 <!-- % Note: Use the conjugate $\vq^*$ for the inverse rotation. -->
 
-### Derivatives and Integration
+### Derivatives and Integration {#sec-quat-derivative-and-integration}
 
 Assuming $\boldsymbol{\omega}\in \mathbb R^3$ is the angular velocity in \emph{body frame} (e.g., gyroscope):
 $$

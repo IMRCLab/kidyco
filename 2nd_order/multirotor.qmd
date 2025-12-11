@@ -36,7 +36,7 @@ $$
 where $\ve_z = (0,0,1)^\top$ and $\hat{\vomega}$ is defined in @eq-def-hat-map.
 
 ::: {.callout-note}
-When integrating, $\mR$ has to be preserve the properties of a rotation matrix.
+When integrating, $\mR$ has to preserve the properties of a rotation matrix.
 :::
 
 ### Basic Quaternion Formulation
@@ -55,6 +55,10 @@ $$
 $$
 where $\vq$ is a unit quaternion, $\overline{\vomega}$ is defined in @eq-quat-promote, $\otimes$ is defined in @eq-quat-mult, and $\odot$ is defined in @eq-quat-vec-rot.
 
+::: {.callout-note}
+When integrating, $\vq$ has to preserve the property of a unit quaternion (or an integration method that preservers this has to be used, see @sec-quat-derivative-and-integration).
+:::
+
 ### Basic Dual-Quaternion Formulation
 
 
@@ -63,6 +67,8 @@ where $\vq$ is a unit quaternion, $\overline{\vomega}$ is defined in @eq-quat-pr
 
 
 ## Differential Flatness
+
+Details are in [@2018-faessler-DifferentialFlatnessQuadrotor] (Appendix A).
 
 <!-- Pick *flat outputs* $\vz(t) = (x(t), y(t))^\top$, i.e., the position of the unicycle. Then we can compute all necessary variables if $\vz(t)$ is at least C2-continuous.
 $$
@@ -153,5 +159,43 @@ $$ -->
 
 ## Useful Parameters
 
+### crazyflie-21
 
+Commercially off-the-shelves (Cots) robot: [Crazyflie 2.1](https://www.bitcraze.io/products/old-products/crazyflie-2-1/)
+
+$$
+\begin{aligned}
+\sU &= [524, 2410]^4 rad/s\\
+N &= 4\\
+m &= 0.034 kg\\
+\mB &=
+\begin{bmatrix}
+\kappa_F & \kappa_F & \kappa_F & \kappa_F\\
+-\kappa_F a & -\kappa_F a & \kappa_F a & \kappa_F a\\
+-\kappa_F a & \kappa_F a & \kappa_F a & -\kappa_F a\\
+-\kappa_\tau & \kappa_\tau & -\kappa_\tau & \kappa_\tau
+\end{bmatrix}\\
+\kappa_F &= 2.023532265845548e-08\\
+\kappa_\tau &= 1.214119359507329e-10\\
+a &= \frac{1}{\sqrt 2} 0.046 m\\
+\mJ &= \begin{bmatrix}
+16.571710e-6 & 0 & 0\\
+0 & 16.655602e-6 & 0\\
+0 & 0 & 29.261652e-6
+\end{bmatrix}\\
+g &= 9.81 kg / s^2\\
+\end{aligned}
+$$
+
+::: {.callout-warning}
+$\kappa_F$ needs a to be fit again, as the maximum force doesn't seem to be entirely correct.
+:::
+
+### crazyflie-21plus
+
+Commercially off-the-shelves (Cots) robot: [Crazyflie 2.1+](https://www.bitcraze.io/products/crazyflie-2-1-plus/)
+
+### crazyflie-21brushless
+
+Commercially off-the-shelves (Cots) robot: [Crazyflie 2.1 Brushless](https://www.bitcraze.io/products/crazyflie-2-1-brushless/)
 
