@@ -310,7 +310,7 @@ window.Quarto = {
   <li><a href="#low-level-operations" id="toc-low-level-operations" class="nav-link" data-scroll-target="#low-level-operations"><span class="header-section-number">C.1.4</span> Low-Level Operations</a></li>
   <li><a href="#useful-operations" id="toc-useful-operations" class="nav-link" data-scroll-target="#useful-operations"><span class="header-section-number">C.1.5</span> Useful Operations</a></li>
   <li><a href="#vector-rotation" id="toc-vector-rotation" class="nav-link" data-scroll-target="#vector-rotation"><span class="header-section-number">C.1.6</span> Vector Rotation</a></li>
-  <li><a href="#derivatives-and-integration" id="toc-derivatives-and-integration" class="nav-link" data-scroll-target="#derivatives-and-integration"><span class="header-section-number">C.1.7</span> Derivatives and Integration</a></li>
+  <li><a href="#sec-quat-derivative-and-integration" id="toc-sec-quat-derivative-and-integration" class="nav-link" data-scroll-target="#sec-quat-derivative-and-integration"><span class="header-section-number">C.1.7</span> Derivatives and Integration</a></li>
   <li><a href="#interpolation" id="toc-interpolation" class="nav-link" data-scroll-target="#interpolation"><span class="header-section-number">C.1.8</span> Interpolation</a></li>
   <li><a href="#metrics" id="toc-metrics" class="nav-link" data-scroll-target="#metrics"><span class="header-section-number">C.1.9</span> Metrics</a></li>
   <li><a href="#random-generation" id="toc-random-generation" class="nav-link" data-scroll-target="#random-generation"><span class="header-section-number">C.1.10</span> Random Generation</a></li>
@@ -605,8 +605,8 @@ Warning
 <!-- **TODO**: THERE IS A FASTER VERSION, see https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles -->
 <!-- % Note: Use the conjugate $\vq^*$ for the inverse rotation. -->
 </section>
-<section id="derivatives-and-integration" class="level3" data-number="C.1.7">
-<h3 data-number="C.1.7" class="anchored" data-anchor-id="derivatives-and-integration"><span class="header-section-number">C.1.7</span> Derivatives and Integration</h3>
+<section id="sec-quat-derivative-and-integration" class="level3" data-number="C.1.7">
+<h3 data-number="C.1.7" class="anchored" data-anchor-id="sec-quat-derivative-and-integration"><span class="header-section-number">C.1.7</span> Derivatives and Integration</h3>
 <p>Assuming <span class="math inline">\(\boldsymbol{\omega}\in \mathbb R^3\)</span> is the angular velocity in (e.g., gyroscope): <span class="math display">\[
 \dot{\mathbf{q}} = \frac{1}{2} \mathbf{q}\otimes \overline{\boldsymbol{\omega}}
 \]</span></p>
