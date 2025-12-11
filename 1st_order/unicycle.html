@@ -307,14 +307,14 @@ window.Quarto = {
   <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">3.3</span> Invariance</a></li>
   <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">3.4</span> Controllers</a>
   <ul class="collapse">
-  <li><a href="#geometric-controller-ugvtrajectorycontroller" id="toc-geometric-controller-ugvtrajectorycontroller" class="nav-link" data-scroll-target="#geometric-controller-ugvtrajectorycontroller"><span class="header-section-number">3.4.1</span> Geometric Controller (<span class="citation" data-cites="UGVTrajectoryController">Kanayama et al. (1990)</span>)</a></li>
+  <li><a href="#geometric-controller" id="toc-geometric-controller" class="nav-link" data-scroll-target="#geometric-controller"><span class="header-section-number">3.4.1</span> Geometric Controller</a></li>
   <li><a href="#action-mixing" id="toc-action-mixing" class="nav-link" data-scroll-target="#action-mixing"><span class="header-section-number">3.4.2</span> Action Mixing</a></li>
   </ul></li>
   <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">3.5</span> Useful Parameters</a>
   <ul class="collapse">
-  <li><a href="#unicycle1_v0-2024-ortiz-haro-idbaiterativesearch" id="toc-unicycle1_v0-2024-ortiz-haro-idbaiterativesearch" class="nav-link" data-scroll-target="#unicycle1_v0-2024-ortiz-haro-idbaiterativesearch"><span class="header-section-number">3.5.1</span> unicycle1_v0 (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (2024)</span>)</a></li>
-  <li><a href="#unicycle1_v1-2024-ortiz-haro-idbaiterativesearch" id="toc-unicycle1_v1-2024-ortiz-haro-idbaiterativesearch" class="nav-link" data-scroll-target="#unicycle1_v1-2024-ortiz-haro-idbaiterativesearch"><span class="header-section-number">3.5.2</span> unicycle1_v1 (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (2024)</span>)</a></li>
-  <li><a href="#unicycle1_v2-2024-ortiz-haro-idbaiterativesearch" id="toc-unicycle1_v2-2024-ortiz-haro-idbaiterativesearch" class="nav-link" data-scroll-target="#unicycle1_v2-2024-ortiz-haro-idbaiterativesearch"><span class="header-section-number">3.5.3</span> unicycle1_v2 (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (2024)</span>)</a></li>
+  <li><a href="#unicycle1_v0" id="toc-unicycle1_v0" class="nav-link" data-scroll-target="#unicycle1_v0"><span class="header-section-number">3.5.1</span> unicycle1_v0</a></li>
+  <li><a href="#unicycle1_v1" id="toc-unicycle1_v1" class="nav-link" data-scroll-target="#unicycle1_v1"><span class="header-section-number">3.5.2</span> unicycle1_v1</a></li>
+  <li><a href="#unicycle1_v2" id="toc-unicycle1_v2" class="nav-link" data-scroll-target="#unicycle1_v2"><span class="header-section-number">3.5.3</span> unicycle1_v2</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -417,8 +417,9 @@ window.Quarto = {
 </section>
 <section id="controllers" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">3.4</span> Controllers</h2>
-<section id="geometric-controller-ugvtrajectorycontroller" class="level3" data-number="3.4.1">
-<h3 data-number="3.4.1" class="anchored" data-anchor-id="geometric-controller-ugvtrajectorycontroller"><span class="header-section-number">3.4.1</span> Geometric Controller (<span class="citation" data-cites="UGVTrajectoryController">Kanayama et al. (<a href="../references.html#ref-UGVTrajectoryController" role="doc-biblioref">1990</a>)</span>)</h3>
+<section id="geometric-controller" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="geometric-controller"><span class="header-section-number">3.4.1</span> Geometric Controller</h3>
+<p>This controller was proposed in (<span class="citation" data-cites="UGVTrajectoryController">Kanayama et al. (<a href="../references.html#ref-UGVTrajectoryController" role="doc-biblioref">1990</a>)</span>).</p>
 <ul>
 <li>Given reference state <span class="math inline">\(\mathbf{x}_r = \begin{pmatrix}x_r, y_r, \theta_r\end{pmatrix}^\top \in \mathcal{X}\)</span> and reference action <span class="math inline">\(\mathbf{u}_r = \begin{pmatrix} v_r, \omega_r \end{pmatrix}^\top \in \mathcal{U}\)</span></li>
 <li><span class="math inline">\(K_x, K_y, K_\theta\in\mathbb R^+\)</span> are tuning gains</li>
@@ -446,25 +447,25 @@ window.Quarto = {
 </section>
 <section id="useful-parameters" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">3.5</span> Useful Parameters</h2>
-<section id="unicycle1_v0-2024-ortiz-haro-idbaiterativesearch" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="unicycle1_v0-2024-ortiz-haro-idbaiterativesearch"><span class="header-section-number">3.5.1</span> unicycle1_v0 (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>)</h3>
+<section id="unicycle1_v0" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="unicycle1_v0"><span class="header-section-number">3.5.1</span> unicycle1_v0</h3>
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v0.yaml -->
-<p>A basic version <span class="math display">\[
+<p>A basic version proposed at (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>) <span class="math display">\[
 \mathcal{U}= [-0.5, 0.5] m/s \times [-0.5, 0.5] rad/s
 \]</span></p>
 </section>
-<section id="unicycle1_v1-2024-ortiz-haro-idbaiterativesearch" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="unicycle1_v1-2024-ortiz-haro-idbaiterativesearch"><span class="header-section-number">3.5.2</span> unicycle1_v1 (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>)</h3>
+<section id="unicycle1_v1" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="unicycle1_v1"><span class="header-section-number">3.5.2</span> unicycle1_v1</h3>
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v1.yaml -->
-<p>A plane-like version with minimum speed</p>
+<p>A plane-like version with minimum speed proposed at (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>)</p>
 <p><span class="math display">\[
 \mathcal{U}= [0.25, 0.5] m/s \times [-0.5, 0.5] rad/s
 \]</span></p>
 </section>
-<section id="unicycle1_v2-2024-ortiz-haro-idbaiterativesearch" class="level3" data-number="3.5.3">
-<h3 data-number="3.5.3" class="anchored" data-anchor-id="unicycle1_v2-2024-ortiz-haro-idbaiterativesearch"><span class="header-section-number">3.5.3</span> unicycle1_v2 (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>)</h3>
+<section id="unicycle1_v2" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="unicycle1_v2"><span class="header-section-number">3.5.3</span> unicycle1_v2</h3>
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v2.yaml -->
-<p>A plane-like version with a rudder damage</p>
+<p>A plane-like version with a rudder damage proposed at (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>)</p>
 <p><span class="math display">\[
 \mathcal{U}= [0.25, 0.5] m/s \times [-0.25, 0.5] rad/s
 \]</span></p>

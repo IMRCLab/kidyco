@@ -310,7 +310,7 @@ window.Quarto = {
   <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">4.3</span> Invariance</a></li>
   <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">4.4</span> Controllers</a>
   <ul class="collapse">
-  <li><a href="#geometric-controller-ugvtrajectorycontroller" id="toc-geometric-controller-ugvtrajectorycontroller" class="nav-link" data-scroll-target="#geometric-controller-ugvtrajectorycontroller"><span class="header-section-number">4.4.1</span> Geometric Controller (<span class="citation" data-cites="UGVTrajectoryController">Kanayama et al. (1990)</span>)</a></li>
+  <li><a href="#geometric-controller" id="toc-geometric-controller" class="nav-link" data-scroll-target="#geometric-controller"><span class="header-section-number">4.4.1</span> Geometric Controller</a></li>
   <li><a href="#action-mixing" id="toc-action-mixing" class="nav-link" data-scroll-target="#action-mixing"><span class="header-section-number">4.4.2</span> Action Mixing</a></li>
   </ul></li>
   <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">4.5</span> Useful Parameters</a>
@@ -449,9 +449,9 @@ u_l = \frac{2v - v - \frac{L\omega}{2}}{r} = \frac{2v - L \omega}{2 r}
 </section>
 <section id="controllers" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">4.4</span> Controllers</h2>
-<section id="geometric-controller-ugvtrajectorycontroller" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="geometric-controller-ugvtrajectorycontroller"><span class="header-section-number">4.4.1</span> Geometric Controller (<span class="citation" data-cites="UGVTrajectoryController">Kanayama et al. (<a href="../references.html#ref-UGVTrajectoryController" role="doc-biblioref">1990</a>)</span>)</h3>
-<p>This is the same controller as for the unicycle, with the linear mapping applied.</p>
+<section id="geometric-controller" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="geometric-controller"><span class="header-section-number">4.4.1</span> Geometric Controller</h3>
+<p>This is the same controller as for the unicycle proposed in (<span class="citation" data-cites="UGVTrajectoryController">Kanayama et al. (<a href="../references.html#ref-UGVTrajectoryController" role="doc-biblioref">1990</a>)</span>), with the linear mapping applied.</p>
 <ul>
 <li>Given reference state <span class="math inline">\(\mathbf{x}_r = \begin{pmatrix}x_r, y_r, \theta_r\end{pmatrix}^\top \in \mathcal{X}\)</span> and reference action <span class="math inline">\(\mathbf{u}_r = \begin{pmatrix} u_{l,r}, u_{r,r} \end{pmatrix}^\top \in \mathcal{U}\)</span></li>
 <li><span class="math inline">\(K_x, K_y, K_\theta\in\mathbb R^+\)</span> are tuning gains</li>

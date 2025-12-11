@@ -313,7 +313,7 @@ window.Quarto = {
   <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">11.3</span> Invariance</a></li>
   <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">11.4</span> Controllers</a>
   <ul class="collapse">
-  <li><a href="#geometric-controller-2010-lee-geometrictrackingcontrol" id="toc-geometric-controller-2010-lee-geometrictrackingcontrol" class="nav-link" data-scroll-target="#geometric-controller-2010-lee-geometrictrackingcontrol"><span class="header-section-number">11.4.1</span> Geometric Controller (<span class="citation" data-cites="2010-lee-geometricTrackingControl">Lee, Leok, and McClamroch (2010)</span>)</a></li>
+  <li><a href="#geometric-controller" id="toc-geometric-controller" class="nav-link" data-scroll-target="#geometric-controller"><span class="header-section-number">11.4.1</span> Geometric Controller</a></li>
   <li><a href="#action-mixing" id="toc-action-mixing" class="nav-link" data-scroll-target="#action-mixing"><span class="header-section-number">11.4.2</span> Action Mixing</a></li>
   </ul></li>
   <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">11.5</span> Useful Parameters</a></li>
@@ -444,8 +444,9 @@ $$ -->
 </section>
 <section id="controllers" class="level2" data-number="11.4">
 <h2 data-number="11.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">11.4</span> Controllers</h2>
-<section id="geometric-controller-2010-lee-geometrictrackingcontrol" class="level3" data-number="11.4.1">
-<h3 data-number="11.4.1" class="anchored" data-anchor-id="geometric-controller-2010-lee-geometrictrackingcontrol"><span class="header-section-number">11.4.1</span> Geometric Controller (<span class="citation" data-cites="2010-lee-geometricTrackingControl">Lee, Leok, and McClamroch (<a href="../references.html#ref-2010-lee-geometricTrackingControl" role="doc-biblioref">2010</a>)</span>)</h3>
+<section id="geometric-controller" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="geometric-controller"><span class="header-section-number">11.4.1</span> Geometric Controller</h3>
+<p>This controller was proposed in (<span class="citation" data-cites="2010-lee-geometricTrackingControl">Lee, Leok, and McClamroch (<a href="../references.html#ref-2010-lee-geometricTrackingControl" role="doc-biblioref">2010</a>)</span>).</p>
 <ul>
 <li>Given reference trajectory tuple: <span class="math inline">\(\mathbf{r}_d  = (\ddddot{\mathbf{p}}_d(t), \dddot{\mathbf{p}}_d(t), \ddot{\mathbf{p}}_d(t), \dot{\mathbf{p}}_d(t), \mathbf{p}_d(t), \psi_d(t), \dot{\psi}_d(t), \ddot{\psi}_d(t))\)</span> (i.e, desired snap, jerk, acceleration, velocity, position, heading, angular velocity for heading, acceleration for heading)</li>
 <li><span class="math inline">\(\mathbf{K}_p, \mathbf{K}_v, \mathbf{K}_R, \mathbf{K}_\omega \in\mathbb R^{3\times 3}\)</span> are tuning matrices (typically only positive diagonal entries, so 12 parameters)</li>
