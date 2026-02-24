@@ -165,7 +165,7 @@ Commercially off-the-shelves (Cots) robot: [Crazyflie 2.1](https://www.bitcraze.
 
 $$
 \begin{aligned}
-\sU &= [524, 2410]^4 rad/s\\
+\sU &= [524, 2760]^4 rad/s\\
 N &= 4\\
 m &= 0.034 kg\\
 \mB &=
@@ -187,13 +187,36 @@ g &= 9.81 kg / s^2\\
 \end{aligned}
 $$
 
-::: {.callout-warning}
-$\kappa_F$ needs a to be fit again, as the maximum force doesn't seem to be entirely correct.
-:::
-
 ### crazyflie-21plus
 
 Commercially off-the-shelves (Cots) robot: [Crazyflie 2.1+](https://www.bitcraze.io/products/crazyflie-2-1-plus/)
+
+<!-- 
+python3 estimate_kw_from_thruststand.py data/cf21plus/data_feb_24_2026_350mah_battery1.csv data/cf21plus/data_feb_24_2026_350mah_battery0.csv data/cf21plus/data_feb_24_2026_250mah_battery0.csv  -->
+
+$$
+\begin{aligned}
+\sU &= [1370, 3390]^4 rad/s\\
+N &= 4\\
+m &= 0.034 kg\\
+\mB &=
+\begin{bmatrix}
+\kappa_F & \kappa_F & \kappa_F & \kappa_F\\
+-\kappa_F a & -\kappa_F a & \kappa_F a & \kappa_F a\\
+-\kappa_F a & \kappa_F a & \kappa_F a & -\kappa_F a\\
+-\kappa_\tau & \kappa_\tau & -\kappa_\tau & \kappa_\tau
+\end{bmatrix}\\
+\kappa_F &= 1.4346289961914151e-08\\
+\kappa_\tau &= 1.0032209789778871e-10\\
+a &= \frac{1}{\sqrt 2} 0.046 m\\
+\mJ &= \begin{bmatrix}
+16.571710e-6 & 0 & 0\\
+0 & 16.655602e-6 & 0\\
+0 & 0 & 29.261652e-6
+\end{bmatrix}\\
+g &= 9.81 kg / s^2\\
+\end{aligned}
+$$
 
 ### crazyflie-21brushless
 
