@@ -59,11 +59,10 @@ where $\vq$ is a unit quaternion, $\overline{\vomega}$ is defined in @eq-quat-pr
 When integrating, $\vq$ has to preserve the property of a unit quaternion (or an integration method that preservers this has to be used, see @sec-quat-derivative-and-integration).
 :::
 
-### Basic Dual-Quaternion Formulation
+<!-- ### Motor-Delay Formulation -->
 
 
-### Motor-Delay Formulation
-
+<!-- ### Basic Dual-Quaternion Formulation -->
 
 
 ## Differential Flatness
@@ -222,3 +221,4 @@ $$
 
 Commercially off-the-shelves (Cots) robot: [Crazyflie 2.1 Brushless](https://www.bitcraze.io/products/crazyflie-2-1-brushless/)
 
+Model see [@2026-cfbf-model].

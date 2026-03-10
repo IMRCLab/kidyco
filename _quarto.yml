@@ -13,21 +13,21 @@ book:
         - 1st_order/unicycle.qmd
         - 1st_order/diffdrive.qmd
         - 1st_order/car.qmd
-        - 1st_order/car_with_trailer.qmd
+        # - 1st_order/car_with_trailer.qmd
     - part: "Second Order Systems"
       chapters: 
-        - 2nd_order/double_integrator.qmd
+        # - 2nd_order/double_integrator.qmd
         - 2nd_order/multirotor_1d.qmd
         - 2nd_order/multirotor_2d.qmd
-        - 2nd_order/lunar_lander.qmd
+        # - 2nd_order/lunar_lander.qmd
         - 2nd_order/multirotor.qmd
     - references.qmd
   appendices:
-    - odes.qmd
-    - so2.qmd
+    # - odes.qmd
+    # - so2.qmd
     - so3.qmd
-    - python_playground.qmd
-    - rust_playground.qmd
+    # - python_playground.qmd
+    # - rust_playground.qmd
 
 bibliography: references.bib
 
