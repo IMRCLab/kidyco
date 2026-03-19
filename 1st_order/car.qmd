@@ -83,7 +83,7 @@ The dynamics are translation-invariant.
 ### car1_v0
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v0.yaml -->
 
-A basic version proposed at (@2024-ortiz-haro-IDbAIterativeSearch)
+A basic version proposed at (@hoenig2022dbAstar; @2024-ortiz-haro-IDbAIterativeSearch)
 $$
 \begin{aligned}
 L &= 0.25 m\\

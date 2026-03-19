@@ -102,7 +102,7 @@ $$
 ### unicycle1_v0
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v0.yaml -->
 
-A basic version proposed at (@2024-ortiz-haro-IDbAIterativeSearch)
+A basic version proposed at (@hoenig2022dbAstar; @2024-ortiz-haro-IDbAIterativeSearch)
 $$
 \sU = [-0.5, 0.5] m/s \times [-0.5, 0.5] rad/s
 $$
@@ -110,7 +110,7 @@ $$
 ### unicycle1_v1
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v1.yaml -->
 
-A plane-like version with minimum speed proposed at (@2024-ortiz-haro-IDbAIterativeSearch)
+A plane-like version with minimum speed proposed at (@hoenig2022dbAstar; @2024-ortiz-haro-IDbAIterativeSearch)
 
 $$
 \sU = [0.25, 0.5] m/s \times [-0.5, 0.5] rad/s
@@ -119,7 +119,7 @@ $$
 ### unicycle1_v2
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v2.yaml -->
 
-A plane-like version with a rudder damage proposed at (@2024-ortiz-haro-IDbAIterativeSearch)
+A plane-like version with a rudder damage proposed at (@hoenig2022dbAstar; @2024-ortiz-haro-IDbAIterativeSearch)
 
 $$
 \sU = [0.25, 0.5] m/s \times [-0.25, 0.5] rad/s

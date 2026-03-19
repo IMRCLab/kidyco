@@ -13,7 +13,7 @@ book:
         - 1st_order/unicycle.qmd
         - 1st_order/diffdrive.qmd
         - 1st_order/car.qmd
-        # - 1st_order/car_with_trailer.qmd
+        - 1st_order/car_with_trailer.qmd
     - part: "Second Order Systems"
       chapters: 
         # - 2nd_order/double_integrator.qmd
@@ -21,6 +21,7 @@ book:
         - 2nd_order/multirotor_2d.qmd
         # - 2nd_order/lunar_lander.qmd
         - 2nd_order/multirotor.qmd
+        - 2nd_order/unicycle.qmd
     - references.qmd
   appendices:
     # - odes.qmd

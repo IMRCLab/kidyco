@@ -186,6 +186,17 @@ g &= 9.81 kg / s^2\\
 \end{aligned}
 $$
 
+### quad3d_v0
+
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/quad3d_v0.yaml -->
+
+Identical to "crazyflie-21", but with additional state space bounds (@hoenig2022dbAstar; @2024-ortiz-haro-IDbAIterativeSearch):
+
+\begin{aligned}
+\vv \in [-4,4]^3\\
+\vomega \in [-8,8]^3
+\end{aligned}
+
 ### crazyflie-21plus
 
 Commercially off-the-shelves (Cots) robot: [Crazyflie 2.1+](https://www.bitcraze.io/products/crazyflie-2-1-plus/)
