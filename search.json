@@ -531,7 +531,7 @@
     "href": "2nd_order/multirotor_2d.html#useful-parameters",
     "title": "9  Multirotor (2D)",
     "section": "9.5 Useful Parameters",
-    "text": "9.5 Useful Parameters",
+    "text": "9.5 Useful Parameters\n\n9.5.1 quad2d_v0\n\nA basic version proposed at (Ortiz-Haro et al. (2024)) \\[\n\\begin{aligned}\nm &= 0.034\\\\\nl &= 0.1\\\\\n\\mathbf J_{yy} &= 1e-4\\\\\ng &= 9.81\\\\\n\\dot x &\\in [-4, 4]\\\\\n\\dot z &\\in [-4, 4]\\\\\n\\omega &\\in [-8, 8]\\\\\n\\mathcal{U}&= [0, 1.3]^2\n\\end{aligned}\n\\]\n\n\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. “iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.” IEEE Transactions on Robotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.",
     "crumbs": [
       "Second Order Systems",
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor (2D)</span>"

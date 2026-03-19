@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -262,7 +282,10 @@ window.Quarto = {
   <li><a href="#differential-flatness" id="toc-differential-flatness" class="nav-link" data-scroll-target="#differential-flatness"><span class="header-section-number">9.2</span> Differential Flatness</a></li>
   <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">9.3</span> Invariance</a></li>
   <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">9.4</span> Controllers</a></li>
-  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">9.5</span> Useful Parameters</a></li>
+  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">9.5</span> Useful Parameters</a>
+  <ul class="collapse">
+  <li><a href="#quad2d_v0" id="toc-quad2d_v0" class="nav-link" data-scroll-target="#quad2d_v0"><span class="header-section-number">9.5.1</span> quad2d_v0</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -460,8 +483,29 @@ f_{1} = - f_{2} + h_{3}
 </section>
 <section id="useful-parameters" class="level2" data-number="9.5">
 <h2 data-number="9.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">9.5</span> Useful Parameters</h2>
+<section id="quad2d_v0" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="quad2d_v0"><span class="header-section-number">9.5.1</span> quad2d_v0</h3>
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/quad2d_v0.yaml -->
+<p>A basic version proposed at (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>) <span class="math display">\[
+\begin{aligned}
+m &amp;= 0.034\\
+l &amp;= 0.1\\
+\mathbf J_{yy} &amp;= 1e-4\\
+g &amp;= 9.81\\
+\dot x &amp;\in [-4, 4]\\
+\dot z &amp;\in [-4, 4]\\
+\omega &amp;\in [-8, 8]\\
+\mathcal{U}&amp;= [0, 1.3]^2
+\end{aligned}
+\]</span></p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-2024-ortiz-haro-IDbAIterativeSearch" class="csl-entry" role="listitem">
+Ortiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. <span>“iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.”</span> <em>IEEE Transactions on Robotics</em>, 1–19. <a href="https://doi.org/10.1109/TRO.2024.3502505">https://doi.org/10.1109/TRO.2024.3502505</a>.
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
