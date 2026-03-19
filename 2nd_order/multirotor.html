@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Multirotor – Kinodynamic Compendium</title>
+<title>9&nbsp; Multirotor – Kinodynamic Compendium</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,7 +50,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../references.html" rel="next">
+<link href="../2nd_order/unicycle.html" rel="next">
 <link href="../2nd_order/multirotor_2d.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -132,7 +132,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/multirotor_1d.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/multirotor.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/multirotor_1d.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/multirotor.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -196,6 +196,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Car</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1st_order/car_with_trailer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Car With Trailer</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -210,19 +216,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor_1d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor_2d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2nd_order/unicycle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Unicycle</span></span></a>
   </div>
 </li>
       </ul>
@@ -260,23 +272,24 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#dynamics" id="toc-dynamics" class="nav-link active" data-scroll-target="#dynamics"><span class="header-section-number">8.1</span> Dynamics</a>
+  <li><a href="#dynamics" id="toc-dynamics" class="nav-link active" data-scroll-target="#dynamics"><span class="header-section-number">9.1</span> Dynamics</a>
   <ul class="collapse">
-  <li><a href="#basic-rotation-matrix-formulation" id="toc-basic-rotation-matrix-formulation" class="nav-link" data-scroll-target="#basic-rotation-matrix-formulation"><span class="header-section-number">8.1.1</span> Basic Rotation Matrix Formulation</a></li>
-  <li><a href="#basic-quaternion-formulation" id="toc-basic-quaternion-formulation" class="nav-link" data-scroll-target="#basic-quaternion-formulation"><span class="header-section-number">8.1.2</span> Basic Quaternion Formulation</a></li>
+  <li><a href="#basic-rotation-matrix-formulation" id="toc-basic-rotation-matrix-formulation" class="nav-link" data-scroll-target="#basic-rotation-matrix-formulation"><span class="header-section-number">9.1.1</span> Basic Rotation Matrix Formulation</a></li>
+  <li><a href="#basic-quaternion-formulation" id="toc-basic-quaternion-formulation" class="nav-link" data-scroll-target="#basic-quaternion-formulation"><span class="header-section-number">9.1.2</span> Basic Quaternion Formulation</a></li>
   </ul></li>
-  <li><a href="#differential-flatness" id="toc-differential-flatness" class="nav-link" data-scroll-target="#differential-flatness"><span class="header-section-number">8.2</span> Differential Flatness</a></li>
-  <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">8.3</span> Invariance</a></li>
-  <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">8.4</span> Controllers</a>
+  <li><a href="#differential-flatness" id="toc-differential-flatness" class="nav-link" data-scroll-target="#differential-flatness"><span class="header-section-number">9.2</span> Differential Flatness</a></li>
+  <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">9.3</span> Invariance</a></li>
+  <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">9.4</span> Controllers</a>
   <ul class="collapse">
-  <li><a href="#geometric-controller" id="toc-geometric-controller" class="nav-link" data-scroll-target="#geometric-controller"><span class="header-section-number">8.4.1</span> Geometric Controller</a></li>
-  <li><a href="#action-mixing" id="toc-action-mixing" class="nav-link" data-scroll-target="#action-mixing"><span class="header-section-number">8.4.2</span> Action Mixing</a></li>
+  <li><a href="#geometric-controller" id="toc-geometric-controller" class="nav-link" data-scroll-target="#geometric-controller"><span class="header-section-number">9.4.1</span> Geometric Controller</a></li>
+  <li><a href="#action-mixing" id="toc-action-mixing" class="nav-link" data-scroll-target="#action-mixing"><span class="header-section-number">9.4.2</span> Action Mixing</a></li>
   </ul></li>
-  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">8.5</span> Useful Parameters</a>
+  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">9.5</span> Useful Parameters</a>
   <ul class="collapse">
-  <li><a href="#crazyflie-21" id="toc-crazyflie-21" class="nav-link" data-scroll-target="#crazyflie-21"><span class="header-section-number">8.5.1</span> crazyflie-21</a></li>
-  <li><a href="#crazyflie-21plus" id="toc-crazyflie-21plus" class="nav-link" data-scroll-target="#crazyflie-21plus"><span class="header-section-number">8.5.2</span> crazyflie-21plus</a></li>
-  <li><a href="#crazyflie-21brushless" id="toc-crazyflie-21brushless" class="nav-link" data-scroll-target="#crazyflie-21brushless"><span class="header-section-number">8.5.3</span> crazyflie-21brushless</a></li>
+  <li><a href="#crazyflie-21" id="toc-crazyflie-21" class="nav-link" data-scroll-target="#crazyflie-21"><span class="header-section-number">9.5.1</span> crazyflie-21</a></li>
+  <li><a href="#quad3d_v0" id="toc-quad3d_v0" class="nav-link" data-scroll-target="#quad3d_v0"><span class="header-section-number">9.5.2</span> quad3d_v0</a></li>
+  <li><a href="#crazyflie-21plus" id="toc-crazyflie-21plus" class="nav-link" data-scroll-target="#crazyflie-21plus"><span class="header-section-number">9.5.3</span> crazyflie-21plus</a></li>
+  <li><a href="#crazyflie-21brushless" id="toc-crazyflie-21brushless" class="nav-link" data-scroll-target="#crazyflie-21brushless"><span class="header-section-number">9.5.4</span> crazyflie-21brushless</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -284,9 +297,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/multirotor_1d.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/multirotor.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/multirotor_1d.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/multirotor.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor</span></h1>
 </div>
 
 
@@ -303,8 +316,8 @@ window.Quarto = {
 </header>
 
 
-<section id="dynamics" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="dynamics"><span class="header-section-number">8.1</span> Dynamics</h2>
+<section id="dynamics" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="dynamics"><span class="header-section-number">9.1</span> Dynamics</h2>
 <ul>
 <li>Parameters
 <ul>
@@ -328,8 +341,8 @@ window.Quarto = {
 <li>Angular velocity of each rotor <span class="math inline">\(\omega_i\)</span> [rad/s]</li>
 </ul></li>
 </ul>
-<section id="basic-rotation-matrix-formulation" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="basic-rotation-matrix-formulation"><span class="header-section-number">8.1.1</span> Basic Rotation Matrix Formulation</h3>
+<section id="basic-rotation-matrix-formulation" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="basic-rotation-matrix-formulation"><span class="header-section-number">9.1.1</span> Basic Rotation Matrix Formulation</h3>
 <p><span class="math display">\[
 \begin{aligned}
     \dot{\mathbf{p}} &amp;= \mathbf{v}\\
@@ -353,8 +366,8 @@ Note
 </div>
 </div>
 </section>
-<section id="basic-quaternion-formulation" class="level3" data-number="8.1.2">
-<h3 data-number="8.1.2" class="anchored" data-anchor-id="basic-quaternion-formulation"><span class="header-section-number">8.1.2</span> Basic Quaternion Formulation</h3>
+<section id="basic-quaternion-formulation" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="basic-quaternion-formulation"><span class="header-section-number">9.1.2</span> Basic Quaternion Formulation</h3>
 <p>The state becomes <span class="math inline">\(\mathbf{x}= (\mathbf{p}, \mathbf{v}, \mathbf{q}, \boldsymbol{\omega})^\top \in \mathbb R^3 \times \mathbb R^3 \times SO(3) \times \mathbb R^3\)</span></p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -382,8 +395,8 @@ Note
 <!-- ### Basic Dual-Quaternion Formulation -->
 </section>
 </section>
-<section id="differential-flatness" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="differential-flatness"><span class="header-section-number">8.2</span> Differential Flatness</h2>
+<section id="differential-flatness" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="differential-flatness"><span class="header-section-number">9.2</span> Differential Flatness</h2>
 <p>Details are in <span class="citation" data-cites="2018-faessler-DifferentialFlatnessQuadrotor">(<a href="../references.html#ref-2018-faessler-DifferentialFlatnessQuadrotor" role="doc-biblioref">Faessler, Franchi, and Scaramuzza 2018</a>)</span> (Appendix A).</p>
 <!-- Pick *flat outputs* $\vz(t) = (x(t), y(t))^\top$, i.e., the position of the unicycle. Then we can compute all necessary variables if $\vz(t)$ is at least C2-continuous.
 $$
@@ -409,14 +422,14 @@ $$ -->
 </div>
 </div>
 </section>
-<section id="invariance" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="invariance"><span class="header-section-number">8.3</span> Invariance</h2>
+<section id="invariance" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="invariance"><span class="header-section-number">9.3</span> Invariance</h2>
 <p>The dynamics are translation-invariant.</p>
 </section>
-<section id="controllers" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">8.4</span> Controllers</h2>
-<section id="geometric-controller" class="level3" data-number="8.4.1">
-<h3 data-number="8.4.1" class="anchored" data-anchor-id="geometric-controller"><span class="header-section-number">8.4.1</span> Geometric Controller</h3>
+<section id="controllers" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">9.4</span> Controllers</h2>
+<section id="geometric-controller" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="geometric-controller"><span class="header-section-number">9.4.1</span> Geometric Controller</h3>
 <p>This controller was proposed in (<span class="citation" data-cites="2010-lee-geometricTrackingControl">Lee, Leok, and McClamroch (<a href="../references.html#ref-2010-lee-geometricTrackingControl" role="doc-biblioref">2010</a>)</span>).</p>
 <ul>
 <li>Given reference trajectory tuple: <span class="math inline">\(\mathbf{r}_d  = (\ddddot{\mathbf{p}}_d(t), \dddot{\mathbf{p}}_d(t), \ddot{\mathbf{p}}_d(t), \dot{\mathbf{p}}_d(t), \mathbf{p}_d(t), \psi_d(t), \dot{\psi}_d(t), \ddot{\psi}_d(t))\)</span> (i.e, desired snap, jerk, acceleration, velocity, position, heading, angular velocity for heading, acceleration for heading)</li>
@@ -477,8 +490,8 @@ Note
 </div>
 </div>
 </section>
-<section id="action-mixing" class="level3" data-number="8.4.2">
-<h3 data-number="8.4.2" class="anchored" data-anchor-id="action-mixing"><span class="header-section-number">8.4.2</span> Action Mixing</h3>
+<section id="action-mixing" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="action-mixing"><span class="header-section-number">9.4.2</span> Action Mixing</h3>
 <!-- Geometric controllers might output actions that are outside the nominal action space $\sU$ (saturation limits). To remedy this, a QP can be used that prefers $\omega$ over $v$ using a tuning parameter $\lambda$:
 
 $$
@@ -490,10 +503,10 @@ $$
 $$ -->
 </section>
 </section>
-<section id="useful-parameters" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">8.5</span> Useful Parameters</h2>
-<section id="crazyflie-21" class="level3" data-number="8.5.1">
-<h3 data-number="8.5.1" class="anchored" data-anchor-id="crazyflie-21"><span class="header-section-number">8.5.1</span> crazyflie-21</h3>
+<section id="useful-parameters" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">9.5</span> Useful Parameters</h2>
+<section id="crazyflie-21" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="crazyflie-21"><span class="header-section-number">9.5.1</span> crazyflie-21</h3>
 <p>Commercially off-the-shelves (Cots) robot: <a href="https://www.bitcraze.io/products/old-products/crazyflie-2-1/">Crazyflie 2.1</a></p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -519,8 +532,17 @@ g &amp;= 9.81 kg / s^2\\
 \end{aligned}
 \]</span></p>
 </section>
-<section id="crazyflie-21plus" class="level3" data-number="8.5.2">
-<h3 data-number="8.5.2" class="anchored" data-anchor-id="crazyflie-21plus"><span class="header-section-number">8.5.2</span> crazyflie-21plus</h3>
+<section id="quad3d_v0" class="level3" data-number="9.5.2">
+<h3 data-number="9.5.2" class="anchored" data-anchor-id="quad3d_v0"><span class="header-section-number">9.5.2</span> quad3d_v0</h3>
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/quad3d_v0.yaml -->
+<p>Identical to “crazyflie-21”, but with additional state space bounds (<span class="citation" data-cites="hoenig2022dbAstar">Hönig, Ortiz-Haro, and Toussaint (<a href="../references.html#ref-hoenig2022dbAstar" role="doc-biblioref">2022</a>)</span>; <span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>):</p>
+<span class="math display">\[\begin{aligned}
+\mathbf{v}\in [-4,4]^3\\
+\boldsymbol{\omega}\in [-8,8]^3
+\end{aligned}\]</span>
+</section>
+<section id="crazyflie-21plus" class="level3" data-number="9.5.3">
+<h3 data-number="9.5.3" class="anchored" data-anchor-id="crazyflie-21plus"><span class="header-section-number">9.5.3</span> crazyflie-21plus</h3>
 <p>Commercially off-the-shelves (Cots) robot: <a href="https://www.bitcraze.io/products/crazyflie-2-1-plus/">Crazyflie 2.1+</a></p>
 <!-- 
 python3 estimate_kw_from_thruststand.py data/cf21plus/data_feb_24_2026_350mah_battery1.csv data/cf21plus/data_feb_24_2026_350mah_battery0.csv data/cf21plus/data_feb_24_2026_250mah_battery0.csv  -->
@@ -548,8 +570,8 @@ g &amp;= 9.81 kg / s^2\\
 \end{aligned}
 \]</span></p>
 </section>
-<section id="crazyflie-21brushless" class="level3" data-number="8.5.3">
-<h3 data-number="8.5.3" class="anchored" data-anchor-id="crazyflie-21brushless"><span class="header-section-number">8.5.3</span> crazyflie-21brushless</h3>
+<section id="crazyflie-21brushless" class="level3" data-number="9.5.4">
+<h3 data-number="9.5.4" class="anchored" data-anchor-id="crazyflie-21brushless"><span class="header-section-number">9.5.4</span> crazyflie-21brushless</h3>
 <p>Commercially off-the-shelves (Cots) robot: <a href="https://www.bitcraze.io/products/crazyflie-2-1-brushless/">Crazyflie 2.1 Brushless</a></p>
 <p>Model see <span class="citation" data-cites="2026-cfbf-model">(<a href="../references.html#ref-2026-cfbf-model" role="doc-biblioref">Gräfe et al. 2026</a>)</span>.</p>
 
@@ -559,13 +581,19 @@ g &amp;= 9.81 kg / s^2\\
 Faessler, Matthias, Antonio Franchi, and Davide Scaramuzza. 2018. <span>“Differential Flatness of Quadrotor Dynamics Subject to Rotor Drag for Accurate Tracking of High-Speed Trajectories.”</span> <em>IEEE Robotics and Automation Letters</em> 3 (2): 620–26. <a href="https://doi.org/10.1109/LRA.2017.2776353">https://doi.org/10.1109/LRA.2017.2776353</a>.
 </div>
 <div id="ref-2026-cfbf-model" class="csl-entry" role="listitem">
-Gräfe, Alexander, Christoph Scherer, Wolfgang Hönig, and Sebastian Trimpe. 2026. <span>“How to Model Your Crazyflie Brushless.”</span> <em>Icra</em>.
+Gräfe, Alexander, Christoph Scherer, Wolfgang Hönig, and Sebastian Trimpe. 2026. <span>“How to Model Your Crazyflie Brushless.”</span> <em>IEEE International Conference on Robotics and Automation (ICRA)</em>.
+</div>
+<div id="ref-hoenig2022dbAstar" class="csl-entry" role="listitem">
+Hönig, Wolfgang, Joaquim Ortiz-Haro, and Marc Toussaint. 2022. <span>“Db-a*: Discontinuity-Bounded Search for Kinodynamic Mobile Robot Motion Planning.”</span> In <em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</em>. <a href="https://doi.org/10.1109/IROS47612.2022.9981577">https://doi.org/10.1109/IROS47612.2022.9981577</a>.
 </div>
 <div id="ref-2010-lee-geometricTrackingControl" class="csl-entry" role="listitem">
 Lee, Taeyoung, Melvin Leok, and N. Harris McClamroch. 2010. <span>“Geometric Tracking Control of a Quadrotor UAV on SE(3).”</span> In <em>IEEE Conference on Decision and Control (CDC)</em>, 5420–25. <a href="https://doi.org/10.1109/CDC.2010.5717652">https://doi.org/10.1109/CDC.2010.5717652</a>.
 </div>
 <div id="ref-mellingerMinimumSnapTrajectory2011" class="csl-entry" role="listitem">
 Mellinger, Daniel, and Vijay Kumar. 2011. <span>“Minimum Snap Trajectory Generation and Control for Quadrotors.”</span> In <em>2011 IEEE International Conference on Robotics and Automation</em>, 2520–25. <a href="https://doi.org/10.1109/ICRA.2011.5980409">https://doi.org/10.1109/ICRA.2011.5980409</a>.
+</div>
+<div id="ref-2024-ortiz-haro-IDbAIterativeSearch" class="csl-entry" role="listitem">
+Ortiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. <span>“iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.”</span> <em>IEEE Transactions on Robotics</em>, 1–19. <a href="https://doi.org/10.1109/TRO.2024.3502505">https://doi.org/10.1109/TRO.2024.3502505</a>.
 </div>
 </div>
 </section>
@@ -975,12 +1003,12 @@ Mellinger, Daniel, and Vijay Kumar. 2011. <span>“Minimum Snap Trajectory Gener
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../2nd_order/multirotor_2d.html" class="pagination-link" aria-label="Multirotor (2D)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../2nd_order/unicycle.html" class="pagination-link" aria-label="Unicycle">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Unicycle</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

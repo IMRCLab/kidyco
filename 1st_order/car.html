@@ -50,7 +50,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../2nd_order/multirotor_1d.html" rel="next">
+<link href="../1st_order/car_with_trailer.html" rel="next">
 <link href="../1st_order/diffdrive.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -196,6 +196,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Car</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../1st_order/car_with_trailer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Car With Trailer</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -210,19 +216,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor_1d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor_2d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../2nd_order/unicycle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Unicycle</span></span></a>
   </div>
 </li>
       </ul>
@@ -382,7 +394,7 @@ window.Quarto = {
 <section id="car1_v0" class="level3" data-number="5.5.1">
 <h3 data-number="5.5.1" class="anchored" data-anchor-id="car1_v0"><span class="header-section-number">5.5.1</span> car1_v0</h3>
 <!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle1_v0.yaml -->
-<p>A basic version proposed at (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>) <span class="math display">\[
+<p>A basic version proposed at (<span class="citation" data-cites="hoenig2022dbAstar">Hönig, Ortiz-Haro, and Toussaint (<a href="../references.html#ref-hoenig2022dbAstar" role="doc-biblioref">2022</a>)</span>; <span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>) <span class="math display">\[
 \begin{aligned}
 L &amp;= 0.25 m\\
 \mathcal{U}&amp;= [-0.1, 0.5] m/s \times [-\pi/3, \pi/3] rad
@@ -391,6 +403,9 @@ L &amp;= 0.25 m\\
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-hoenig2022dbAstar" class="csl-entry" role="listitem">
+Hönig, Wolfgang, Joaquim Ortiz-Haro, and Marc Toussaint. 2022. <span>“Db-a*: Discontinuity-Bounded Search for Kinodynamic Mobile Robot Motion Planning.”</span> In <em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</em>. <a href="https://doi.org/10.1109/IROS47612.2022.9981577">https://doi.org/10.1109/IROS47612.2022.9981577</a>.
+</div>
 <div id="ref-lavallePlanningAlgorithms2006" class="csl-entry" role="listitem">
 LaValle, Steven M. 2006. <em>Planning Algorithms</em>. Cambridge University Press.
 </div>
@@ -809,8 +824,8 @@ Ortiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../2nd_order/multirotor_1d.html" class="pagination-link" aria-label="Multirotor (1D)">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../1st_order/car_with_trailer.html" class="pagination-link" aria-label="Car With Trailer">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Car With Trailer</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
