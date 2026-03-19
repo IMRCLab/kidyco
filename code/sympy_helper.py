@@ -1,7 +1,7 @@
 # See https://stackoverflow.com/questions/49145059/how-to-change-printed-representation-of-functions-derivative-in-sympy
 from sympy.printing.latex import LatexPrinter
 from sympy.core.function import UndefinedFunction
-from sympy import Symbol, Function, latex
+from sympy import Symbol, Function, Eq, latex
 
 class MyLatexPrinter(LatexPrinter):
     """Print derivatives in shorter format.
@@ -43,4 +43,15 @@ class MyLatexPrinter(LatexPrinter):
         
     def show(self, expr):
         print('$$\n%s\n$$\n' % self.doprint(expr))
+
+    def showEq(self, var, expr):
+        print('$$\n{} = {}\n$$\n'.format(var, self.doprint(expr)))
+
+    def showEqArray(self, l):
+        print("\\begin{aligned}\n")
+        for var, expr in l:
+            print("{} &= {}\\\\\n".format(var, self.doprint(expr)))
+        print("\\end{aligned}\n")
+        
+        
 
