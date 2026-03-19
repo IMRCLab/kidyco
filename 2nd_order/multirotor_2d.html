@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Multirotor (2D) – Kinodynamic Compendium</title>
+<title>9&nbsp; Multirotor (2D) – Kinodynamic Compendium</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -112,7 +112,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/multirotor_1d.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/multirotor_2d.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/acrobot.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/multirotor_2d.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -195,26 +195,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../2nd_order/acrobot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Acrobot</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor_1d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor_2d.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multirotor</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/unicycle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Unicycle</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Unicycle</span></span></a>
   </div>
 </li>
       </ul>
@@ -252,20 +258,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#dynamics" id="toc-dynamics" class="nav-link active" data-scroll-target="#dynamics"><span class="header-section-number">8.1</span> Dynamics</a></li>
-  <li><a href="#differential-flatness" id="toc-differential-flatness" class="nav-link" data-scroll-target="#differential-flatness"><span class="header-section-number">8.2</span> Differential Flatness</a></li>
-  <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">8.3</span> Invariance</a></li>
-  <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">8.4</span> Controllers</a></li>
-  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">8.5</span> Useful Parameters</a></li>
+  <li><a href="#dynamics" id="toc-dynamics" class="nav-link active" data-scroll-target="#dynamics"><span class="header-section-number">9.1</span> Dynamics</a></li>
+  <li><a href="#differential-flatness" id="toc-differential-flatness" class="nav-link" data-scroll-target="#differential-flatness"><span class="header-section-number">9.2</span> Differential Flatness</a></li>
+  <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">9.3</span> Invariance</a></li>
+  <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">9.4</span> Controllers</a></li>
+  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">9.5</span> Useful Parameters</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/multirotor_1d.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/multirotor_2d.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/acrobot.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/multirotor_2d.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></h1>
 </div>
 
 
@@ -288,8 +294,8 @@ window.Quarto = {
 <figcaption>Multirotor 2D robot</figcaption>
 </figure>
 </div>
-<section id="dynamics" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="dynamics"><span class="header-section-number">8.1</span> Dynamics</h2>
+<section id="dynamics" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="dynamics"><span class="header-section-number">9.1</span> Dynamics</h2>
 <ul>
 <li>Parameters
 <ul>
@@ -327,8 +333,8 @@ window.Quarto = {
   \]</span></li>
 </ul>
 </section>
-<section id="differential-flatness" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="differential-flatness"><span class="header-section-number">8.2</span> Differential Flatness</h2>
+<section id="differential-flatness" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="differential-flatness"><span class="header-section-number">9.2</span> Differential Flatness</h2>
 <p>Pick <em>flat outputs</em> <span class="math inline">\(\mathbf{z}(t) = (x(t), z(t))^\top\)</span>, i.e., the position of the robot. Then we can compute all necessary variables if <span class="math inline">\(\mathbf{z}(t)\)</span> is at least C4-continuous. <span class="math display">\[
 \begin{aligned}
     \mathbf{x}(t) &amp;= g_x(\mathbf{z}, \dot{\mathbf{z}}, \ddot{\mathbf{z}}, \dddot{\mathbf{z}}) = \ldots\\
@@ -446,14 +452,14 @@ f_{1} = - f_{2} + h_{3}
 </div>
 </div>
 </section>
-<section id="invariance" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="invariance"><span class="header-section-number">8.3</span> Invariance</h2>
+<section id="invariance" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="invariance"><span class="header-section-number">9.3</span> Invariance</h2>
 </section>
-<section id="controllers" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">8.4</span> Controllers</h2>
+<section id="controllers" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">9.4</span> Controllers</h2>
 </section>
-<section id="useful-parameters" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">8.5</span> Useful Parameters</h2>
+<section id="useful-parameters" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">9.5</span> Useful Parameters</h2>
 
 
 </section>
@@ -862,12 +868,12 @@ f_{1} = - f_{2} + h_{3}
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../2nd_order/multirotor_1d.html" class="pagination-link" aria-label="Multirotor (1D)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../2nd_order/multirotor.html" class="pagination-link" aria-label="Multirotor">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multirotor</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

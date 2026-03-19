@@ -340,267 +340,333 @@
     ]
   },
   {
-    "objectID": "2nd_order/multirotor_1d.html",
-    "href": "2nd_order/multirotor_1d.html",
-    "title": "7  Multirotor (1D)",
+    "objectID": "2nd_order/acrobot.html",
+    "href": "2nd_order/acrobot.html",
+    "title": "7  Acrobot",
     "section": "",
     "text": "7.1 Dynamics",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Multirotor (1D)</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Acrobot</span>"
+    ]
+  },
+  {
+    "objectID": "2nd_order/acrobot.html#dynamics",
+    "href": "2nd_order/acrobot.html#dynamics",
+    "title": "7  Acrobot",
+    "section": "",
+    "text": "Parameters\n\n\\(\\mathcal{X}\\): state space\n\\(\\mathcal{U}\\): action space\n\\(l_1\\): length of first link [m]\n\\(m_1\\): mass of first link [kg]\n\\(I_1\\): inertia of first link [kg m^2]\n\\(l_{c1}\\): length to first pivot point [m]\n\\(l_2\\): length of second link [m]\n\\(m_2\\): mass of second link [kg]\n\\(I_2\\): inertia of second link [kg m^2]\n\\(l_{c2}\\): length to second pivot point [m]\n\\(g\\): gravity constant [m/s^2]\n\nState: \\(\\mathbf{x}= \\begin{pmatrix}\\theta_1, \\theta_2, \\dot \\theta_1, \\dot \\theta_2 \\end{pmatrix}^\\top \\in \\mathcal{X}\\subset \\mathbb R^4\\)\n\njoint angles \\((\\theta_1, \\theta_2)^\\top\\) [rad]\nangular velocity \\((\\dot \\theta_1, \\dot \\theta_2)^\\top\\) [rad/s]\n\nAction: \\(\\mathbf{u}= (\\tau) \\in \\mathcal{U}\\)\n\nTorque \\(\\tau\\) [Nm]\n\nDynamics:\nIn standard manipulator equation form: \\[\n  \\mathbf{M}(\\ddot \\theta_1, \\ddot \\theta_2)^\\top + \\mathbf{C}(\\dot \\theta_1, \\dot \\theta_2)^\\top = \\tau_g + \\mathbf{B}\\mathbf{u}\n  \\]\n\\[\\begin{aligned}\n\n  \\mathbf{M}&= \\left[\\begin{matrix}I_{1} + I_{2} + l_{1}^{2} m_{2} + 2 l_{1} l_{c2} m_{2} \\cos{\\left(\\theta_{2} \\right)} & I_{2} + l_{1} l_{c2} m_{2} \\cos{\\left(\\theta_{2} \\right)}\\\\I_{2} + l_{1} l_{c2} m_{2} \\cos{\\left(\\theta_{2} \\right)} & I_{2}\\end{matrix}\\right]\\\\\n\n  \\mathbf{C}&= \\left[\\begin{matrix}- 2 \\dot\\theta_{2} l_{1} l_{c2} m_{2} \\sin{\\left(\\theta_{2} \\right)} & - \\dot\\theta_{2} l_{1} l_{c2} m_{2} \\sin{\\left(\\theta_{2} \\right)}\\\\\\dot\\theta_{1} l_{1} l_{c2} m_{2} \\sin{\\left(\\theta_{2} \\right)} & 0\\end{matrix}\\right]\\\\\n\n  \\tau_g &= \\left[\\begin{matrix}- g l_{c1} m_{1} \\sin{\\left(\\theta_{1} \\right)} - g m_{2} \\left(l_{1} \\sin{\\left(\\theta_{1} \\right)} + l_{c2} \\sin{\\left(\\theta_{1} + \\theta_{2} \\right)}\\right)\\\\- g l_{c2} m_{2} \\sin{\\left(\\theta_{1} + \\theta_{2} \\right)}\\end{matrix}\\right]\\\\\n\n  \\mathbf{B}&= \\left[\\begin{matrix}0\\\\1\\end{matrix}\\right]\\\\\n\n  \\end{aligned}\\]\nExplicit expressions for \\(\\ddot \\theta_1, \\ddot \\theta_2\\) are:\n\\[\n  (\\ddot \\theta_1, \\ddot \\theta_2)^\\top = \\left[\\begin{matrix}\\frac{I_{2} \\left(2 \\dot\\theta_{1} \\dot\\theta_{2} l_{1} l_{c2} m_{2} \\sin{\\left(\\theta_{2} \\right)} + \\dot\\theta_{2}^{2} l_{1} l_{c2} m_{2} \\sin{\\left(\\theta_{2} \\right)} - g l_{c1} m_{1} \\sin{\\left(\\theta_{1} \\right)} - g m_{2} \\left(l_{1} \\sin{\\left(\\theta_{1} \\right)} + l_{c2} \\sin{\\left(\\theta_{1} + \\theta_{2} \\right)}\\right)\\right) + \\left(I_{2} + l_{1} l_{c2} m_{2} \\cos{\\left(\\theta_{2} \\right)}\\right) \\left(\\dot\\theta_{1}^{2} l_{1} l_{c2} m_{2} \\sin{\\left(\\theta_{2} \\right)} + g l_{c2} m_{2} \\sin{\\left(\\theta_{1} + \\theta_{2} \\right)} - \\tau\\right)}{I_{1} I_{2} + I_{2} l_{1}^{2} m_{2} - l_{1}^{2} l_{c2}^{2} m_{2}^{2} \\cos^{2}{\\left(\\theta_{2} \\right)}}\\\\\\frac{- \\left(I_{2} + l_{1} l_{c2} m_{2} \\cos{\\left(\\theta_{2} \\right)}\\right) \\left(2 \\dot\\theta_{1} \\dot\\theta_{2} l_{1} l_{c2} m_{2} \\sin{\\left(\\theta_{2} \\right)} + \\dot\\theta_{2}^{2} l_{1} l_{c2} m_{2} \\sin{\\left(\\theta_{2} \\right)} - g l_{c1} m_{1} \\sin{\\left(\\theta_{1} \\right)} - g m_{2} \\left(l_{1} \\sin{\\left(\\theta_{1} \\right)} + l_{c2} \\sin{\\left(\\theta_{1} + \\theta_{2} \\right)}\\right)\\right) - \\left(\\dot\\theta_{1}^{2} l_{1} l_{c2} m_{2} \\sin{\\left(\\theta_{2} \\right)} + g l_{c2} m_{2} \\sin{\\left(\\theta_{1} + \\theta_{2} \\right)} - \\tau\\right) \\left(I_{1} + I_{2} + l_{1}^{2} m_{2} + 2 l_{1} l_{c2} m_{2} \\cos{\\left(\\theta_{2} \\right)}\\right)}{I_{1} I_{2} + I_{2} l_{1}^{2} m_{2} - l_{1}^{2} l_{c2}^{2} m_{2}^{2} \\cos^{2}{\\left(\\theta_{2} \\right)}}\\end{matrix}\\right]\n  \\]",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Acrobot</span>"
+    ]
+  },
+  {
+    "objectID": "2nd_order/acrobot.html#differential-flatness",
+    "href": "2nd_order/acrobot.html#differential-flatness",
+    "title": "7  Acrobot",
+    "section": "7.2 Differential Flatness",
+    "text": "7.2 Differential Flatness",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Acrobot</span>"
+    ]
+  },
+  {
+    "objectID": "2nd_order/acrobot.html#invariance",
+    "href": "2nd_order/acrobot.html#invariance",
+    "title": "7  Acrobot",
+    "section": "7.3 Invariance",
+    "text": "7.3 Invariance",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Acrobot</span>"
+    ]
+  },
+  {
+    "objectID": "2nd_order/acrobot.html#controllers",
+    "href": "2nd_order/acrobot.html#controllers",
+    "title": "7  Acrobot",
+    "section": "7.4 Controllers",
+    "text": "7.4 Controllers\n\n7.4.1 Geometric Controller\n\n\n7.4.2 Action Mixing",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Acrobot</span>"
+    ]
+  },
+  {
+    "objectID": "2nd_order/acrobot.html#useful-parameters",
+    "href": "2nd_order/acrobot.html#useful-parameters",
+    "title": "7  Acrobot",
+    "section": "7.5 Useful Parameters",
+    "text": "7.5 Useful Parameters\n\n7.5.1 acrobot_v0\n\nA basic version based on (Tedrake 2024) proposed at (Ortiz-Haro et al. (2024)) \\[\n\\begin{aligned}\nl_1 &= 1\\\\\nm_1 &= 1\\\\\nI_1 &= 0.33333\\\\\nl_{c1} &= 0.5\\\\\nl_2 &= 1\\\\\nm_2 &= 1\\\\\nI_2 &= 0.33333\\\\\nl_{c2} &= 0.5\\\\\ng &= 9.81\\\\\n\\dot \\theta_1 &\\in [-8, 8]\\\\\n\\dot \\theta_2 &\\in [-8, 8]\\\\\n\\mathcal{U}&\\in [-10, 10]\n\\end{aligned}\n\\]\n\n\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. “iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.” IEEE Transactions on Robotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.\n\n\nTedrake, Russ. 2024. “Underactuated Robotics.” 2024. https://underactuated.csail.mit.edu.",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Acrobot</span>"
+    ]
+  },
+  {
+    "objectID": "2nd_order/multirotor_1d.html",
+    "href": "2nd_order/multirotor_1d.html",
+    "title": "8  Multirotor (1D)",
+    "section": "",
+    "text": "8.1 Dynamics",
+    "crumbs": [
+      "Second Order Systems",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (1D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor_1d.html#dynamics",
     "href": "2nd_order/multirotor_1d.html#dynamics",
-    "title": "7  Multirotor (1D)",
+    "title": "8  Multirotor (1D)",
     "section": "",
     "text": "Parameters\n\nstate space \\(\\mathcal{X}\\)\naction space \\(\\mathcal{U}\\)\nmass \\(m\\) [kg]\ngravity \\(g\\) [\\(m/s^2\\)]\n\nState: \\(\\mathbf{x}= \\begin{pmatrix}z, \\dot z\\end{pmatrix}^\\top \\in \\mathcal{X}\\) [m, m/s] (height and vertical velocity of the robot in the world frame)\nAction: \\(\\mathbf{u}= \\begin{pmatrix} f_1 \\end{pmatrix}^\\top \\in \\mathcal{U}\\) [N] (upward thrust)\nDynamics: \\[\n      \\begin{aligned}\n      \\mathbf{\\dot x} = f(\\mathbf x, \\mathbf u) = \\begin{pmatrix} \\dot z\\\\ \\frac{f_1}{m} - g \\end{pmatrix}\n      \\end{aligned}\n  \\]",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Multirotor (1D)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (1D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor_1d.html#differential-flatness",
     "href": "2nd_order/multirotor_1d.html#differential-flatness",
-    "title": "7  Multirotor (1D)",
-    "section": "7.2 Differential Flatness",
-    "text": "7.2 Differential Flatness\nPick flat outputs \\(\\mathbf{z}(t) = (z(t))^\\top\\), i.e., the position of the robot. Then we can compute all necessary variables if \\(\\mathbf{z}(t)\\) is at least C2-continuous. \\[\n\\begin{aligned}\n        \\mathbf{x}(t) &= g_x(\\mathbf{z}, \\dot{\\mathbf{z}}) = \\left(z, \\dot z \\right)\\\\\n        \\mathbf{u}(t) &= g_u(\\ddot{\\mathbf{z}}) = \\left( m ( \\ddot z + g ) \\right)\n      \\end{aligned}\n\\]\n\n\n\n\n\n\nNoteDerivation\n\n\n\n\n\nFollows directly from the dynamics.",
+    "title": "8  Multirotor (1D)",
+    "section": "8.2 Differential Flatness",
+    "text": "8.2 Differential Flatness\nPick flat outputs \\(\\mathbf{z}(t) = (z(t))^\\top\\), i.e., the position of the robot. Then we can compute all necessary variables if \\(\\mathbf{z}(t)\\) is at least C2-continuous. \\[\n\\begin{aligned}\n        \\mathbf{x}(t) &= g_x(\\mathbf{z}, \\dot{\\mathbf{z}}) = \\left(z, \\dot z \\right)\\\\\n        \\mathbf{u}(t) &= g_u(\\ddot{\\mathbf{z}}) = \\left( m ( \\ddot z + g ) \\right)\n      \\end{aligned}\n\\]\n\n\n\n\n\n\nNoteDerivation\n\n\n\n\n\nFollows directly from the dynamics.",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Multirotor (1D)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (1D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor_1d.html#invariance",
     "href": "2nd_order/multirotor_1d.html#invariance",
-    "title": "7  Multirotor (1D)",
-    "section": "7.3 Invariance",
-    "text": "7.3 Invariance",
+    "title": "8  Multirotor (1D)",
+    "section": "8.3 Invariance",
+    "text": "8.3 Invariance",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Multirotor (1D)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (1D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor_1d.html#controllers",
     "href": "2nd_order/multirotor_1d.html#controllers",
-    "title": "7  Multirotor (1D)",
-    "section": "7.4 Controllers",
-    "text": "7.4 Controllers",
+    "title": "8  Multirotor (1D)",
+    "section": "8.4 Controllers",
+    "text": "8.4 Controllers",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Multirotor (1D)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (1D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor_1d.html#useful-parameters",
     "href": "2nd_order/multirotor_1d.html#useful-parameters",
-    "title": "7  Multirotor (1D)",
-    "section": "7.5 Useful Parameters",
-    "text": "7.5 Useful Parameters",
+    "title": "8  Multirotor (1D)",
+    "section": "8.5 Useful Parameters",
+    "text": "8.5 Useful Parameters",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Multirotor (1D)</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (1D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor_2d.html",
     "href": "2nd_order/multirotor_2d.html",
-    "title": "8  Multirotor (2D)",
+    "title": "9  Multirotor (2D)",
     "section": "",
-    "text": "8.1 Dynamics",
+    "text": "9.1 Dynamics",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (2D)</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor (2D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor_2d.html#dynamics",
     "href": "2nd_order/multirotor_2d.html#dynamics",
-    "title": "8  Multirotor (2D)",
+    "title": "9  Multirotor (2D)",
     "section": "",
     "text": "Parameters\n\nstate space \\(\\mathcal{X}\\in \\mathbb R^4 \\times SO(2) \\times \\mathbb R\\)\naction space \\(\\mathcal{U}\\in \\mathbb R^2\\)\nmass \\(m \\in \\mathbb R^+\\) [kg]\nArm length \\(l \\in \\mathbb R^+\\) [m]\ninertia \\(\\mathbf J_{yy}  \\in \\mathbb R^+\\) [\\(kg\\cdot m^2\\)]\ngravity \\(g \\in \\mathbb R\\) [\\(m/s^2\\)]\n\nState: \\(\\mathbf{x}= \\begin{pmatrix}x, \\dot x, z, \\dot z, \\theta, \\dot \\theta\\end{pmatrix}^\\top \\in \\mathcal{X}\\)\n\nposition \\(x \\in \\mathbb R\\) [m]\nheight \\(z \\in \\mathbb R\\) [m]\nvelocities \\(\\dot x \\in \\mathbb R\\), \\(\\dot z \\in \\mathbb R\\) [m/s]\nrotation around \\(x\\)-axis \\(\\theta \\in SO(2)\\) [rad]\nangular velocity \\(\\dot \\theta \\in \\mathbb R\\) [rad/s]\n\nAction: \\(\\mathbf{u}= \\begin{pmatrix} f_1, f_2 \\end{pmatrix}^\\top \\in \\mathcal{U}\\)\n\nthrust left \\(f_1 \\in \\mathbb R^+\\) [N]\nthrust right \\(f_2 \\in \\mathbb R^+\\) [N]\n\nDynamics: \\[\n      \\begin{aligned}\n      \\mathbf{\\dot x} = f(\\mathbf x, \\mathbf u) = \\begin{pmatrix}\n      \\dot x\\\\\n      \\frac{-(f_1 + f_2) \\sin \\theta}{m}\\\\\n      \\dot z\\\\\n      \\frac{(f_1 + f_2) \\cos \\theta}{m} - g\\\\\n      \\dot \\theta\\\\\n      \\frac{(f_2 - f_1) l}{\\mathbf J_{yy}}\n      \\end{pmatrix}\n      \\end{aligned}\n  \\]",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (2D)</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor (2D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor_2d.html#differential-flatness",
     "href": "2nd_order/multirotor_2d.html#differential-flatness",
-    "title": "8  Multirotor (2D)",
-    "section": "8.2 Differential Flatness",
-    "text": "8.2 Differential Flatness\nPick flat outputs \\(\\mathbf{z}(t) = (x(t), z(t))^\\top\\), i.e., the position of the robot. Then we can compute all necessary variables if \\(\\mathbf{z}(t)\\) is at least C4-continuous. \\[\n\\begin{aligned}\n    \\mathbf{x}(t) &= g_x(\\mathbf{z}, \\dot{\\mathbf{z}}, \\ddot{\\mathbf{z}}, \\dddot{\\mathbf{z}}) = \\ldots\\\\\n    \\mathbf{u}(t) &= g_u(\\ddot{\\mathbf{z}}, \\dddot{\\mathbf{z}}, \\ddddot{\\mathbf{z}}) = \\ldots,\n\\end{aligned}\n\\] See derivation below for the exact expressions needed.\n\n\n\n\n\n\nNoteDerivation\n\n\n\n\n\n\n\\(\\theta\\)\n\nFrom the dynamics we have: \\[\n\\ddot{x} = \\frac{\\left(- f_{1} - f_{2}\\right) \\sin{\\left(\\theta \\right)}}{m}\n\\]\n\\[\n\\ddot{z} = - g + \\frac{\\left(f_{1} + f_{2}\\right) \\cos{\\left(\\theta \\right)}}{m}\n\\]\nSolving for sum of forces and rearranging: \\[\n- \\frac{m \\ddot{x}}{\\sin{\\left(\\theta \\right)}} = \\frac{m \\left(g + \\ddot{z}\\right)}{\\cos{\\left(\\theta \\right)}}\n\\]\nDividing and solving for \\(\\theta\\): \\[\n\\theta = - \\operatorname{atan}{\\left(\\frac{\\ddot{x}}{h_{1}} \\right)}\n\\]\nwhere: \\[\nh_{1} = g + \\ddot{z}\n\\]\n\n\\(\\dot \\theta\\)\n\nTake time derivative of \\(\\theta\\) from step 1 to obtain: \\[\n\\dot{\\theta} = \\frac{- h_{1} \\dddot{x} + \\dot{h_{1}} \\ddot{x}}{h_{1}^{2} + \\ddot{x}^{2}}\n\\]\n\n\\(f_1, f_2\\)\n\nTake time derivative of \\(\\dot \\theta\\) from step 2 to obtain: \\[\n\\ddot{\\theta} = \\frac{2 \\left(h_{1} \\dddot{x} - \\dot{h_{1}} \\ddot{x}\\right)^{2} \\ddot{x} + \\left(2 \\dot{h_{1}} \\dddot{x} + \\ddot{h_{1}} \\ddot{x}\\right) h_{1} h_{2} - h_{1}^{2} h_{2} \\ddddot{x} - 2 h_{2} \\dot{h_{1}}^{2} \\ddot{x}}{h_{1} h_{2}^{2}}\n\\]\nwhere \\[\nh_{2} = h_{1}^{2} + \\ddot{x}^{2}\n\\]\n\\[\n\\dot{h_{1}} = \\dddot{z}\n\\]\n\\[\n\\ddot{h_{1}} = \\ddddot{z}\n\\]\nFrom the dynamics we have: \\[\n\\ddot{x} = \\frac{\\left(- f_{1} - f_{2}\\right) \\sin{\\left(\\theta \\right)}}{m}\n\\]\n\\[\nf_{1} + f_{2} = - \\frac{m \\ddot{x}}{\\sin{\\left(\\theta \\right)}}\n\\]\nSubstituting \\(\\theta\\) from step 1 \\[\nh_{3} = m \\sqrt{1 + \\frac{\\ddot{x}^{2}}{h_{1}^{2}}} h_{1}\n\\]\nFrom the dynamics we have: \\[\n\\ddot{\\theta} = \\frac{l \\left(- f_{1} + f_{2}\\right)}{J_{yy}}\n\\]\n\\[\n- f_{1} + f_{2} = \\frac{J_{yy} \\ddot{\\theta}}{l}\n\\]\nAdding the two \\[\nf_{2} = \\frac{J_{yy} \\ddot{\\theta}}{2 l} + \\frac{h_{3}}{2}\n\\]\n\\[\nf_{1} = - f_{2} + h_{3}\n\\]",
+    "title": "9  Multirotor (2D)",
+    "section": "9.2 Differential Flatness",
+    "text": "9.2 Differential Flatness\nPick flat outputs \\(\\mathbf{z}(t) = (x(t), z(t))^\\top\\), i.e., the position of the robot. Then we can compute all necessary variables if \\(\\mathbf{z}(t)\\) is at least C4-continuous. \\[\n\\begin{aligned}\n    \\mathbf{x}(t) &= g_x(\\mathbf{z}, \\dot{\\mathbf{z}}, \\ddot{\\mathbf{z}}, \\dddot{\\mathbf{z}}) = \\ldots\\\\\n    \\mathbf{u}(t) &= g_u(\\ddot{\\mathbf{z}}, \\dddot{\\mathbf{z}}, \\ddddot{\\mathbf{z}}) = \\ldots,\n\\end{aligned}\n\\] See derivation below for the exact expressions needed.\n\n\n\n\n\n\nNoteDerivation\n\n\n\n\n\n\n\\(\\theta\\)\n\nFrom the dynamics we have: \\[\n\\ddot{x} = \\frac{\\left(- f_{1} - f_{2}\\right) \\sin{\\left(\\theta \\right)}}{m}\n\\]\n\\[\n\\ddot{z} = - g + \\frac{\\left(f_{1} + f_{2}\\right) \\cos{\\left(\\theta \\right)}}{m}\n\\]\nSolving for sum of forces and rearranging: \\[\n- \\frac{m \\ddot{x}}{\\sin{\\left(\\theta \\right)}} = \\frac{m \\left(g + \\ddot{z}\\right)}{\\cos{\\left(\\theta \\right)}}\n\\]\nDividing and solving for \\(\\theta\\): \\[\n\\theta = - \\operatorname{atan}{\\left(\\frac{\\ddot{x}}{h_{1}} \\right)}\n\\]\nwhere: \\[\nh_{1} = g + \\ddot{z}\n\\]\n\n\\(\\dot \\theta\\)\n\nTake time derivative of \\(\\theta\\) from step 1 to obtain: \\[\n\\dot{\\theta} = \\frac{- h_{1} \\dddot{x} + \\dot{h_{1}} \\ddot{x}}{h_{1}^{2} + \\ddot{x}^{2}}\n\\]\n\n\\(f_1, f_2\\)\n\nTake time derivative of \\(\\dot \\theta\\) from step 2 to obtain: \\[\n\\ddot{\\theta} = \\frac{2 \\left(h_{1} \\dddot{x} - \\dot{h_{1}} \\ddot{x}\\right)^{2} \\ddot{x} + \\left(2 \\dot{h_{1}} \\dddot{x} + \\ddot{h_{1}} \\ddot{x}\\right) h_{1} h_{2} - h_{1}^{2} h_{2} \\ddddot{x} - 2 h_{2} \\dot{h_{1}}^{2} \\ddot{x}}{h_{1} h_{2}^{2}}\n\\]\nwhere \\[\nh_{2} = h_{1}^{2} + \\ddot{x}^{2}\n\\]\n\\[\n\\dot{h_{1}} = \\dddot{z}\n\\]\n\\[\n\\ddot{h_{1}} = \\ddddot{z}\n\\]\nFrom the dynamics we have: \\[\n\\ddot{x} = \\frac{\\left(- f_{1} - f_{2}\\right) \\sin{\\left(\\theta \\right)}}{m}\n\\]\n\\[\nf_{1} + f_{2} = - \\frac{m \\ddot{x}}{\\sin{\\left(\\theta \\right)}}\n\\]\nSubstituting \\(\\theta\\) from step 1 \\[\nh_{3} = m \\sqrt{1 + \\frac{\\ddot{x}^{2}}{h_{1}^{2}}} h_{1}\n\\]\nFrom the dynamics we have: \\[\n\\ddot{\\theta} = \\frac{l \\left(- f_{1} + f_{2}\\right)}{J_{yy}}\n\\]\n\\[\n- f_{1} + f_{2} = \\frac{J_{yy} \\ddot{\\theta}}{l}\n\\]\nAdding the two \\[\nf_{2} = \\frac{J_{yy} \\ddot{\\theta}}{2 l} + \\frac{h_{3}}{2}\n\\]\n\\[\nf_{1} = - f_{2} + h_{3}\n\\]",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (2D)</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor (2D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor_2d.html#invariance",
     "href": "2nd_order/multirotor_2d.html#invariance",
-    "title": "8  Multirotor (2D)",
-    "section": "8.3 Invariance",
-    "text": "8.3 Invariance",
+    "title": "9  Multirotor (2D)",
+    "section": "9.3 Invariance",
+    "text": "9.3 Invariance",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (2D)</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor (2D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor_2d.html#controllers",
     "href": "2nd_order/multirotor_2d.html#controllers",
-    "title": "8  Multirotor (2D)",
-    "section": "8.4 Controllers",
-    "text": "8.4 Controllers",
+    "title": "9  Multirotor (2D)",
+    "section": "9.4 Controllers",
+    "text": "9.4 Controllers",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (2D)</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor (2D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor_2d.html#useful-parameters",
     "href": "2nd_order/multirotor_2d.html#useful-parameters",
-    "title": "8  Multirotor (2D)",
-    "section": "8.5 Useful Parameters",
-    "text": "8.5 Useful Parameters",
+    "title": "9  Multirotor (2D)",
+    "section": "9.5 Useful Parameters",
+    "text": "9.5 Useful Parameters",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Multirotor (2D)</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor (2D)</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor.html",
     "href": "2nd_order/multirotor.html",
-    "title": "9  Multirotor",
+    "title": "10  Multirotor",
     "section": "",
-    "text": "9.1 Dynamics",
+    "text": "10.1 Dynamics",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multirotor</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor.html#dynamics",
     "href": "2nd_order/multirotor.html#dynamics",
-    "title": "9  Multirotor",
+    "title": "10  Multirotor",
     "section": "",
-    "text": "Parameters\n\nstate space \\(\\mathcal{X}\\)\naction space \\(\\mathcal{U}\\)\nnumber of rotors \\(N\\)\nmass \\(m\\) [kg]\nactuation matrix \\(\\mathbf{B}\\in \\mathbb R^{4\\times N}\\)\ninertia matrix \\(\\mathbf{J}\\in \\mathbb R^{3\\times 3}\\) [\\(kg\\cdot m^2\\)]\ngravity constant \\(g\\) [\\(m/s^2\\)]\n\nState: \\(\\mathbf{x}= (\\mathbf{p}, \\mathbf{v}, \\mathbf{R}, \\boldsymbol{\\omega})^\\top \\in \\mathbb R^3 \\times \\mathbb R^3 \\times SO(3) \\times \\mathbb R^3\\)\n\nPosition \\(\\mathbf{p}= (x,y,z)^\\top\\) [m, global frame]\nVelocity \\(\\mathbf{v}= (\\dot x, \\dot y, \\dot z)^\\top\\) [m/s, global frame]\nOrientation \\(\\mathbf{R}\\) [attitude rotation matrix]\nAngular velocity \\(\\boldsymbol{\\omega}= (\\omega_x, \\omega_y, \\omega_z)^\\top\\) [rad/s, body frame]\n\nAction: \\(\\mathbf{u}= (\\omega_1, \\ldots, \\omega_N)^\\top \\in \\mathbb R^N\\)\n\nAngular velocity of each rotor \\(\\omega_i\\) [rad/s]\n\n\n\n9.1.1 Basic Rotation Matrix Formulation\n\\[\n\\begin{aligned}\n    \\dot{\\mathbf{p}} &= \\mathbf{v}\\\\\n    m \\dot{\\mathbf{v}} &= f \\mathbf{R}\\mathbf{e}_z - m g \\mathbf{e}_z\\\\\n    \\dot{\\mathbf{R}} &= \\mathbf{R}\\hat{\\boldsymbol{\\omega}} \\\\\n    \\mathbf{J}\\dot{\\boldsymbol{\\omega}} &= \\mathbf{J}\\boldsymbol{\\omega}\\times \\boldsymbol{\\omega}+ \\boldsymbol{\\tau}_u\\\\\n    (f, \\boldsymbol{\\tau}_u)^\\top &= \\mathbf{B}(\\omega_1^2, \\ldots, \\omega_N^2)^\\top\n\\end{aligned}\n\\] where \\(\\mathbf{e}_z = (0,0,1)^\\top\\) and \\(\\hat{\\boldsymbol{\\omega}}\\) is defined in Equation A.9.\n\n\n\n\n\n\nNote\n\n\n\nWhen integrating, \\(\\mathbf{R}\\) has to preserve the properties of a rotation matrix.\n\n\n\n\n9.1.2 Basic Quaternion Formulation\nThe state becomes \\(\\mathbf{x}= (\\mathbf{p}, \\mathbf{v}, \\mathbf{q}, \\boldsymbol{\\omega})^\\top \\in \\mathbb R^3 \\times \\mathbb R^3 \\times SO(3) \\times \\mathbb R^3\\)\n\\[\n\\begin{aligned}\n    \\dot{\\mathbf{p}} &= \\mathbf{v}\\\\\n    m \\dot{\\mathbf{v}} &= \\mathbf{q} \\odot (0, 0, f)^\\top - m g \\mathbf{e}_z\\\\\n    \\dot{\\mathbf{q}} &= \\frac{1}{2} \\mathbf{q}\\otimes  \\overline{\\boldsymbol{\\omega}} \\\\\n    \\mathbf{J}\\dot{\\boldsymbol{\\omega}} &= \\mathbf{J}\\boldsymbol{\\omega}\\times \\boldsymbol{\\omega}+ \\boldsymbol{\\tau}_u\\\\\n    (f, \\boldsymbol{\\tau}_u)^\\top &= \\mathbf{B}(\\omega_1^2, \\ldots, \\omega_N^2)^\\top\n\\end{aligned}\n\\] where \\(\\mathbf{q}\\) is a unit quaternion, \\(\\overline{\\boldsymbol{\\omega}}\\) is defined in Equation A.3, \\(\\otimes\\) is defined in Equation A.7, and \\(\\odot\\) is defined in Equation A.8.\n\n\n\n\n\n\nNote\n\n\n\nWhen integrating, \\(\\mathbf{q}\\) has to preserve the property of a unit quaternion (or an integration method that preservers this has to be used, see Section A.1.7).",
+    "text": "Parameters\n\nstate space \\(\\mathcal{X}\\)\naction space \\(\\mathcal{U}\\)\nnumber of rotors \\(N\\)\nmass \\(m\\) [kg]\nactuation matrix \\(\\mathbf{B}\\in \\mathbb R^{4\\times N}\\)\ninertia matrix \\(\\mathbf{J}\\in \\mathbb R^{3\\times 3}\\) [\\(kg\\cdot m^2\\)]\ngravity constant \\(g\\) [\\(m/s^2\\)]\n\nState: \\(\\mathbf{x}= (\\mathbf{p}, \\mathbf{v}, \\mathbf{R}, \\boldsymbol{\\omega})^\\top \\in \\mathbb R^3 \\times \\mathbb R^3 \\times SO(3) \\times \\mathbb R^3\\)\n\nPosition \\(\\mathbf{p}= (x,y,z)^\\top\\) [m, global frame]\nVelocity \\(\\mathbf{v}= (\\dot x, \\dot y, \\dot z)^\\top\\) [m/s, global frame]\nOrientation \\(\\mathbf{R}\\) [attitude rotation matrix]\nAngular velocity \\(\\boldsymbol{\\omega}= (\\omega_x, \\omega_y, \\omega_z)^\\top\\) [rad/s, body frame]\n\nAction: \\(\\mathbf{u}= (\\omega_1, \\ldots, \\omega_N)^\\top \\in \\mathbb R^N\\)\n\nAngular velocity of each rotor \\(\\omega_i\\) [rad/s]\n\n\n\n10.1.1 Basic Rotation Matrix Formulation\n\\[\n\\begin{aligned}\n    \\dot{\\mathbf{p}} &= \\mathbf{v}\\\\\n    m \\dot{\\mathbf{v}} &= f \\mathbf{R}\\mathbf{e}_z - m g \\mathbf{e}_z\\\\\n    \\dot{\\mathbf{R}} &= \\mathbf{R}\\hat{\\boldsymbol{\\omega}} \\\\\n    \\mathbf{J}\\dot{\\boldsymbol{\\omega}} &= \\mathbf{J}\\boldsymbol{\\omega}\\times \\boldsymbol{\\omega}+ \\boldsymbol{\\tau}_u\\\\\n    (f, \\boldsymbol{\\tau}_u)^\\top &= \\mathbf{B}(\\omega_1^2, \\ldots, \\omega_N^2)^\\top\n\\end{aligned}\n\\] where \\(\\mathbf{e}_z = (0,0,1)^\\top\\) and \\(\\hat{\\boldsymbol{\\omega}}\\) is defined in Equation A.9.\n\n\n\n\n\n\nNote\n\n\n\nWhen integrating, \\(\\mathbf{R}\\) has to preserve the properties of a rotation matrix.\n\n\n\n\n10.1.2 Basic Quaternion Formulation\nThe state becomes \\(\\mathbf{x}= (\\mathbf{p}, \\mathbf{v}, \\mathbf{q}, \\boldsymbol{\\omega})^\\top \\in \\mathbb R^3 \\times \\mathbb R^3 \\times SO(3) \\times \\mathbb R^3\\)\n\\[\n\\begin{aligned}\n    \\dot{\\mathbf{p}} &= \\mathbf{v}\\\\\n    m \\dot{\\mathbf{v}} &= \\mathbf{q} \\odot (0, 0, f)^\\top - m g \\mathbf{e}_z\\\\\n    \\dot{\\mathbf{q}} &= \\frac{1}{2} \\mathbf{q}\\otimes  \\overline{\\boldsymbol{\\omega}} \\\\\n    \\mathbf{J}\\dot{\\boldsymbol{\\omega}} &= \\mathbf{J}\\boldsymbol{\\omega}\\times \\boldsymbol{\\omega}+ \\boldsymbol{\\tau}_u\\\\\n    (f, \\boldsymbol{\\tau}_u)^\\top &= \\mathbf{B}(\\omega_1^2, \\ldots, \\omega_N^2)^\\top\n\\end{aligned}\n\\] where \\(\\mathbf{q}\\) is a unit quaternion, \\(\\overline{\\boldsymbol{\\omega}}\\) is defined in Equation A.3, \\(\\otimes\\) is defined in Equation A.7, and \\(\\odot\\) is defined in Equation A.8.\n\n\n\n\n\n\nNote\n\n\n\nWhen integrating, \\(\\mathbf{q}\\) has to preserve the property of a unit quaternion (or an integration method that preservers this has to be used, see Section A.1.7).",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multirotor</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor.html#differential-flatness",
     "href": "2nd_order/multirotor.html#differential-flatness",
-    "title": "9  Multirotor",
-    "section": "9.2 Differential Flatness",
-    "text": "9.2 Differential Flatness\nDetails are in (Faessler, Franchi, and Scaramuzza 2018) (Appendix A).\n\n\n\n\n\n\n\nNoteDerivation",
+    "title": "10  Multirotor",
+    "section": "10.2 Differential Flatness",
+    "text": "10.2 Differential Flatness\nDetails are in (Faessler, Franchi, and Scaramuzza 2018) (Appendix A).\n\n\n\n\n\n\n\nNoteDerivation",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multirotor</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor.html#invariance",
     "href": "2nd_order/multirotor.html#invariance",
-    "title": "9  Multirotor",
-    "section": "9.3 Invariance",
-    "text": "9.3 Invariance\nThe dynamics are translation-invariant.",
+    "title": "10  Multirotor",
+    "section": "10.3 Invariance",
+    "text": "10.3 Invariance\nThe dynamics are translation-invariant.",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multirotor</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor.html#controllers",
     "href": "2nd_order/multirotor.html#controllers",
-    "title": "9  Multirotor",
-    "section": "9.4 Controllers",
-    "text": "9.4 Controllers\n\n9.4.1 Geometric Controller\nThis controller was proposed in (Lee, Leok, and McClamroch (2010)).\n\nGiven reference trajectory tuple: \\(\\mathbf{r}_d  = (\\ddddot{\\mathbf{p}}_d(t), \\dddot{\\mathbf{p}}_d(t), \\ddot{\\mathbf{p}}_d(t), \\dot{\\mathbf{p}}_d(t), \\mathbf{p}_d(t), \\psi_d(t), \\dot{\\psi}_d(t), \\ddot{\\psi}_d(t))\\) (i.e, desired snap, jerk, acceleration, velocity, position, heading, angular velocity for heading, acceleration for heading)\n\\(\\mathbf{K}_p, \\mathbf{K}_v, \\mathbf{K}_R, \\mathbf{K}_\\omega \\in\\mathbb R^{3\\times 3}\\) are tuning matrices (typically only positive diagonal entries, so 12 parameters)\nControl law: \\[\\begin{aligned}\n\\mathbf{e}_p &= \\mathbf{p}_d - \\mathbf{p}\\\\\n\\mathbf{e}_v &= \\dot{\\mathbf{p}}_d - \\dot{\\mathbf{p}}\\\\\n\\mathbf{e}_R &= \\frac{1}{2} \\left( \\mathbf{R}^\\top_d \\mathbf{R}- \\mathbf{R}^\\top \\mathbf{R}_d \\right)^\\vee\\\\\n\\mathbf{e}_\\omega &= \\boldsymbol{\\omega}- \\mathbf{R}^\\top \\mathbf{R}_d \\boldsymbol{\\omega}_d\\\\\nf &=  m(\\ddot{\\mathbf{p}}_d + \\mathbf{K}_p \\mathbf{e}_p + \\mathbf{K}_v \\mathbf{e}_v + g \\mathbf{e}_z) \\cdot \\mathbf{R}\\mathbf{e}_z\\\\\n\\boldsymbol{\\tau}_u &= -\\mathbf{K}_R \\mathbf{e}_R - \\mathbf{K}_\\omega \\mathbf{e}_\\omega + \\boldsymbol{\\omega}\\times \\mathbf{J}\\boldsymbol{\\omega}- \\mathbf{J}(\\hat{\\boldsymbol{\\omega}} \\mathbf{R}^\\top \\mathbf{R}_d \\boldsymbol{\\omega}_d - \\mathbf{R}^\\top \\mathbf{R}_d \\dot{\\boldsymbol{\\omega}}_d)\\\\\n(\\omega_1^2, \\ldots, \\omega_N^2)^\\top &= \\mathbf{B}^{-1} (f, \\boldsymbol{\\tau}_u)^\\top \\text{(or solving a QP, see also action mixing below.)}\n\\end{aligned}\n\\] where \\((\\cdot)^\\vee\\) is defined below Equation A.9.\n\nThe additional reference signals \\(\\mathbf{R}_d\\), \\(\\boldsymbol{\\omega}_d\\), and \\(\\dot{\\boldsymbol{\\omega}}_d\\) can be computed via differential flatness as follows:\n\\[\n\\begin{aligned}\n\\mathbf{x}_{c_d} &= \\begin{bmatrix} \\cos(\\psi_d) & \\sin(\\psi_d) & 0\\end{bmatrix}^\\top &\n\\mathbf{y}_{c_d} &= \\begin{bmatrix} -\\sin(\\psi_d) & \\cos(\\psi_d) & 0\\end{bmatrix}^\\top\\\\\n\\mathbf{x}_{b_d} &= n(\\mathbf{y}_{c_d} \\times \\mathbf{F}_d) &\n\\mathbf{y}_{b_d} &= n(\\mathbf{F}_d \\times \\mathbf{x}_{b_d}) &\n\\mathbf{z}_{b_d} &= \\mathbf{x}_{b_d} \\times \\mathbf{y}_{b_d}\\\\\n\\mathbf{R}_d &= \\begin{bmatrix} \\mathbf{x}_{b_d} & \\mathbf{y}_{b_d} & \\mathbf{z}_{b_d} \\end{bmatrix}\\\\\nc &= \\mathbf{z}_{b_d}^\\top (\\ddot{\\mathbf{p}}_d + g \\mathbf{e}_z) &\nd_1 &= \\mathbf{x}_{b_d}^\\top \\dddot{\\mathbf{p}}_d &\nd_2 &= -\\mathbf{y}_{b_d}^\\top \\dddot{\\mathbf{p}}_d \\\\\nb_3 &= -\\mathbf{y}_{c_d}^\\top \\mathbf{z}_{b_d} &\nc_3 &= \\| \\mathbf{y}_{c_d} \\times \\mathbf{z}_{b_d} \\| &\nd_3 &= \\dot \\psi_d \\mathbf{x}_{c_d}^\\top \\mathbf{x}_{b_d}\\\\\n\\omega_x &= \\frac{d_2}{c} &\n\\omega_y &= \\frac{d_1}{c} &\n\\omega_z &= \\frac{c d_3 - b_3 d_1}{c c_3}\\\\\n\\boldsymbol{\\omega}_d &= \\begin{bmatrix} \\omega_x & \\omega_y & \\omega_z \\end{bmatrix}^\\top\\\\\n\\dot{c} &= \\mathbf{z}_b^\\top \\dddot{\\mathbf{p}}\\\\\ne_1 &= \\mathbf{x}_{b_d}^\\top \\ddddot{\\mathbf{p}}_d - 2\\dot{c} \\omega_y - c \\omega_x \\omega_z &\ne_2 &= -\\mathbf{y}_{b_d}^\\top \\ddddot{\\mathbf{p}}_d - 2\\dot{c} \\omega_x + c \\omega_y \\omega_z &\ne_3 &= \\ddot{\\psi}_d \\mathbf{x}_{c_d}^\\top \\mathbf{x}_{b_d} + 2 \\dot{\\psi}_d \\omega_z \\mathbf{x}_{c_d}^\\top \\mathbf{y}_{b_d} \\\\\n    &&&&&- 2 \\dot{\\psi}_d \\omega_y \\mathbf{x}_{c_d}^\\top \\mathbf{z}_{b_d} - \\omega_x \\omega_y \\mathbf{y}_{c_d}^\\top \\mathbf{y}_{b_d} \\\\\n    &&&&&- \\omega_x \\omega_z \\mathbf{y}_{c_d}^\\top \\mathbf{z}_{b_d}\\\\\n\\dot{\\omega}_x &= \\frac{e_2}{c}&\n\\dot{\\omega}_y &= \\frac{e_1}{c}&\n\\dot{\\omega}_z &= \\frac{c e_3 - b_3 e_1}{c c_3}\\\\\n\\dot{\\boldsymbol{\\omega}}_d &= \\begin{bmatrix} \\dot{\\omega}_x & \\dot{\\omega}_y & \\dot{\\omega}_z \\end{bmatrix}^\\top\n\\end{aligned}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nNote that \\(\\omega_z\\) is wrong in (Mellinger and Kumar 2011). Details are in (Faessler, Franchi, and Scaramuzza 2018) (Appendix A), from which we obtained the results.\n\n\n\n\n9.4.2 Action Mixing",
+    "title": "10  Multirotor",
+    "section": "10.4 Controllers",
+    "text": "10.4 Controllers\n\n10.4.1 Geometric Controller\nThis controller was proposed in (Lee, Leok, and McClamroch (2010)).\n\nGiven reference trajectory tuple: \\(\\mathbf{r}_d  = (\\ddddot{\\mathbf{p}}_d(t), \\dddot{\\mathbf{p}}_d(t), \\ddot{\\mathbf{p}}_d(t), \\dot{\\mathbf{p}}_d(t), \\mathbf{p}_d(t), \\psi_d(t), \\dot{\\psi}_d(t), \\ddot{\\psi}_d(t))\\) (i.e, desired snap, jerk, acceleration, velocity, position, heading, angular velocity for heading, acceleration for heading)\n\\(\\mathbf{K}_p, \\mathbf{K}_v, \\mathbf{K}_R, \\mathbf{K}_\\omega \\in\\mathbb R^{3\\times 3}\\) are tuning matrices (typically only positive diagonal entries, so 12 parameters)\nControl law: \\[\\begin{aligned}\n\\mathbf{e}_p &= \\mathbf{p}_d - \\mathbf{p}\\\\\n\\mathbf{e}_v &= \\dot{\\mathbf{p}}_d - \\dot{\\mathbf{p}}\\\\\n\\mathbf{e}_R &= \\frac{1}{2} \\left( \\mathbf{R}^\\top_d \\mathbf{R}- \\mathbf{R}^\\top \\mathbf{R}_d \\right)^\\vee\\\\\n\\mathbf{e}_\\omega &= \\boldsymbol{\\omega}- \\mathbf{R}^\\top \\mathbf{R}_d \\boldsymbol{\\omega}_d\\\\\nf &=  m(\\ddot{\\mathbf{p}}_d + \\mathbf{K}_p \\mathbf{e}_p + \\mathbf{K}_v \\mathbf{e}_v + g \\mathbf{e}_z) \\cdot \\mathbf{R}\\mathbf{e}_z\\\\\n\\boldsymbol{\\tau}_u &= -\\mathbf{K}_R \\mathbf{e}_R - \\mathbf{K}_\\omega \\mathbf{e}_\\omega + \\boldsymbol{\\omega}\\times \\mathbf{J}\\boldsymbol{\\omega}- \\mathbf{J}(\\hat{\\boldsymbol{\\omega}} \\mathbf{R}^\\top \\mathbf{R}_d \\boldsymbol{\\omega}_d - \\mathbf{R}^\\top \\mathbf{R}_d \\dot{\\boldsymbol{\\omega}}_d)\\\\\n(\\omega_1^2, \\ldots, \\omega_N^2)^\\top &= \\mathbf{B}^{-1} (f, \\boldsymbol{\\tau}_u)^\\top \\text{(or solving a QP, see also action mixing below.)}\n\\end{aligned}\n\\] where \\((\\cdot)^\\vee\\) is defined below Equation A.9.\n\nThe additional reference signals \\(\\mathbf{R}_d\\), \\(\\boldsymbol{\\omega}_d\\), and \\(\\dot{\\boldsymbol{\\omega}}_d\\) can be computed via differential flatness as follows:\n\\[\n\\begin{aligned}\n\\mathbf{x}_{c_d} &= \\begin{bmatrix} \\cos(\\psi_d) & \\sin(\\psi_d) & 0\\end{bmatrix}^\\top &\n\\mathbf{y}_{c_d} &= \\begin{bmatrix} -\\sin(\\psi_d) & \\cos(\\psi_d) & 0\\end{bmatrix}^\\top\\\\\n\\mathbf{x}_{b_d} &= n(\\mathbf{y}_{c_d} \\times \\mathbf{F}_d) &\n\\mathbf{y}_{b_d} &= n(\\mathbf{F}_d \\times \\mathbf{x}_{b_d}) &\n\\mathbf{z}_{b_d} &= \\mathbf{x}_{b_d} \\times \\mathbf{y}_{b_d}\\\\\n\\mathbf{R}_d &= \\begin{bmatrix} \\mathbf{x}_{b_d} & \\mathbf{y}_{b_d} & \\mathbf{z}_{b_d} \\end{bmatrix}\\\\\nc &= \\mathbf{z}_{b_d}^\\top (\\ddot{\\mathbf{p}}_d + g \\mathbf{e}_z) &\nd_1 &= \\mathbf{x}_{b_d}^\\top \\dddot{\\mathbf{p}}_d &\nd_2 &= -\\mathbf{y}_{b_d}^\\top \\dddot{\\mathbf{p}}_d \\\\\nb_3 &= -\\mathbf{y}_{c_d}^\\top \\mathbf{z}_{b_d} &\nc_3 &= \\| \\mathbf{y}_{c_d} \\times \\mathbf{z}_{b_d} \\| &\nd_3 &= \\dot \\psi_d \\mathbf{x}_{c_d}^\\top \\mathbf{x}_{b_d}\\\\\n\\omega_x &= \\frac{d_2}{c} &\n\\omega_y &= \\frac{d_1}{c} &\n\\omega_z &= \\frac{c d_3 - b_3 d_1}{c c_3}\\\\\n\\boldsymbol{\\omega}_d &= \\begin{bmatrix} \\omega_x & \\omega_y & \\omega_z \\end{bmatrix}^\\top\\\\\n\\dot{c} &= \\mathbf{z}_b^\\top \\dddot{\\mathbf{p}}\\\\\ne_1 &= \\mathbf{x}_{b_d}^\\top \\ddddot{\\mathbf{p}}_d - 2\\dot{c} \\omega_y - c \\omega_x \\omega_z &\ne_2 &= -\\mathbf{y}_{b_d}^\\top \\ddddot{\\mathbf{p}}_d - 2\\dot{c} \\omega_x + c \\omega_y \\omega_z &\ne_3 &= \\ddot{\\psi}_d \\mathbf{x}_{c_d}^\\top \\mathbf{x}_{b_d} + 2 \\dot{\\psi}_d \\omega_z \\mathbf{x}_{c_d}^\\top \\mathbf{y}_{b_d} \\\\\n    &&&&&- 2 \\dot{\\psi}_d \\omega_y \\mathbf{x}_{c_d}^\\top \\mathbf{z}_{b_d} - \\omega_x \\omega_y \\mathbf{y}_{c_d}^\\top \\mathbf{y}_{b_d} \\\\\n    &&&&&- \\omega_x \\omega_z \\mathbf{y}_{c_d}^\\top \\mathbf{z}_{b_d}\\\\\n\\dot{\\omega}_x &= \\frac{e_2}{c}&\n\\dot{\\omega}_y &= \\frac{e_1}{c}&\n\\dot{\\omega}_z &= \\frac{c e_3 - b_3 e_1}{c c_3}\\\\\n\\dot{\\boldsymbol{\\omega}}_d &= \\begin{bmatrix} \\dot{\\omega}_x & \\dot{\\omega}_y & \\dot{\\omega}_z \\end{bmatrix}^\\top\n\\end{aligned}\n\\]\n\n\n\n\n\n\nNote\n\n\n\nNote that \\(\\omega_z\\) is wrong in (Mellinger and Kumar 2011). Details are in (Faessler, Franchi, and Scaramuzza 2018) (Appendix A), from which we obtained the results.\n\n\n\n\n10.4.2 Action Mixing",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multirotor</span>"
     ]
   },
   {
     "objectID": "2nd_order/multirotor.html#useful-parameters",
     "href": "2nd_order/multirotor.html#useful-parameters",
-    "title": "9  Multirotor",
-    "section": "9.5 Useful Parameters",
-    "text": "9.5 Useful Parameters\n\n9.5.1 crazyflie-21\nCommercially off-the-shelves (Cots) robot: Crazyflie 2.1\n\\[\n\\begin{aligned}\n\\mathcal{U}&= [524, 2760]^4 rad/s\\\\\nN &= 4\\\\\nm &= 0.034 kg\\\\\n\\mathbf{B}&=\n\\begin{bmatrix}\n\\kappa_F & \\kappa_F & \\kappa_F & \\kappa_F\\\\\n-\\kappa_F a & -\\kappa_F a & \\kappa_F a & \\kappa_F a\\\\\n-\\kappa_F a & \\kappa_F a & \\kappa_F a & -\\kappa_F a\\\\\n-\\kappa_\\tau & \\kappa_\\tau & -\\kappa_\\tau & \\kappa_\\tau\n\\end{bmatrix}\\\\\n\\kappa_F &= 2.023532265845548e-08\\\\\n\\kappa_\\tau &= 1.214119359507329e-10\\\\\na &= \\frac{1}{\\sqrt 2} 0.046 m\\\\\n\\mathbf{J}&= \\begin{bmatrix}\n16.571710e-6 & 0 & 0\\\\\n0 & 16.655602e-6 & 0\\\\\n0 & 0 & 29.261652e-6\n\\end{bmatrix}\\\\\ng &= 9.81 kg / s^2\\\\\n\\end{aligned}\n\\]\n\n\n9.5.2 quad3d_v0\n\nIdentical to “crazyflie-21”, but with additional state space bounds (Hönig, Ortiz-Haro, and Toussaint (2022); Ortiz-Haro et al. (2024)):\n\\[\\begin{aligned}\n\\mathbf{v}\\in [-4,4]^3\\\\\n\\boldsymbol{\\omega}\\in [-8,8]^3\n\\end{aligned}\\]\n\n\n9.5.3 crazyflie-21plus\nCommercially off-the-shelves (Cots) robot: Crazyflie 2.1+\n\n\\[\n\\begin{aligned}\n\\mathcal{U}&= [1370, 3390]^4 rad/s\\\\\nN &= 4\\\\\nm &= 0.034 kg\\\\\n\\mathbf{B}&=\n\\begin{bmatrix}\n\\kappa_F & \\kappa_F & \\kappa_F & \\kappa_F\\\\\n-\\kappa_F a & -\\kappa_F a & \\kappa_F a & \\kappa_F a\\\\\n-\\kappa_F a & \\kappa_F a & \\kappa_F a & -\\kappa_F a\\\\\n-\\kappa_\\tau & \\kappa_\\tau & -\\kappa_\\tau & \\kappa_\\tau\n\\end{bmatrix}\\\\\n\\kappa_F &= 1.4346289961914151e-08\\\\\n\\kappa_\\tau &= 1.0032209789778871e-10\\\\\na &= \\frac{1}{\\sqrt 2} 0.046 m\\\\\n\\mathbf{J}&= \\begin{bmatrix}\n16.571710e-6 & 0 & 0\\\\\n0 & 16.655602e-6 & 0\\\\\n0 & 0 & 29.261652e-6\n\\end{bmatrix}\\\\\ng &= 9.81 kg / s^2\\\\\n\\end{aligned}\n\\]\n\n\n9.5.4 crazyflie-21brushless\nCommercially off-the-shelves (Cots) robot: Crazyflie 2.1 Brushless\nModel see (Gräfe et al. 2026).\n\n\n\n\nFaessler, Matthias, Antonio Franchi, and Davide Scaramuzza. 2018. “Differential Flatness of Quadrotor Dynamics Subject to Rotor Drag for Accurate Tracking of High-Speed Trajectories.” IEEE Robotics and Automation Letters 3 (2): 620–26. https://doi.org/10.1109/LRA.2017.2776353.\n\n\nGräfe, Alexander, Christoph Scherer, Wolfgang Hönig, and Sebastian Trimpe. 2026. “How to Model Your Crazyflie Brushless.” IEEE International Conference on Robotics and Automation (ICRA).\n\n\nHönig, Wolfgang, Joaquim Ortiz-Haro, and Marc Toussaint. 2022. “Db-a*: Discontinuity-Bounded Search for Kinodynamic Mobile Robot Motion Planning.” In IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). https://doi.org/10.1109/IROS47612.2022.9981577.\n\n\nLee, Taeyoung, Melvin Leok, and N. Harris McClamroch. 2010. “Geometric Tracking Control of a Quadrotor UAV on SE(3).” In IEEE Conference on Decision and Control (CDC), 5420–25. https://doi.org/10.1109/CDC.2010.5717652.\n\n\nMellinger, Daniel, and Vijay Kumar. 2011. “Minimum Snap Trajectory Generation and Control for Quadrotors.” In 2011 IEEE International Conference on Robotics and Automation, 2520–25. https://doi.org/10.1109/ICRA.2011.5980409.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. “iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.” IEEE Transactions on Robotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.",
+    "title": "10  Multirotor",
+    "section": "10.5 Useful Parameters",
+    "text": "10.5 Useful Parameters\n\n10.5.1 crazyflie-21\nCommercially off-the-shelves (Cots) robot: Crazyflie 2.1\n\\[\n\\begin{aligned}\n\\mathcal{U}&= [524, 2760]^4 rad/s\\\\\nN &= 4\\\\\nm &= 0.034 kg\\\\\n\\mathbf{B}&=\n\\begin{bmatrix}\n\\kappa_F & \\kappa_F & \\kappa_F & \\kappa_F\\\\\n-\\kappa_F a & -\\kappa_F a & \\kappa_F a & \\kappa_F a\\\\\n-\\kappa_F a & \\kappa_F a & \\kappa_F a & -\\kappa_F a\\\\\n-\\kappa_\\tau & \\kappa_\\tau & -\\kappa_\\tau & \\kappa_\\tau\n\\end{bmatrix}\\\\\n\\kappa_F &= 2.023532265845548e-08\\\\\n\\kappa_\\tau &= 1.214119359507329e-10\\\\\na &= \\frac{1}{\\sqrt 2} 0.046 m\\\\\n\\mathbf{J}&= \\begin{bmatrix}\n16.571710e-6 & 0 & 0\\\\\n0 & 16.655602e-6 & 0\\\\\n0 & 0 & 29.261652e-6\n\\end{bmatrix}\\\\\ng &= 9.81 kg / s^2\\\\\n\\end{aligned}\n\\]\n\n\n10.5.2 quad3d_v0\n\nIdentical to “crazyflie-21”, but with additional state space bounds (Hönig, Ortiz-Haro, and Toussaint (2022); Ortiz-Haro et al. (2024)):\n\\[\\begin{aligned}\n\\mathbf{v}\\in [-4,4]^3\\\\\n\\boldsymbol{\\omega}\\in [-8,8]^3\n\\end{aligned}\\]\n\n\n10.5.3 crazyflie-21plus\nCommercially off-the-shelves (Cots) robot: Crazyflie 2.1+\n\n\\[\n\\begin{aligned}\n\\mathcal{U}&= [1370, 3390]^4 rad/s\\\\\nN &= 4\\\\\nm &= 0.034 kg\\\\\n\\mathbf{B}&=\n\\begin{bmatrix}\n\\kappa_F & \\kappa_F & \\kappa_F & \\kappa_F\\\\\n-\\kappa_F a & -\\kappa_F a & \\kappa_F a & \\kappa_F a\\\\\n-\\kappa_F a & \\kappa_F a & \\kappa_F a & -\\kappa_F a\\\\\n-\\kappa_\\tau & \\kappa_\\tau & -\\kappa_\\tau & \\kappa_\\tau\n\\end{bmatrix}\\\\\n\\kappa_F &= 1.4346289961914151e-08\\\\\n\\kappa_\\tau &= 1.0032209789778871e-10\\\\\na &= \\frac{1}{\\sqrt 2} 0.046 m\\\\\n\\mathbf{J}&= \\begin{bmatrix}\n16.571710e-6 & 0 & 0\\\\\n0 & 16.655602e-6 & 0\\\\\n0 & 0 & 29.261652e-6\n\\end{bmatrix}\\\\\ng &= 9.81 kg / s^2\\\\\n\\end{aligned}\n\\]\n\n\n10.5.4 crazyflie-21brushless\nCommercially off-the-shelves (Cots) robot: Crazyflie 2.1 Brushless\nModel see (Gräfe et al. 2026).\n\n\n\n\nFaessler, Matthias, Antonio Franchi, and Davide Scaramuzza. 2018. “Differential Flatness of Quadrotor Dynamics Subject to Rotor Drag for Accurate Tracking of High-Speed Trajectories.” IEEE Robotics and Automation Letters 3 (2): 620–26. https://doi.org/10.1109/LRA.2017.2776353.\n\n\nGräfe, Alexander, Christoph Scherer, Wolfgang Hönig, and Sebastian Trimpe. 2026. “How to Model Your Crazyflie Brushless.” IEEE International Conference on Robotics and Automation (ICRA).\n\n\nHönig, Wolfgang, Joaquim Ortiz-Haro, and Marc Toussaint. 2022. “Db-a*: Discontinuity-Bounded Search for Kinodynamic Mobile Robot Motion Planning.” In IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). https://doi.org/10.1109/IROS47612.2022.9981577.\n\n\nLee, Taeyoung, Melvin Leok, and N. Harris McClamroch. 2010. “Geometric Tracking Control of a Quadrotor UAV on SE(3).” In IEEE Conference on Decision and Control (CDC), 5420–25. https://doi.org/10.1109/CDC.2010.5717652.\n\n\nMellinger, Daniel, and Vijay Kumar. 2011. “Minimum Snap Trajectory Generation and Control for Quadrotors.” In 2011 IEEE International Conference on Robotics and Automation, 2520–25. https://doi.org/10.1109/ICRA.2011.5980409.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. “iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.” IEEE Transactions on Robotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Multirotor</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Multirotor</span>"
     ]
   },
   {
     "objectID": "2nd_order/unicycle.html",
     "href": "2nd_order/unicycle.html",
-    "title": "10  Unicycle",
+    "title": "11  Unicycle",
     "section": "",
-    "text": "10.1 Dynamics",
+    "text": "11.1 Dynamics",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Unicycle</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Unicycle</span>"
     ]
   },
   {
     "objectID": "2nd_order/unicycle.html#dynamics",
     "href": "2nd_order/unicycle.html#dynamics",
-    "title": "10  Unicycle",
+    "title": "11  Unicycle",
     "section": "",
     "text": "Parameters\n\nstate space \\(\\mathcal{X}\\)\naction space \\(\\mathcal{U}\\)\n\nState: \\(\\mathbf{x}= \\begin{pmatrix}x, y, \\theta, v, \\omega\\end{pmatrix}^\\top \\in \\mathcal{X}\\subset SE(2) \\times R^2\\)\n\nPosition \\((x,y)^\\top\\) [m, global frame]\nOrientation \\(\\theta\\) [rad, global frame]\nVelocity \\(v\\) [m/s, global frame]\nAngular velocity \\(\\omega\\) [rad/s, body frame]\n\nAction: \\(\\mathbf{u}= \\begin{pmatrix} a_v, a_\\omega \\end{pmatrix}^\\top \\in \\mathcal{U}\\)\n\nAcceleration \\(a_v\\) [m/s^2, global frame]\nAngular acceleration \\(a_\\omega\\) [rad/s^2, global frame]\n\nDynamics: \\[\n  \\begin{aligned}\n      \\dot x &= v \\cos \\theta \\\\\n      \\dot y &= v \\sin \\theta \\\\\n      \\dot \\theta &= \\omega\\\\\n      \\dot v &= a_v\\\\\n      \\dot \\omega &= a_\\omega\n  \\end{aligned}\n  \\]",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Unicycle</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Unicycle</span>"
     ]
   },
   {
     "objectID": "2nd_order/unicycle.html#differential-flatness",
     "href": "2nd_order/unicycle.html#differential-flatness",
-    "title": "10  Unicycle",
-    "section": "10.2 Differential Flatness",
-    "text": "10.2 Differential Flatness",
+    "title": "11  Unicycle",
+    "section": "11.2 Differential Flatness",
+    "text": "11.2 Differential Flatness",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Unicycle</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Unicycle</span>"
     ]
   },
   {
     "objectID": "2nd_order/unicycle.html#invariance",
     "href": "2nd_order/unicycle.html#invariance",
-    "title": "10  Unicycle",
-    "section": "10.3 Invariance",
-    "text": "10.3 Invariance\nThe dynamics are translation-invariant.",
+    "title": "11  Unicycle",
+    "section": "11.3 Invariance",
+    "text": "11.3 Invariance\nThe dynamics are translation-invariant.",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Unicycle</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Unicycle</span>"
     ]
   },
   {
     "objectID": "2nd_order/unicycle.html#controllers",
     "href": "2nd_order/unicycle.html#controllers",
-    "title": "10  Unicycle",
-    "section": "10.4 Controllers",
-    "text": "10.4 Controllers\n\n10.4.1 Geometric Controller\n\n\n10.4.2 Action Mixing",
+    "title": "11  Unicycle",
+    "section": "11.4 Controllers",
+    "text": "11.4 Controllers\n\n11.4.1 Geometric Controller\n\n\n11.4.2 Action Mixing",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Unicycle</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Unicycle</span>"
     ]
   },
   {
     "objectID": "2nd_order/unicycle.html#useful-parameters",
     "href": "2nd_order/unicycle.html#useful-parameters",
-    "title": "10  Unicycle",
-    "section": "10.5 Useful Parameters",
-    "text": "10.5 Useful Parameters\n\n10.5.1 unicycle2_v0\n\nA basic version proposed at (Hönig, Ortiz-Haro, and Toussaint (2022); Ortiz-Haro et al. (2024)) \\[\n\\begin{aligned}\n\\mathcal{X}&= \\mathbb R^2 \\times [-\\pi, \\pi] \\times [-0.5, 0.5] \\times [-0.5, 0.5]\\\\\n\\mathcal{U}&= [-0.25, 0.25] \\times [-0.25, 0.25]\n\\end{aligned}\n\\]\n\n\n\n\nChoset, Howie, Kevin M. Lynch, Seth Hutchinson, George A. Kantor, Wolfram Burgard, Lydia E. Kavraki, and Sebastian Thrun. 2005. Principles of Robot Motion: Theory, Algorithms, and Implementations. Edited by Ronald C. Arkin. Intelligent Robotics and Autonomous Agents Series. Cambridge, MA, USA: A Bradford Book.\n\n\nHönig, Wolfgang, Joaquim Ortiz-Haro, and Marc Toussaint. 2022. “Db-a*: Discontinuity-Bounded Search for Kinodynamic Mobile Robot Motion Planning.” In IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). https://doi.org/10.1109/IROS47612.2022.9981577.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. “iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.” IEEE Transactions on Robotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.",
+    "title": "11  Unicycle",
+    "section": "11.5 Useful Parameters",
+    "text": "11.5 Useful Parameters\n\n11.5.1 unicycle2_v0\n\nA basic version proposed at (Hönig, Ortiz-Haro, and Toussaint (2022); Ortiz-Haro et al. (2024)) \\[\n\\begin{aligned}\n\\mathcal{X}&= \\mathbb R^2 \\times [-\\pi, \\pi] \\times [-0.5, 0.5] \\times [-0.5, 0.5]\\\\\n\\mathcal{U}&= [-0.25, 0.25] \\times [-0.25, 0.25]\n\\end{aligned}\n\\]\n\n\n\n\nChoset, Howie, Kevin M. Lynch, Seth Hutchinson, George A. Kantor, Wolfram Burgard, Lydia E. Kavraki, and Sebastian Thrun. 2005. Principles of Robot Motion: Theory, Algorithms, and Implementations. Edited by Ronald C. Arkin. Intelligent Robotics and Autonomous Agents Series. Cambridge, MA, USA: A Bradford Book.\n\n\nHönig, Wolfgang, Joaquim Ortiz-Haro, and Marc Toussaint. 2022. “Db-a*: Discontinuity-Bounded Search for Kinodynamic Mobile Robot Motion Planning.” In IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). https://doi.org/10.1109/IROS47612.2022.9981577.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. “iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.” IEEE Transactions on Robotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.",
     "crumbs": [
       "Second Order Systems",
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Unicycle</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Unicycle</span>"
     ]
   },
   {
@@ -608,7 +674,7 @@
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Choset, Howie, Kevin M. Lynch, Seth Hutchinson, George A. Kantor,\nWolfram Burgard, Lydia E. Kavraki, and Sebastian Thrun. 2005.\nPrinciples of Robot Motion: Theory, Algorithms, and\nImplementations. Edited by Ronald C. Arkin. Intelligent Robotics\nand Autonomous Agents Series. Cambridge, MA, USA: A Bradford Book.\n\n\nFaessler, Matthias, Antonio Franchi, and Davide Scaramuzza. 2018.\n“Differential Flatness of Quadrotor Dynamics Subject to Rotor Drag\nfor Accurate Tracking of High-Speed Trajectories.” IEEE\nRobotics and Automation Letters 3 (2): 620–26. https://doi.org/10.1109/LRA.2017.2776353.\n\n\nGräfe, Alexander, Christoph Scherer, Wolfgang Hönig, and Sebastian\nTrimpe. 2026. “How to Model Your Crazyflie Brushless.”\nIEEE International Conference on Robotics and Automation\n(ICRA).\n\n\nHönig, Wolfgang, Joaquim Ortiz-Haro, and Marc Toussaint. 2022.\n“Db-a*: Discontinuity-Bounded Search for Kinodynamic Mobile Robot\nMotion Planning.” In IEEE/RSJ International Conference on\nIntelligent Robots and Systems (IROS). https://doi.org/10.1109/IROS47612.2022.9981577.\n\n\nHuynh, Du Q. 2009. “Metrics for 3D Rotations: Comparison and\nAnalysis.” Journal of Mathematical Imaging and Vision 35\n(2): 155–64. https://doi.org/10.1007/s10851-009-0161-2.\n\n\nJia, Prof. Yan-Bin. 2024. “Quaternions (Com s 477/577\nNotes).” 2024. https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf.\n\n\nKanayama, Y., Y. Kimura, F. Miyazaki, and T. Noguchi. 1990. “A\nStable Tracking Control Method for an Autonomous Mobile Robot.”\nIn IEEE International Conference on Robotics and Automation\n(ICRA), 384–89. https://doi.org/10.1109/ROBOT.1990.126006.\n\n\nLaValle, Steven M. 2006. Planning Algorithms. Cambridge\nUniversity Press.\n\n\nLee, Taeyoung, Melvin Leok, and N. Harris McClamroch. 2010.\n“Geometric Tracking Control of a Quadrotor UAV on SE(3).”\nIn IEEE Conference on Decision and Control (CDC), 5420–25. https://doi.org/10.1109/CDC.2010.5717652.\n\n\nMellinger, Daniel, and Vijay Kumar. 2011. “Minimum Snap Trajectory\nGeneration and Control for Quadrotors.” In 2011 IEEE\nInternational Conference on Robotics and Automation, 2520–25. https://doi.org/10.1109/ICRA.2011.5980409.\n\n\nNarayan, Dr. Ashwin. 2017. “How to Integrate Quaternions.”\n2017. https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc\nToussaint. 2024. “iDb-a*: Iterative Search and Optimization for\nOptimal Kinodynamic Motion Planning.” IEEE Transactions on\nRobotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.\n\n\nSärkkä, Prof. Simo. 2007. “Notes on Quaternions.” 2007. https://users.aalto.fi/~ssarkka/pub/quat.pdf.\n\n\nSchuck, Martin, Sherif Samy, and Angela P. Schoellig. 2025. “A\nPrimer on SO(3) Action Representations in Deep Reinforcement\nLearning.” October 13, 2025. https://doi.org/10.48550/arXiv.2510.11103.\n\n\nShoemake, Ken. 1992. “Uniform Random Rotations.” In\nGraphics Gems III, 124–32. USA: Academic Press Professional,\nInc.\n\n\nToussaint, Prof. Marc. 2024. “Lecture Note: Quaternions,\nExponential Map, and Quaternion Jacobians.” 2024. https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html.",
+    "text": "Choset, Howie, Kevin M. Lynch, Seth Hutchinson, George A. Kantor,\nWolfram Burgard, Lydia E. Kavraki, and Sebastian Thrun. 2005.\nPrinciples of Robot Motion: Theory, Algorithms, and\nImplementations. Edited by Ronald C. Arkin. Intelligent Robotics\nand Autonomous Agents Series. Cambridge, MA, USA: A Bradford Book.\n\n\nFaessler, Matthias, Antonio Franchi, and Davide Scaramuzza. 2018.\n“Differential Flatness of Quadrotor Dynamics Subject to Rotor Drag\nfor Accurate Tracking of High-Speed Trajectories.” IEEE\nRobotics and Automation Letters 3 (2): 620–26. https://doi.org/10.1109/LRA.2017.2776353.\n\n\nGräfe, Alexander, Christoph Scherer, Wolfgang Hönig, and Sebastian\nTrimpe. 2026. “How to Model Your Crazyflie Brushless.”\nIEEE International Conference on Robotics and Automation\n(ICRA).\n\n\nHönig, Wolfgang, Joaquim Ortiz-Haro, and Marc Toussaint. 2022.\n“Db-a*: Discontinuity-Bounded Search for Kinodynamic Mobile Robot\nMotion Planning.” In IEEE/RSJ International Conference on\nIntelligent Robots and Systems (IROS). https://doi.org/10.1109/IROS47612.2022.9981577.\n\n\nHuynh, Du Q. 2009. “Metrics for 3D Rotations: Comparison and\nAnalysis.” Journal of Mathematical Imaging and Vision 35\n(2): 155–64. https://doi.org/10.1007/s10851-009-0161-2.\n\n\nJia, Prof. Yan-Bin. 2024. “Quaternions (Com s 477/577\nNotes).” 2024. https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf.\n\n\nKanayama, Y., Y. Kimura, F. Miyazaki, and T. Noguchi. 1990. “A\nStable Tracking Control Method for an Autonomous Mobile Robot.”\nIn IEEE International Conference on Robotics and Automation\n(ICRA), 384–89. https://doi.org/10.1109/ROBOT.1990.126006.\n\n\nLaValle, Steven M. 2006. Planning Algorithms. Cambridge\nUniversity Press.\n\n\nLee, Taeyoung, Melvin Leok, and N. Harris McClamroch. 2010.\n“Geometric Tracking Control of a Quadrotor UAV on SE(3).”\nIn IEEE Conference on Decision and Control (CDC), 5420–25. https://doi.org/10.1109/CDC.2010.5717652.\n\n\nMellinger, Daniel, and Vijay Kumar. 2011. “Minimum Snap Trajectory\nGeneration and Control for Quadrotors.” In 2011 IEEE\nInternational Conference on Robotics and Automation, 2520–25. https://doi.org/10.1109/ICRA.2011.5980409.\n\n\nNarayan, Dr. Ashwin. 2017. “How to Integrate Quaternions.”\n2017. https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/.\n\n\nOrtiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc\nToussaint. 2024. “iDb-a*: Iterative Search and Optimization for\nOptimal Kinodynamic Motion Planning.” IEEE Transactions on\nRobotics, 1–19. https://doi.org/10.1109/TRO.2024.3502505.\n\n\nSärkkä, Prof. Simo. 2007. “Notes on Quaternions.” 2007. https://users.aalto.fi/~ssarkka/pub/quat.pdf.\n\n\nSchuck, Martin, Sherif Samy, and Angela P. Schoellig. 2025. “A\nPrimer on SO(3) Action Representations in Deep Reinforcement\nLearning.” October 13, 2025. https://doi.org/10.48550/arXiv.2510.11103.\n\n\nShoemake, Ken. 1992. “Uniform Random Rotations.” In\nGraphics Gems III, 124–32. USA: Academic Press Professional,\nInc.\n\n\nTedrake, Russ. 2024. “Underactuated Robotics.” 2024. https://underactuated.csail.mit.edu.\n\n\nToussaint, Prof. Marc. 2024. “Lecture Note: Quaternions,\nExponential Map, and Quaternion Jacobians.” 2024. https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html.",
     "crumbs": [
       "References"
     ]

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Unicycle – Kinodynamic Compendium</title>
+<title>7&nbsp; Acrobot – Kinodynamic Compendium</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,8 +50,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../references.html" rel="next">
-<link href="../2nd_order/multirotor.html" rel="prev">
+<link href="../2nd_order/multirotor_1d.html" rel="next">
+<link href="../1st_order/car_with_trailer.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -132,7 +132,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/acrobot.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/unicycle.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Unicycle</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/acrobot.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/acrobot.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Acrobot</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -215,7 +215,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2nd_order/acrobot.html" class="sidebar-item-text sidebar-link">
+  <a href="../2nd_order/acrobot.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Acrobot</span></span></a>
   </div>
 </li>
@@ -239,7 +239,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../2nd_order/unicycle.html" class="sidebar-item-text sidebar-link active">
+  <a href="../2nd_order/unicycle.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Unicycle</span></span></a>
   </div>
 </li>
@@ -278,17 +278,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#dynamics" id="toc-dynamics" class="nav-link active" data-scroll-target="#dynamics"><span class="header-section-number">11.1</span> Dynamics</a></li>
-  <li><a href="#differential-flatness" id="toc-differential-flatness" class="nav-link" data-scroll-target="#differential-flatness"><span class="header-section-number">11.2</span> Differential Flatness</a></li>
-  <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">11.3</span> Invariance</a></li>
-  <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">11.4</span> Controllers</a>
+  <li><a href="#dynamics" id="toc-dynamics" class="nav-link active" data-scroll-target="#dynamics"><span class="header-section-number">7.1</span> Dynamics</a></li>
+  <li><a href="#differential-flatness" id="toc-differential-flatness" class="nav-link" data-scroll-target="#differential-flatness"><span class="header-section-number">7.2</span> Differential Flatness</a></li>
+  <li><a href="#invariance" id="toc-invariance" class="nav-link" data-scroll-target="#invariance"><span class="header-section-number">7.3</span> Invariance</a></li>
+  <li><a href="#controllers" id="toc-controllers" class="nav-link" data-scroll-target="#controllers"><span class="header-section-number">7.4</span> Controllers</a>
   <ul class="collapse">
-  <li><a href="#geometric-controller" id="toc-geometric-controller" class="nav-link" data-scroll-target="#geometric-controller"><span class="header-section-number">11.4.1</span> Geometric Controller</a></li>
-  <li><a href="#action-mixing" id="toc-action-mixing" class="nav-link" data-scroll-target="#action-mixing"><span class="header-section-number">11.4.2</span> Action Mixing</a></li>
+  <li><a href="#geometric-controller" id="toc-geometric-controller" class="nav-link" data-scroll-target="#geometric-controller"><span class="header-section-number">7.4.1</span> Geometric Controller</a></li>
+  <li><a href="#action-mixing" id="toc-action-mixing" class="nav-link" data-scroll-target="#action-mixing"><span class="header-section-number">7.4.2</span> Action Mixing</a></li>
   </ul></li>
-  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">11.5</span> Useful Parameters</a>
+  <li><a href="#useful-parameters" id="toc-useful-parameters" class="nav-link" data-scroll-target="#useful-parameters"><span class="header-section-number">7.5</span> Useful Parameters</a>
   <ul class="collapse">
-  <li><a href="#unicycle2_v0" id="toc-unicycle2_v0" class="nav-link" data-scroll-target="#unicycle2_v0"><span class="header-section-number">11.5.1</span> unicycle2_v0</a></li>
+  <li><a href="#acrobot_v0" id="toc-acrobot_v0" class="nav-link" data-scroll-target="#acrobot_v0"><span class="header-section-number">7.5.1</span> acrobot_v0</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -296,9 +296,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/acrobot.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/unicycle.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Unicycle</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../2nd_order/acrobot.html">Second Order Systems</a></li><li class="breadcrumb-item"><a href="../2nd_order/acrobot.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Acrobot</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Unicycle</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Acrobot</span></h1>
 </div>
 
 
@@ -317,79 +317,101 @@ window.Quarto = {
 
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../media/choset_book_fig12.2.png" class="img-fluid figure-img"></p>
-<figcaption>Unicycle Robot (Picture from <span class="citation" data-cites="chosetPrinciplesRobotMotion2005">Choset et al. (<a href="../references.html#ref-chosetPrinciplesRobotMotion2005" role="doc-biblioref">2005</a>)</span>)</figcaption>
+<p><img src="../media/acrobot.svg" class="img-fluid figure-img"></p>
+<figcaption>Acrobot (Picture from <span class="citation" data-cites="2024-underactuated-robotics">Tedrake (<a href="../references.html#ref-2024-underactuated-robotics" role="doc-biblioref">2024</a>)</span>)</figcaption>
 </figure>
 </div>
-<section id="dynamics" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="dynamics"><span class="header-section-number">11.1</span> Dynamics</h2>
+<section id="dynamics" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="dynamics"><span class="header-section-number">7.1</span> Dynamics</h2>
 <ul>
-<li>Parameters
+<li><p>Parameters</p>
 <ul>
-<li>state space <span class="math inline">\(\mathcal{X}\)</span></li>
-<li>action space <span class="math inline">\(\mathcal{U}\)</span></li>
+<li><span class="math inline">\(\mathcal{X}\)</span>: state space</li>
+<li><span class="math inline">\(\mathcal{U}\)</span>: action space</li>
+<li><span class="math inline">\(l_1\)</span>: length of first link [m]</li>
+<li><span class="math inline">\(m_1\)</span>: mass of first link [kg]</li>
+<li><span class="math inline">\(I_1\)</span>: inertia of first link [kg m^2]</li>
+<li><span class="math inline">\(l_{c1}\)</span>: length to first pivot point [m]</li>
+<li><span class="math inline">\(l_2\)</span>: length of second link [m]</li>
+<li><span class="math inline">\(m_2\)</span>: mass of second link [kg]</li>
+<li><span class="math inline">\(I_2\)</span>: inertia of second link [kg m^2]</li>
+<li><span class="math inline">\(l_{c2}\)</span>: length to second pivot point [m]</li>
+<li><span class="math inline">\(g\)</span>: gravity constant [m/s^2]</li>
 </ul></li>
-<li>State: <span class="math inline">\(\mathbf{x}= \begin{pmatrix}x, y, \theta, v, \omega\end{pmatrix}^\top \in \mathcal{X}\subset SE(2) \times R^2\)</span>
+<li><p>State: <span class="math inline">\(\mathbf{x}= \begin{pmatrix}\theta_1, \theta_2, \dot \theta_1, \dot \theta_2 \end{pmatrix}^\top \in \mathcal{X}\subset \mathbb R^4\)</span></p>
 <ul>
-<li>Position <span class="math inline">\((x,y)^\top\)</span> [m, global frame]</li>
-<li>Orientation <span class="math inline">\(\theta\)</span> [rad, global frame]</li>
-<li>Velocity <span class="math inline">\(v\)</span> [m/s, global frame]</li>
-<li>Angular velocity <span class="math inline">\(\omega\)</span> [rad/s, body frame]</li>
+<li>joint angles <span class="math inline">\((\theta_1, \theta_2)^\top\)</span> [rad]</li>
+<li>angular velocity <span class="math inline">\((\dot \theta_1, \dot \theta_2)^\top\)</span> [rad/s]</li>
 </ul></li>
-<li>Action: <span class="math inline">\(\mathbf{u}= \begin{pmatrix} a_v, a_\omega \end{pmatrix}^\top \in \mathcal{U}\)</span>
+<li><p>Action: <span class="math inline">\(\mathbf{u}= (\tau) \in \mathcal{U}\)</span></p>
 <ul>
-<li>Acceleration <span class="math inline">\(a_v\)</span> [m/s^2, global frame]</li>
-<li>Angular acceleration <span class="math inline">\(a_\omega\)</span> [rad/s^2, global frame]</li>
+<li>Torque <span class="math inline">\(\tau\)</span> [Nm]</li>
 </ul></li>
-<li>Dynamics: <span class="math display">\[
-  \begin{aligned}
-      \dot x &amp;= v \cos \theta \\
-      \dot y &amp;= v \sin \theta \\
-      \dot \theta &amp;= \omega\\
-      \dot v &amp;= a_v\\
-      \dot \omega &amp;= a_\omega
-  \end{aligned}
-  \]</span></li>
+<li><p>Dynamics:</p>
+<p>In standard manipulator equation form: <span class="math display">\[
+  \mathbf{M}(\ddot \theta_1, \ddot \theta_2)^\top + \mathbf{C}(\dot \theta_1, \dot \theta_2)^\top = \tau_g + \mathbf{B}\mathbf{u}
+  \]</span></p>
+<span class="math display">\[\begin{aligned}
+
+  \mathbf{M}&amp;= \left[\begin{matrix}I_{1} + I_{2} + l_{1}^{2} m_{2} + 2 l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)} &amp; I_{2} + l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)}\\I_{2} + l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)} &amp; I_{2}\end{matrix}\right]\\
+
+  \mathbf{C}&amp;= \left[\begin{matrix}- 2 \dot\theta_{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} &amp; - \dot\theta_{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)}\\\dot\theta_{1} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} &amp; 0\end{matrix}\right]\\
+
+  \tau_g &amp;= \left[\begin{matrix}- g l_{c1} m_{1} \sin{\left(\theta_{1} \right)} - g m_{2} \left(l_{1} \sin{\left(\theta_{1} \right)} + l_{c2} \sin{\left(\theta_{1} + \theta_{2} \right)}\right)\\- g l_{c2} m_{2} \sin{\left(\theta_{1} + \theta_{2} \right)}\end{matrix}\right]\\
+
+  \mathbf{B}&amp;= \left[\begin{matrix}0\\1\end{matrix}\right]\\
+
+  \end{aligned}\]</span>
+<p>Explicit expressions for <span class="math inline">\(\ddot \theta_1, \ddot \theta_2\)</span> are:</p>
+<p><span class="math display">\[
+  (\ddot \theta_1, \ddot \theta_2)^\top = \left[\begin{matrix}\frac{I_{2} \left(2 \dot\theta_{1} \dot\theta_{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} + \dot\theta_{2}^{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} - g l_{c1} m_{1} \sin{\left(\theta_{1} \right)} - g m_{2} \left(l_{1} \sin{\left(\theta_{1} \right)} + l_{c2} \sin{\left(\theta_{1} + \theta_{2} \right)}\right)\right) + \left(I_{2} + l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)}\right) \left(\dot\theta_{1}^{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} + g l_{c2} m_{2} \sin{\left(\theta_{1} + \theta_{2} \right)} - \tau\right)}{I_{1} I_{2} + I_{2} l_{1}^{2} m_{2} - l_{1}^{2} l_{c2}^{2} m_{2}^{2} \cos^{2}{\left(\theta_{2} \right)}}\\\frac{- \left(I_{2} + l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)}\right) \left(2 \dot\theta_{1} \dot\theta_{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} + \dot\theta_{2}^{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} - g l_{c1} m_{1} \sin{\left(\theta_{1} \right)} - g m_{2} \left(l_{1} \sin{\left(\theta_{1} \right)} + l_{c2} \sin{\left(\theta_{1} + \theta_{2} \right)}\right)\right) - \left(\dot\theta_{1}^{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} + g l_{c2} m_{2} \sin{\left(\theta_{1} + \theta_{2} \right)} - \tau\right) \left(I_{1} + I_{2} + l_{1}^{2} m_{2} + 2 l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)}\right)}{I_{1} I_{2} + I_{2} l_{1}^{2} m_{2} - l_{1}^{2} l_{c2}^{2} m_{2}^{2} \cos^{2}{\left(\theta_{2} \right)}}\end{matrix}\right]
+  \]</span></p></li>
 </ul>
 </section>
-<section id="differential-flatness" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="differential-flatness"><span class="header-section-number">11.2</span> Differential Flatness</h2>
+<section id="differential-flatness" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="differential-flatness"><span class="header-section-number">7.2</span> Differential Flatness</h2>
 </section>
-<section id="invariance" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="invariance"><span class="header-section-number">11.3</span> Invariance</h2>
-<p>The dynamics are translation-invariant.</p>
+<section id="invariance" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="invariance"><span class="header-section-number">7.3</span> Invariance</h2>
 </section>
-<section id="controllers" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">11.4</span> Controllers</h2>
-<section id="geometric-controller" class="level3" data-number="11.4.1">
-<h3 data-number="11.4.1" class="anchored" data-anchor-id="geometric-controller"><span class="header-section-number">11.4.1</span> Geometric Controller</h3>
+<section id="controllers" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="controllers"><span class="header-section-number">7.4</span> Controllers</h2>
+<section id="geometric-controller" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="geometric-controller"><span class="header-section-number">7.4.1</span> Geometric Controller</h3>
 </section>
-<section id="action-mixing" class="level3" data-number="11.4.2">
-<h3 data-number="11.4.2" class="anchored" data-anchor-id="action-mixing"><span class="header-section-number">11.4.2</span> Action Mixing</h3>
+<section id="action-mixing" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="action-mixing"><span class="header-section-number">7.4.2</span> Action Mixing</h3>
 </section>
 </section>
-<section id="useful-parameters" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">11.5</span> Useful Parameters</h2>
-<section id="unicycle2_v0" class="level3" data-number="11.5.1">
-<h3 data-number="11.5.1" class="anchored" data-anchor-id="unicycle2_v0"><span class="header-section-number">11.5.1</span> unicycle2_v0</h3>
-<!-- https://github.com/quimortiz/dynobench/blob/main/models/unicycle2_v0.yaml -->
-<p>A basic version proposed at (<span class="citation" data-cites="hoenig2022dbAstar">Hönig, Ortiz-Haro, and Toussaint (<a href="../references.html#ref-hoenig2022dbAstar" role="doc-biblioref">2022</a>)</span>; <span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>) <span class="math display">\[
+<section id="useful-parameters" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="useful-parameters"><span class="header-section-number">7.5</span> Useful Parameters</h2>
+<section id="acrobot_v0" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="acrobot_v0"><span class="header-section-number">7.5.1</span> acrobot_v0</h3>
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/acrobot_v0.yaml -->
+<p>A basic version based on <span class="citation" data-cites="2024-underactuated-robotics">(<a href="../references.html#ref-2024-underactuated-robotics" role="doc-biblioref">Tedrake 2024</a>)</span> proposed at (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>) <span class="math display">\[
 \begin{aligned}
-\mathcal{X}&amp;= \mathbb R^2 \times [-\pi, \pi] \times [-0.5, 0.5] \times [-0.5, 0.5]\\
-\mathcal{U}&amp;= [-0.25, 0.25] \times [-0.25, 0.25]
+l_1 &amp;= 1\\
+m_1 &amp;= 1\\
+I_1 &amp;= 0.33333\\
+l_{c1} &amp;= 0.5\\
+l_2 &amp;= 1\\
+m_2 &amp;= 1\\
+I_2 &amp;= 0.33333\\
+l_{c2} &amp;= 0.5\\
+g &amp;= 9.81\\
+\dot \theta_1 &amp;\in [-8, 8]\\
+\dot \theta_2 &amp;\in [-8, 8]\\
+\mathcal{U}&amp;\in [-10, 10]
 \end{aligned}
 \]</span></p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-chosetPrinciplesRobotMotion2005" class="csl-entry" role="listitem">
-Choset, Howie, Kevin M. Lynch, Seth Hutchinson, George A. Kantor, Wolfram Burgard, Lydia E. Kavraki, and Sebastian Thrun. 2005. <em>Principles of Robot Motion: Theory, Algorithms, and Implementations</em>. Edited by Ronald C. Arkin. Intelligent Robotics and Autonomous Agents Series. Cambridge, MA, USA: A Bradford Book.
-</div>
-<div id="ref-hoenig2022dbAstar" class="csl-entry" role="listitem">
-Hönig, Wolfgang, Joaquim Ortiz-Haro, and Marc Toussaint. 2022. <span>“Db-a*: Discontinuity-Bounded Search for Kinodynamic Mobile Robot Motion Planning.”</span> In <em>IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)</em>. <a href="https://doi.org/10.1109/IROS47612.2022.9981577">https://doi.org/10.1109/IROS47612.2022.9981577</a>.
-</div>
 <div id="ref-2024-ortiz-haro-IDbAIterativeSearch" class="csl-entry" role="listitem">
 Ortiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. <span>“iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.”</span> <em>IEEE Transactions on Robotics</em>, 1–19. <a href="https://doi.org/10.1109/TRO.2024.3502505">https://doi.org/10.1109/TRO.2024.3502505</a>.
+</div>
+<div id="ref-2024-underactuated-robotics" class="csl-entry" role="listitem">
+Tedrake, Russ. 2024. <span>“Underactuated Robotics.”</span> 2024. <a href="https://underactuated.csail.mit.edu">https://underactuated.csail.mit.edu</a>.
 </div>
 </div>
 </section>
@@ -798,13 +820,13 @@ Ortiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../2nd_order/multirotor.html" class="pagination-link" aria-label="Multirotor">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multirotor</span></span>
+      <a href="../1st_order/car_with_trailer.html" class="pagination-link" aria-label="Car With Trailer">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Car With Trailer</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../2nd_order/multirotor_1d.html" class="pagination-link" aria-label="Multirotor (1D)">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
