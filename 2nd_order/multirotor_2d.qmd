@@ -235,3 +235,19 @@ See derivation below for the exact expressions needed.
 
 ## Useful Parameters
 
+### quad2d_v0
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/quad2d_v0.yaml -->
+
+A basic version proposed at (@2024-ortiz-haro-IDbAIterativeSearch)
+$$
+\begin{aligned}
+m &= 0.034\\
+l &= 0.1\\
+\mathbf J_{yy} &= 1e-4\\
+g &= 9.81\\
+\dot x &\in [-4, 4]\\
+\dot z &\in [-4, 4]\\
+\omega &\in [-8, 8]\\
+\sU &= [0, 1.3]^2
+\end{aligned}
+$$
