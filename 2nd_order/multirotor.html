@@ -294,8 +294,10 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#crazyflie-21" id="toc-crazyflie-21" class="nav-link" data-scroll-target="#crazyflie-21"><span class="header-section-number">10.5.1</span> crazyflie-21</a></li>
   <li><a href="#quad3d_v0" id="toc-quad3d_v0" class="nav-link" data-scroll-target="#quad3d_v0"><span class="header-section-number">10.5.2</span> quad3d_v0</a></li>
-  <li><a href="#crazyflie-21plus" id="toc-crazyflie-21plus" class="nav-link" data-scroll-target="#crazyflie-21plus"><span class="header-section-number">10.5.3</span> crazyflie-21plus</a></li>
-  <li><a href="#crazyflie-21brushless" id="toc-crazyflie-21brushless" class="nav-link" data-scroll-target="#crazyflie-21brushless"><span class="header-section-number">10.5.4</span> crazyflie-21brushless</a></li>
+  <li><a href="#quad3d_v1" id="toc-quad3d_v1" class="nav-link" data-scroll-target="#quad3d_v1"><span class="header-section-number">10.5.3</span> quad3d_v1</a></li>
+  <li><a href="#quad3d_v2" id="toc-quad3d_v2" class="nav-link" data-scroll-target="#quad3d_v2"><span class="header-section-number">10.5.4</span> quad3d_v2</a></li>
+  <li><a href="#crazyflie-21plus" id="toc-crazyflie-21plus" class="nav-link" data-scroll-target="#crazyflie-21plus"><span class="header-section-number">10.5.5</span> crazyflie-21plus</a></li>
+  <li><a href="#crazyflie-21brushless" id="toc-crazyflie-21brushless" class="nav-link" data-scroll-target="#crazyflie-21brushless"><span class="header-section-number">10.5.6</span> crazyflie-21brushless</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -547,8 +549,38 @@ g &amp;= 9.81 kg / s^2\\
 \boldsymbol{\omega}\in [-8,8]^3
 \end{aligned}\]</span>
 </section>
-<section id="crazyflie-21plus" class="level3" data-number="10.5.3">
-<h3 data-number="10.5.3" class="anchored" data-anchor-id="crazyflie-21plus"><span class="header-section-number">10.5.3</span> crazyflie-21plus</h3>
+<section id="quad3d_v1" class="level3" data-number="10.5.3">
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="quad3d_v1"><span class="header-section-number">10.5.3</span> quad3d_v1</h3>
+<p>Here the action space is directly force/torque, i.e., <span class="math inline">\((f,\boldsymbol{\tau}_u)^\top \in \mathcal{U}\)</span>. This dramatically simplifies planning and is used, for example in <a href="https://github.com/ompl/omplapp/blob/main/src/omplapp/apps/QuadrotorPlanning.cpp">OMPL.APP</a></p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathcal{U}&amp;= [5, 15] \times [-1, 1]^3\\
+m &amp;= 1\\
+\mathbf{J}&amp;= \begin{bmatrix}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\\
+g &amp;= 9.81 kg / s^2\\
+\mathbf{v}\in [-1,1]^3\\
+\boldsymbol{\omega}\in [-1,1]^3
+\end{aligned}
+\]</span></p>
+</section>
+<section id="quad3d_v2" class="level3" data-number="10.5.4">
+<h3 data-number="10.5.4" class="anchored" data-anchor-id="quad3d_v2"><span class="header-section-number">10.5.4</span> quad3d_v2</h3>
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/quad3d_omplapp.yaml -->
+<p>Similar to “quad3d_v2”, but with different bounds. This appeared in (<span class="citation" data-cites="2024-ortiz-haro-IDbAIterativeSearch">Ortiz-Haro et al. (<a href="../references.html#ref-2024-ortiz-haro-IDbAIterativeSearch" role="doc-biblioref">2024</a>)</span>) as “Quadrotor v1”.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\mathcal{U}&amp;= [0, 15] \times [-2, 2]^3\\
+\mathbf{v}&amp;\in [-4,4]^3\\
+\boldsymbol{\omega}&amp;\in [-8,8]^3
+\end{aligned}
+\]</span></p>
+</section>
+<section id="crazyflie-21plus" class="level3" data-number="10.5.5">
+<h3 data-number="10.5.5" class="anchored" data-anchor-id="crazyflie-21plus"><span class="header-section-number">10.5.5</span> crazyflie-21plus</h3>
 <p>Commercially off-the-shelves (Cots) robot: <a href="https://www.bitcraze.io/products/crazyflie-2-1-plus/">Crazyflie 2.1+</a></p>
 <!-- 
 python3 estimate_kw_from_thruststand.py data/cf21plus/data_feb_24_2026_350mah_battery1.csv data/cf21plus/data_feb_24_2026_350mah_battery0.csv data/cf21plus/data_feb_24_2026_250mah_battery0.csv  -->
@@ -576,8 +608,8 @@ g &amp;= 9.81 kg / s^2\\
 \end{aligned}
 \]</span></p>
 </section>
-<section id="crazyflie-21brushless" class="level3" data-number="10.5.4">
-<h3 data-number="10.5.4" class="anchored" data-anchor-id="crazyflie-21brushless"><span class="header-section-number">10.5.4</span> crazyflie-21brushless</h3>
+<section id="crazyflie-21brushless" class="level3" data-number="10.5.6">
+<h3 data-number="10.5.6" class="anchored" data-anchor-id="crazyflie-21brushless"><span class="header-section-number">10.5.6</span> crazyflie-21brushless</h3>
 <p>Commercially off-the-shelves (Cots) robot: <a href="https://www.bitcraze.io/products/crazyflie-2-1-brushless/">Crazyflie 2.1 Brushless</a></p>
 <p>Model see <span class="citation" data-cites="2026-cfbf-model">(<a href="../references.html#ref-2026-cfbf-model" role="doc-biblioref">Gräfe et al. 2026</a>)</span>.</p>
 
