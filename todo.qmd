@@ -2,9 +2,5 @@
 
 ## idb-A* paper
 
-- quadrotor v1
 - rotor pole
 
-## OMPL.APP
-
-- quadrotor

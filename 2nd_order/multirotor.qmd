@@ -197,6 +197,39 @@ Identical to "crazyflie-21", but with additional state space bounds (@hoenig2022
 \vomega \in [-8,8]^3
 \end{aligned}
 
+### quad3d_v1
+
+Here the action space is directly force/torque, i.e., $(f,\vtau_u)^\top \in \sU$. This dramatically simplifies planning and is used, for example in [OMPL.APP](https://github.com/ompl/omplapp/blob/main/src/omplapp/apps/QuadrotorPlanning.cpp)
+
+$$
+\begin{aligned}
+\sU &= [5, 15] \times [-1, 1]^3\\
+m &= 1\\
+\mJ &= \begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}\\
+g &= 9.81 kg / s^2\\
+\vv \in [-1,1]^3\\
+\vomega \in [-1,1]^3
+\end{aligned}
+$$
+
+### quad3d_v2
+
+<!-- https://github.com/quimortiz/dynobench/blob/main/models/quad3d_omplapp.yaml -->
+
+Similar to "quad3d_v2", but with different bounds. This appeared in (@2024-ortiz-haro-IDbAIterativeSearch) as "Quadrotor v1".
+
+$$
+\begin{aligned}
+\sU &= [0, 15] \times [-2, 2]^3\\
+\vv &\in [-4,4]^3\\
+\vomega &\in [-8,8]^3
+\end{aligned}
+$$
+
 ### crazyflie-21plus
 
 Commercially off-the-shelves (Cots) robot: [Crazyflie 2.1+](https://www.bitcraze.io/products/crazyflie-2-1-plus/)
