@@ -17,6 +17,7 @@ book:
     - part: "Second Order Systems"
       chapters: 
         - 2nd_order/acrobot.qmd
+        - 2nd_order/cartpole.qmd
         # - 2nd_order/double_integrator.qmd
         - 2nd_order/multirotor_1d.qmd
         - 2nd_order/multirotor_2d.qmd

@@ -33,7 +33,7 @@ jupyter: python3
     - angular velocity $(\dot \theta_1, \dot \theta_2)^\top$ [rad/s]
 - Action: $\vu = (\tau) \in \sU$ 
     - Torque $\tau$ [Nm]
-- Dynamics: 
+-   Dynamics: 
 
     In standard manipulator equation form:
     $$
@@ -55,23 +55,33 @@ jupyter: python3
         sys.path.append(module_path)
     from sympy_helper import *
 
-    l1 = sp.Symbol("l_1")
-    m1 = sp.Symbol("m_1")
-    I1 = sp.Symbol("I_1")
-    lc1 = sp.Symbol("l_{c1}")
-    l2 = sp.Symbol("l_2")
-    m2 = sp.Symbol("m_2")
-    I2 = sp.Symbol("I_2")
-    lc2 = sp.Symbol("l_{c2}")
+    # parameters
+    l1 = sp.Symbol("l1")
+    m1 = sp.Symbol("m1")
+    I1 = sp.Symbol("I1")
+    lc1 = sp.Symbol("lc1")
+    l2 = sp.Symbol("l2")
+    m2 = sp.Symbol("m2")
+    I2 = sp.Symbol("I2")
+    lc2 = sp.Symbol("lc2")
     g = sp.Symbol("g")
+
+    # action
     tau = sp.Symbol("tau")
 
-    theta1 = sp.Symbol(r"\theta_1")
-    theta2 = sp.Symbol(r"\theta_2")
-    dtheta1 = sp.Symbol(r"\dot\theta_1")
-    dtheta2 = sp.Symbol(r"\dot\theta_2")
+    # states
+    theta1 = sp.Symbol("theta1")
+    theta2 = sp.Symbol("theta2")
+    dtheta1 = sp.Symbol("dtheta1")
+    dtheta2 = sp.Symbol("dtheta2")
 
-    printer = MyLatexPrinter(l1)
+    ## result
+    ddtheta1 = sp.Symbol("ddtheta1")
+    ddtheta2 = sp.Symbol("ddtheta2")
+
+    latex_symbol_names={l1: r'l_1', m1: r'm_1', I1: r'I_1', lc1: r'l_{c1}', l2: r'l_2', m2: r'm_2', I2: r'I_2', lc2: r'l_{c2}', tau: r'\tau', theta1: r"\theta_1", theta2: r"\theta_2", dtheta1: r"\dot\theta_1", dtheta2: r"\dot\theta_2", ddtheta1: r"\ddot\theta_1", ddtheta2: r"\ddot\theta_2"}
+
+    printer = MyLatexPrinter(l1, latex_symbol_names)
 
     #lc1 = l1/2
     #lc2 = l2/2
@@ -115,10 +125,9 @@ jupyter: python3
     M_inv = sp.inv_quick(M)
     ddq = sp.simplify(M_inv @ (tau_g + B@u - C@dq))
 
-    #h1 = sp.Symbol("h_1")
-    #r1 = ddq.subs(l1 * lc2 * m2, h1)
-
-    printer.showEq(r"(\ddot \theta_1, \ddot \theta_2)^\top", ddq)
+    replacements, reduced_expr = sp.cse(ddq)
+    all = replacements + [(ddtheta1, reduced_expr[0][0]), (ddtheta2, reduced_expr[0][1])]
+    printer.showAllSubs(all)
     ```
 
 ## Differential Flatness

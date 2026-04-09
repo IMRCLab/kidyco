@@ -1,7 +1,12 @@
 # See https://stackoverflow.com/questions/49145059/how-to-change-printed-representation-of-functions-derivative-in-sympy
 from sympy.printing.latex import LatexPrinter
 from sympy.core.function import UndefinedFunction
-from sympy import Symbol, Function, Eq, latex
+from sympy import Symbol, Function, Eq, latex, cse
+
+from sympy.printing.rust import rust_code
+from sympy.printing.pycode import pycode
+from sympy import ccode
+from sympy.codegen.ast import Assignment
 
 class MyLatexPrinter(LatexPrinter):
     """Print derivatives in shorter format.
@@ -10,8 +15,8 @@ class MyLatexPrinter(LatexPrinter):
     * More complicated derivatives revert to the default SymPy behaviour.
 
     """
-    def __init__(self, t):
-        super().__init__()
+    def __init__(self, t, latex_symbol_names=dict()):
+        super().__init__({"symbol_names": latex_symbol_names})
         self.t = t
 
     def _print_Function(self, expr: Function, exp=None) -> str:
@@ -52,6 +57,56 @@ class MyLatexPrinter(LatexPrinter):
         for var, expr in l:
             print("{} &= {}\\\\\n".format(var, self.doprint(expr)))
         print("\\end{aligned}\n")
-        
+
+    def showSubs(self, l):
+        print("\\begin{aligned}\n")
+        for var, expr in l:
+            print("{} &= {}\\\\\n".format(self.doprint(var), self.doprint(expr)))
+        print("\\end{aligned}\n")
+
+    def showAllSubs(self, l):
+        print("\n\n")
+        print("::: {.panel-tabset group='language'}\n")
+        print("## Math\n")
+        self.showSubs(l)
+        print("## C\n")
+        print("``` {.c}")
+        for var, expr in l:
+            assign_stmt = Assignment(var, expr)
+            print(ccode(assign_stmt))
+        print("```\n")
+        print("## Rust\n")
+        print("``` {.rust}")
+        for var, expr in l:
+            assign_stmt = Assignment(var, expr)
+            print(rust_code(assign_stmt))
+        print("```\n")
+        print("## Python\n")
+        print("``` {.python}")
+        for var, expr in l:
+            assign_stmt = Assignment(var, expr)
+            print(pycode(assign_stmt))
+        print("```\n")
+        print(":::\n\n")
+
+    def showAllCode(self, expr):
+        print("\n\n")
+        print("::: {.panel-tabset group='language'}\n")
+        print("## Math\n")
+        self.show(expr)
+        print("## C\n")
+        print("``` {.c}")
+        print(ccode(expr))
+        print("```\n")
+        print("## Rust\n")
+        print("``` {.rust}")
+        print(rust_code(expr))
+        print("```\n")
+        print("## Python\n")
+        print("``` {.python}")
+        print(pycode(expr))
+        print("```\n")
+        print(":::\n\n")
+   
         
 
