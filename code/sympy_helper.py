@@ -3,7 +3,7 @@ from sympy.printing.latex import LatexPrinter
 from sympy.core.function import UndefinedFunction
 from sympy import Symbol, Function, Eq, latex, cse
 
-from sympy.printing.rust import rust_code
+from sympy.printing.codeprinter import rust_code
 from sympy.printing.pycode import pycode
 from sympy import ccode
 from sympy.codegen.ast import Assignment
