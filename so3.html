@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Appendix A — SO(3) - Rotations in 3D – Kinodynamic Compendium</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -24,7 +27,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -53,15 +55,14 @@ div.csl-indent {
 <link href="./references.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-00ccf60c28c3bdf2d57f5131fbf16f11.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-66c9649715f74f1e4324758aa2390964.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -91,7 +92,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -220,26 +221,32 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./2nd_order/cartpole.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Cartpole</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./2nd_order/multirotor_1d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2nd_order/multirotor_2d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2nd_order/multirotor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multirotor</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Multirotor</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./2nd_order/unicycle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Unicycle</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Unicycle</span></span></a>
   </div>
 </li>
       </ul>
@@ -673,7 +680,7 @@ d(\mathbf{q}, \mathbf{p}) = 1 - | \mathbf{q}\cdot \mathbf{p}| \in [0, 1]
 </section>
 <section id="machine-learning" class="level2" data-number="A.3">
 <h2 data-number="A.3" class="anchored" data-anchor-id="machine-learning"><span class="header-section-number">A.3</span> Machine Learning</h2>
-<p><span class="citation" data-cites="2025-schuck-PrimerSO3Action">Schuck, Samy, and Schoellig (<a href="references.html#ref-2025-schuck-PrimerSO3Action" role="doc-biblioref">2025</a>)</span></p>
+<p><span class="citation" data-cites="2025-schuck-PrimerSO3Action">Schuck et al. (<a href="references.html#ref-2025-schuck-PrimerSO3Action" role="doc-biblioref">2025</a>)</span></p>
 <!--
 
 
@@ -691,27 +698,27 @@ d(\mathbf{q}, \mathbf{p}) = 1 - | \mathbf{q}\cdot \mathbf{p}| \in [0, 1]
 \printbibliography -->
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-2009-huynh-Metrics3DRotations" class="csl-entry" role="listitem">
 Huynh, Du Q. 2009. <span>“Metrics for 3D Rotations: Comparison and Analysis.”</span> <em>Journal of Mathematical Imaging and Vision</em> 35 (2): 155–64. <a href="https://doi.org/10.1007/s10851-009-0161-2">https://doi.org/10.1007/s10851-009-0161-2</a>.
 </div>
 <div id="ref-2024-jia-quaternions" class="csl-entry" role="listitem">
-Jia, Prof. Yan-Bin. 2024. <span>“Quaternions (Com s 477/577 Notes).”</span> 2024. <a href="https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf">https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf</a>.
+Jia, Prof. Yan-Bin. 2024. <span>“Quaternions (Com s 477/577 Notes).”</span> <a href="https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf">https://faculty.sites.iastate.edu/jia/files/inline-files/quaternion.pdf</a>.
 </div>
 <div id="ref-2017-narayan-integrateQuaternions" class="csl-entry" role="listitem">
-Narayan, Dr. Ashwin. 2017. <span>“How to Integrate Quaternions.”</span> 2017. <a href="https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/">https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/</a>.
+Narayan, Dr. Ashwin. 2017. <span>“How to Integrate Quaternions.”</span> <a href="https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/">https://www.ashwinnarayan.com/post/how-to-integrate-quaternions/</a>.
 </div>
 <div id="ref-2007-saerkkae-notesOnQuaternions" class="csl-entry" role="listitem">
-Särkkä, Prof. Simo. 2007. <span>“Notes on Quaternions.”</span> 2007. <a href="https://users.aalto.fi/~ssarkka/pub/quat.pdf">https://users.aalto.fi/~ssarkka/pub/quat.pdf</a>.
+Särkkä, Prof. Simo. 2007. <span>“Notes on Quaternions.”</span> <a href="https://users.aalto.fi/~ssarkka/pub/quat.pdf">https://users.aalto.fi/~ssarkka/pub/quat.pdf</a>.
 </div>
 <div id="ref-2025-schuck-PrimerSO3Action" class="csl-entry" role="listitem">
-Schuck, Martin, Sherif Samy, and Angela P. Schoellig. 2025. <span>“A Primer on SO(3) Action Representations in Deep Reinforcement Learning.”</span> October 13, 2025. <a href="https://doi.org/10.48550/arXiv.2510.11103">https://doi.org/10.48550/arXiv.2510.11103</a>.
+Schuck, Martin, Sherif Samy, and Angela P. Schoellig. 2025. <span>“A Primer on SO(3) Action Representations in Deep Reinforcement Learning.”</span> Pre-published October 13. <a href="https://doi.org/10.48550/arXiv.2510.11103">https://doi.org/10.48550/arXiv.2510.11103</a>.
 </div>
 <div id="ref-random-rotations" class="csl-entry" role="listitem">
-Shoemake, Ken. 1992. <span>“Uniform Random Rotations.”</span> In <em>Graphics Gems III</em>, 124–32. USA: Academic Press Professional, Inc.
+Shoemake, Ken. 1992. <span>“Uniform Random Rotations.”</span> In <em>Graphics Gems III</em>. Academic Press Professional, Inc.
 </div>
 <div id="ref-2024-toussaint-quaternions" class="csl-entry" role="listitem">
-Toussaint, Prof. Marc. 2024. <span>“Lecture Note: Quaternions, Exponential Map, and Quaternion Jacobians.”</span> 2024. <a href="https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html">https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html</a>.
+Toussaint, Prof. Marc. 2024. <span>“Lecture Note: Quaternions, Exponential Map, and Quaternion Jacobians.”</span> <a href="https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html">https://www.user.tu-berlin.de/mtoussai/notes/quaternions.html</a>.
 </div>
 </div>
 </section>

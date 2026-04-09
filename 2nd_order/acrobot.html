@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>7&nbsp; Acrobot – Kinodynamic Compendium</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -20,11 +23,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -50,19 +87,18 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../2nd_order/multirotor_1d.html" rel="next">
+<link href="../2nd_order/cartpole.html" rel="next">
 <link href="../1st_order/car_with_trailer.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-00ccf60c28c3bdf2d57f5131fbf16f11.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-66c9649715f74f1e4324758aa2390964.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -92,7 +128,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -221,26 +257,32 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../2nd_order/cartpole.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Cartpole</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor_1d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor_2d.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multirotor (2D)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/multirotor.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Multirotor</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Multirotor</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../2nd_order/unicycle.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Unicycle</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Unicycle</span></span></a>
   </div>
 </li>
       </ul>
@@ -349,23 +391,111 @@ window.Quarto = {
 </ul></li>
 <li><p>Dynamics:</p>
 <p>In standard manipulator equation form: <span class="math display">\[
-  \mathbf{M}(\ddot \theta_1, \ddot \theta_2)^\top + \mathbf{C}(\dot \theta_1, \dot \theta_2)^\top = \tau_g + \mathbf{B}\mathbf{u}
-  \]</span></p>
+\mathbf{M}(\ddot \theta_1, \ddot \theta_2)^\top + \mathbf{C}(\dot \theta_1, \dot \theta_2)^\top = \tau_g + \mathbf{B}\mathbf{u}
+\]</span></p>
 <span class="math display">\[\begin{aligned}
 
-  \mathbf{M}&amp;= \left[\begin{matrix}I_{1} + I_{2} + l_{1}^{2} m_{2} + 2 l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)} &amp; I_{2} + l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)}\\I_{2} + l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)} &amp; I_{2}\end{matrix}\right]\\
+\mathbf{M}&amp;= \left[\begin{matrix}I_1 + I_2 + l_1^{2} m_2 + 2 l_1 l_{c2} m_2 \cos{\left(\theta_2 \right)} &amp; I_2 + l_1 l_{c2} m_2 \cos{\left(\theta_2 \right)}\\I_2 + l_1 l_{c2} m_2 \cos{\left(\theta_2 \right)} &amp; I_2\end{matrix}\right]\\
 
-  \mathbf{C}&amp;= \left[\begin{matrix}- 2 \dot\theta_{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} &amp; - \dot\theta_{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)}\\\dot\theta_{1} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} &amp; 0\end{matrix}\right]\\
+\mathbf{C}&amp;= \left[\begin{matrix}- 2 \dot\theta_2 l_1 l_{c2} m_2 \sin{\left(\theta_2 \right)} &amp; - \dot\theta_2 l_1 l_{c2} m_2 \sin{\left(\theta_2 \right)}\\\dot\theta_1 l_1 l_{c2} m_2 \sin{\left(\theta_2 \right)} &amp; 0\end{matrix}\right]\\
 
-  \tau_g &amp;= \left[\begin{matrix}- g l_{c1} m_{1} \sin{\left(\theta_{1} \right)} - g m_{2} \left(l_{1} \sin{\left(\theta_{1} \right)} + l_{c2} \sin{\left(\theta_{1} + \theta_{2} \right)}\right)\\- g l_{c2} m_{2} \sin{\left(\theta_{1} + \theta_{2} \right)}\end{matrix}\right]\\
+\tau_g &amp;= \left[\begin{matrix}- g l_{c1} m_1 \sin{\left(\theta_1 \right)} - g m_2 \left(l_1 \sin{\left(\theta_1 \right)} + l_{c2} \sin{\left(\theta_1 + \theta_2 \right)}\right)\\- g l_{c2} m_2 \sin{\left(\theta_1 + \theta_2 \right)}\end{matrix}\right]\\
 
-  \mathbf{B}&amp;= \left[\begin{matrix}0\\1\end{matrix}\right]\\
+\mathbf{B}&amp;= \left[\begin{matrix}0\\1\end{matrix}\right]\\
 
-  \end{aligned}\]</span>
+\end{aligned}\]</span>
 <p>Explicit expressions for <span class="math inline">\(\ddot \theta_1, \ddot \theta_2\)</span> are:</p>
-<p><span class="math display">\[
-  (\ddot \theta_1, \ddot \theta_2)^\top = \left[\begin{matrix}\frac{I_{2} \left(2 \dot\theta_{1} \dot\theta_{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} + \dot\theta_{2}^{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} - g l_{c1} m_{1} \sin{\left(\theta_{1} \right)} - g m_{2} \left(l_{1} \sin{\left(\theta_{1} \right)} + l_{c2} \sin{\left(\theta_{1} + \theta_{2} \right)}\right)\right) + \left(I_{2} + l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)}\right) \left(\dot\theta_{1}^{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} + g l_{c2} m_{2} \sin{\left(\theta_{1} + \theta_{2} \right)} - \tau\right)}{I_{1} I_{2} + I_{2} l_{1}^{2} m_{2} - l_{1}^{2} l_{c2}^{2} m_{2}^{2} \cos^{2}{\left(\theta_{2} \right)}}\\\frac{- \left(I_{2} + l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)}\right) \left(2 \dot\theta_{1} \dot\theta_{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} + \dot\theta_{2}^{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} - g l_{c1} m_{1} \sin{\left(\theta_{1} \right)} - g m_{2} \left(l_{1} \sin{\left(\theta_{1} \right)} + l_{c2} \sin{\left(\theta_{1} + \theta_{2} \right)}\right)\right) - \left(\dot\theta_{1}^{2} l_{1} l_{c2} m_{2} \sin{\left(\theta_{2} \right)} + g l_{c2} m_{2} \sin{\left(\theta_{1} + \theta_{2} \right)} - \tau\right) \left(I_{1} + I_{2} + l_{1}^{2} m_{2} + 2 l_{1} l_{c2} m_{2} \cos{\left(\theta_{2} \right)}\right)}{I_{1} I_{2} + I_{2} l_{1}^{2} m_{2} - l_{1}^{2} l_{c2}^{2} m_{2}^{2} \cos^{2}{\left(\theta_{2} \right)}}\end{matrix}\right]
-  \]</span></p></li>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Math</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">C</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">Rust</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<span class="math display">\[\begin{aligned}
+
+x_{0} &amp;= l_1^{2}\\
+
+x_{1} &amp;= m_2 x_{0}\\
+
+x_{2} &amp;= \cos{\left(\theta_2 \right)}\\
+
+x_{3} &amp;= \frac{1}{I_1 I_2 + I_2 x_{1} - l_{c2}^{2} m_2^{2} x_{0} x_{2}^{2}}\\
+
+x_{4} &amp;= l_1 l_{c2} m_2\\
+
+x_{5} &amp;= x_{2} x_{4}\\
+
+x_{6} &amp;= I_2 + x_{5}\\
+
+x_{7} &amp;= l_{c2} \sin{\left(\theta_1 + \theta_2 \right)}\\
+
+x_{8} &amp;= g m_2\\
+
+x_{9} &amp;= x_{4} \sin{\left(\theta_2 \right)}\\
+
+x_{10} &amp;= \dot\theta_1^{2} x_{9} - \tau + x_{7} x_{8}\\
+
+x_{11} &amp;= \sin{\left(\theta_1 \right)}\\
+
+x_{12} &amp;= 2 \dot\theta_1 \dot\theta_2 x_{9} + \dot\theta_2^{2} x_{9} - g l_{c1} m_1 x_{11} - x_{8} \left(l_1 x_{11} + x_{7}\right)\\
+
+\ddot\theta_1 &amp;= x_{3} \left(I_2 x_{12} + x_{10} x_{6}\right)\\
+
+\ddot\theta_2 &amp;= x_{3} \left(- x_{10} \left(I_1 + I_2 + x_{1} + 2 x_{5}\right) - x_{12} x_{6}\right)\\
+
+\end{aligned}\]</span>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> pow<span class="op">(</span>l1<span class="op">,</span> <span class="dv">2</span><span class="op">);</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> m2<span class="op">*</span>x0<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> cos<span class="op">(</span>theta2<span class="op">);</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x3 <span class="op">=</span> <span class="fl">1.0</span><span class="op">/(</span>I1<span class="op">*</span>I2 <span class="op">+</span> I2<span class="op">*</span>x1 <span class="op">-</span> pow<span class="op">(</span>lc2<span class="op">,</span> <span class="dv">2</span><span class="op">)*</span>pow<span class="op">(</span>m2<span class="op">,</span> <span class="dv">2</span><span class="op">)*</span>x0<span class="op">*</span>pow<span class="op">(</span>x2<span class="op">,</span> <span class="dv">2</span><span class="op">));</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>x4 <span class="op">=</span> l1<span class="op">*</span>lc2<span class="op">*</span>m2<span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x5 <span class="op">=</span> x2<span class="op">*</span>x4<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x6 <span class="op">=</span> I2 <span class="op">+</span> x5<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x7 <span class="op">=</span> lc2<span class="op">*</span>sin<span class="op">(</span>theta1 <span class="op">+</span> theta2<span class="op">);</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>x8 <span class="op">=</span> g<span class="op">*</span>m2<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>x9 <span class="op">=</span> x4<span class="op">*</span>sin<span class="op">(</span>theta2<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>x10 <span class="op">=</span> pow<span class="op">(</span>dtheta1<span class="op">,</span> <span class="dv">2</span><span class="op">)*</span>x9 <span class="op">-</span> tau <span class="op">+</span> x7<span class="op">*</span>x8<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>x11 <span class="op">=</span> sin<span class="op">(</span>theta1<span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>x12 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>dtheta1<span class="op">*</span>dtheta2<span class="op">*</span>x9 <span class="op">+</span> pow<span class="op">(</span>dtheta2<span class="op">,</span> <span class="dv">2</span><span class="op">)*</span>x9 <span class="op">-</span> g<span class="op">*</span>lc1<span class="op">*</span>m1<span class="op">*</span>x11 <span class="op">-</span> x8<span class="op">*(</span>l1<span class="op">*</span>x11 <span class="op">+</span> x7<span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>ddtheta1 <span class="op">=</span> x3<span class="op">*(</span>I2<span class="op">*</span>x12 <span class="op">+</span> x10<span class="op">*</span>x6<span class="op">);</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>ddtheta2 <span class="op">=</span> x3<span class="op">*(-</span>x10<span class="op">*(</span>I1 <span class="op">+</span> I2 <span class="op">+</span> x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x5<span class="op">)</span> <span class="op">-</span> x12<span class="op">*</span>x6<span class="op">);</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> l1<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> m2<span class="op">*</span>x0<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> theta2<span class="op">.</span>cos()<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x3 <span class="op">=</span> (I1<span class="op">*</span>I2 <span class="op">+</span> I2<span class="op">*</span>x1 <span class="op">-</span> lc2<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">*</span>m2<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">*</span>x0<span class="op">*</span>x2<span class="op">.</span>powi(<span class="dv">2</span>))<span class="op">.</span>recip()<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x4 <span class="op">=</span> l1<span class="op">*</span>lc2<span class="op">*</span>m2<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>x5 <span class="op">=</span> x2<span class="op">*</span>x4<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>x6 <span class="op">=</span> I2 <span class="op">+</span> x5<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>x7 <span class="op">=</span> lc2<span class="op">*</span>(theta1 <span class="op">+</span> theta2)<span class="op">.</span>sin()<span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>x8 <span class="op">=</span> g<span class="op">*</span>m2<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>x9 <span class="op">=</span> x4<span class="op">*</span>theta2<span class="op">.</span>sin()<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>x10 <span class="op">=</span> dtheta1<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">*</span>x9 <span class="op">-</span> tau <span class="op">+</span> x7<span class="op">*</span>x8<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>x11 <span class="op">=</span> theta1<span class="op">.</span>sin()<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>x12 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>dtheta1<span class="op">*</span>dtheta2<span class="op">*</span>x9 <span class="op">+</span> dtheta2<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">*</span>x9 <span class="op">-</span> g<span class="op">*</span>lc1<span class="op">*</span>m1<span class="op">*</span>x11 <span class="op">-</span> x8<span class="op">*</span>(l1<span class="op">*</span>x11 <span class="op">+</span> x7)<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>ddtheta1 <span class="op">=</span> x3<span class="op">*</span>(I2<span class="op">*</span>x12 <span class="op">+</span> x10<span class="op">*</span>x6)<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>ddtheta2 <span class="op">=</span> x3<span class="op">*</span>(<span class="op">-</span>x10<span class="op">*</span>(I1 <span class="op">+</span> I2 <span class="op">+</span> x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x5) <span class="op">-</span> x12<span class="op">*</span>x6)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> l1<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> m2<span class="op">*</span>x0</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> math.cos(theta2)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>x3 <span class="op">=</span> <span class="dv">1</span><span class="op">/</span>(I1<span class="op">*</span>I2 <span class="op">+</span> I2<span class="op">*</span>x1 <span class="op">-</span> lc2<span class="op">**</span><span class="dv">2</span><span class="op">*</span>m2<span class="op">**</span><span class="dv">2</span><span class="op">*</span>x0<span class="op">*</span>x2<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>x4 <span class="op">=</span> l1<span class="op">*</span>lc2<span class="op">*</span>m2</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>x5 <span class="op">=</span> x2<span class="op">*</span>x4</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>x6 <span class="op">=</span> I2 <span class="op">+</span> x5</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x7 <span class="op">=</span> lc2<span class="op">*</span>math.sin(theta1 <span class="op">+</span> theta2)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>x8 <span class="op">=</span> g<span class="op">*</span>m2</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>x9 <span class="op">=</span> x4<span class="op">*</span>math.sin(theta2)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>x10 <span class="op">=</span> dtheta1<span class="op">**</span><span class="dv">2</span><span class="op">*</span>x9 <span class="op">-</span> tau <span class="op">+</span> x7<span class="op">*</span>x8</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>x11 <span class="op">=</span> math.sin(theta1)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>x12 <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>dtheta1<span class="op">*</span>dtheta2<span class="op">*</span>x9 <span class="op">+</span> dtheta2<span class="op">**</span><span class="dv">2</span><span class="op">*</span>x9 <span class="op">-</span> g<span class="op">*</span>lc1<span class="op">*</span>m1<span class="op">*</span>x11 <span class="op">-</span> x8<span class="op">*</span>(l1<span class="op">*</span>x11 <span class="op">+</span> x7)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>ddtheta1 <span class="op">=</span> x3<span class="op">*</span>(I2<span class="op">*</span>x12 <span class="op">+</span> x10<span class="op">*</span>x6)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>ddtheta2 <span class="op">=</span> x3<span class="op">*</span>(<span class="op">-</span>x10<span class="op">*</span>(I1 <span class="op">+</span> I2 <span class="op">+</span> x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x5) <span class="op">-</span> x12<span class="op">*</span>x6)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div></li>
 </ul>
 </section>
 <section id="differential-flatness" class="level2" data-number="7.2">
@@ -406,12 +536,12 @@ g &amp;= 9.81\\
 \]</span></p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-2024-ortiz-haro-IDbAIterativeSearch" class="csl-entry" role="listitem">
 Ortiz-Haro, Joaquim, Wolfgang Hönig, Valentin N. Hartmann, and Marc Toussaint. 2024. <span>“iDb-a*: Iterative Search and Optimization for Optimal Kinodynamic Motion Planning.”</span> <em>IEEE Transactions on Robotics</em>, 1–19. <a href="https://doi.org/10.1109/TRO.2024.3502505">https://doi.org/10.1109/TRO.2024.3502505</a>.
 </div>
 <div id="ref-2024-underactuated-robotics" class="csl-entry" role="listitem">
-Tedrake, Russ. 2024. <span>“Underactuated Robotics.”</span> 2024. <a href="https://underactuated.csail.mit.edu">https://underactuated.csail.mit.edu</a>.
+Tedrake, Russ. 2024. <span>“Underactuated Robotics.”</span> <a href="https://underactuated.csail.mit.edu">https://underactuated.csail.mit.edu</a>.
 </div>
 </div>
 </section>
@@ -825,8 +955,8 @@ Tedrake, Russ. 2024. <span>“Underactuated Robotics.”</span> 2024. <a href="h
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../2nd_order/multirotor_1d.html" class="pagination-link" aria-label="Multirotor (1D)">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Multirotor (1D)</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../2nd_order/cartpole.html" class="pagination-link" aria-label="Cartpole">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Cartpole</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
